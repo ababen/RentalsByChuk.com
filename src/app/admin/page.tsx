@@ -1,6 +1,7 @@
 import { properties } from "@/data/properties";
 import Link from "next/link";
 
+export const metadata = { title: "Agent Portal | RentalsByChuk", description: "Agent portal — manage listings, HOA data, market reports." };
 // Simple password gate via env — MVP: PIN in .env.local
 // For now, no auth; just a form. Wire to NextAuth / Supabase later.
 
@@ -55,7 +56,7 @@ export default function AdminPage() {
             <li>Add auth: NextAuth with single agent login (env PIN for MVP)</li>
             <li>Keep file fallback: if DB down, site still renders from last JSON</li>
           </ul>
-          <div className="mt-4 text-xs text-[#94A3B8]">Ask me to scaffold Supabase + Admin CRUD and I'll wire it in one commit.</div>
+          <div className="mt-4 text-xs text-[#94A3B8]">Ask me to scaffold Supabase + Admin CRUD and I&apos;ll wire it in one commit.</div>
         </div>
       </div>
     </div>

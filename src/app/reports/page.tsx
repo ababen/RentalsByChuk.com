@@ -1,4 +1,5 @@
 
+export const metadata = { title: "Market Reports — Monthly Pulse | RentalsByChuk", description: "Live market pulse for WPB, PBG & Jupiter. Rents, vacancy, HOA trends, seasonal math." };
 export default function ReportsPage(){
   return (
     <div className="max-w-[1200px] mx-auto px-6 py-8">

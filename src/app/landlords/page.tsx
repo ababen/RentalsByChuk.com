@@ -1,10 +1,11 @@
 
 import Link from "next/link";
+export const metadata = { title: "For Landlords — Accidental Landlord Rescue | RentalsByChuk", description: "Didn’t sell? Rent smart. Rent-vs-sell math, 48-hr analysis, 21-day guarantee." };
 export default function LandlordsPage(){
   return (
     <div className="max-w-[1200px] mx-auto px-6 py-8">
       <h1 className="text-3xl">For Landlords — Accidental Landlord Rescue</h1>
-      <p className="text-sm text-[#57534E] mt-2 max-w-[700px]">Tried to sell and didn't? 55.9% of WPB listings sat 60+ days. Renting beats a price cut — if you do it right. We price by neighborhood, clear HOA first, and guarantee 21 days to lease.</p>
+      <p className="text-sm text-[#57534E] mt-2 max-w-[700px]">Tried to sell and didn&apos;t? 55.9% of WPB listings sat 60+ days. Renting beats a price cut — if you do it right. We price by neighborhood, clear HOA first, and guarantee 21 days to lease.</p>
       <div className="mt-6 grid md:grid-cols-3 gap-4">
         <div className="bg-white border border-[#E7E5E4] rounded-2xl p-5"><div className="font-extrabold">48-Hr Rental Analysis</div><div className="text-sm text-[#57534E] mt-1">Live comps by YOUR street, not county avg. Free.</div><a href="mailto:chuk@rentalsbychuk.com" className="mt-3 inline-block bg-[#FF6B4A] text-white px-4 py-2 rounded-full text-sm font-bold">Request Analysis →</a></div>
         <div className="bg-white border border-[#E7E5E4] rounded-2xl p-5"><div className="font-extrabold">HOA Rental Rights Check</div><div className="text-sm text-[#57534E] mt-1">300+ communities. $199 attorney-reviewed before you list.</div><Link href="/hoa-checker" className="mt-3 inline-block bg-[#0B1D3A] text-white px-4 py-2 rounded-full text-sm font-bold">Check My HOA →</Link></div>

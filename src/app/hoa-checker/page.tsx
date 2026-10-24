@@ -2,6 +2,7 @@
 import { hoaDB } from "@/data/hoa";
 import Link from "next/link";
 
+export const metadata = { title: "HOA Checker — Rental Rights | RentalsByChuk", description: "Check 300+ HOAs in WPB/PBG/Jupiter. Min lease, max/year, board timeline, STR rules, grandfather status." };
 export default async function HOACheckerPage({ searchParams }: { searchParams: Promise<{ q?: string }> }){
   const { q } = await searchParams;
   const query = (q ?? "").toLowerCase().trim();

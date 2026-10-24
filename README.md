@@ -5,48 +5,50 @@
 
 Sister brand to [HomesByChuk](https://homesbychuk.com) — same trust, sharper edge. Hyperlocal rentals, neighborhood-level pricing, HOA clearance, and video-first tours.
 
-🔗 **Live Preview:** [Open the Mockup →](RentalsByChuk_Mockup.html) | [Brand Guide →](RentalsByChuk_BrandGuide.html)
+🔗 **Live:** [rentalsbychuk.com](https://rentalsbychuk.com) · [rentalsbychukcom.vercel.app](https://rentalsbychukcom.vercel.app) · [Mockup](RentalsByChuk_Mockup.html) · [Brand Guide](RentalsByChuk_BrandGuide.html) · [Strategy](docs/STRATEGY.md)
 
 ---
 
-## What This Repo Will Become
+## Stack — File-Based, No MLS (2026)
 
-A production **Next.js 14 + Tailwind** site:
+Next.js 16 + Tailwind v4 + TypeScript (app router). No MLS/IDX — agent curates via `src/data/properties.ts`.
 
 ```
 app/
-├── (marketing)/          # home, about, contact
-├── rentals/              # map search + collections
-├── landlords/            # rescue hub, HOA checker, calculators
-├── communities/[slug]/   # 12 SEO pillar pages
-├── reports/              # monthly pulse + annual deep dive
-└── relocation/           # try-before-you-buy + corporate
-components/               # search-panel, hoa-checker, seasonal-calc
-lib/
-├── mls.ts                # BeachesMLS via Spark/IDX Broker
-├── hoa-db.ts             # 300+ communities (Airtable → static JSON)
-└── calculations.ts       # seasonal vs annual, rent-vs-sell
-public/
-docs/STRATEGY.md          # full research + differentiation doc
+├── page.tsx              # hero + pulse + featured + rescue + matchmaker + HOA checker + calculator + villages
+├── rentals/              # search + filters (q/city/pet/seasonal) + [id] detail
+├── communities/          # 12 villages
+├── hoa-checker/          # 6 demo HOAs → 300+ via Airtable→JSON
+├── landlords/            # rescue hub + guarantees
+├── reports/              # monthly pulse
+├── admin/                # agent portal (file-edit workflow)
+├── sitemap.ts / robots.ts / opengraph-image.tsx
+├── loading.tsx / error.tsx / not-found.tsx
+components/ Header, Footer, PropertyCard
+lib/     types.ts + properties.ts (getAll/getById/filter/formatPrice)
+data/    properties.ts (6 seeds) + hoa.ts (6 demo)
+public/  listings/ for agent-uploaded photos
 ```
 
-**Current status:** `v0.1` — strategy, brand, and interactive mockup. Next step is scaffolding the Next.js app and MLS integration.
-
----
-
-## Quick Start (Design Preview)
-
-No build needed — open the static files:
-
-- **`RentalsByChuk_Mockup.html`** — Full homepage mockup (search, HOA checker, seasonal calculator, communities, listings). Just open in a browser.
-- **`RentalsByChuk_BrandGuide.html`** — Logo system, palette, type, components, applications.
-- **`RentalsByChuk_Strategy.md`** / `docs/STRATEGY.md` — 10 moats, market data, personas, site architecture, 90-day GTM.
+## Quick Start
 
 ```bash
-# Preview locally
-open RentalsByChuk_Mockup.html
-open RentalsByChuk_BrandGuide.html
+npm install
+npm run dev      # localhost:3000
+npm run build    # verify ○/ƒ routes
 ```
+
+## How Agent Adds a Property
+
+1. Collect photos → `public/listings/` or hosted URL
+2. Duplicate an entry in `src/data/properties.ts` (see `src/lib/types.ts` schema)
+3. `git add -A && git commit -m "add: 123 Main St" && git push` → Vercel auto-deploys
+
+AI agents: same workflow — read `src/lib/types.ts` for schema, edit `src/data/properties.ts`, commit+push.
+
+## Deploy
+
+Vercel linked to `ababen/RentalsByChuk.com` (team Marketing Bull 2). Every `main` push auto-deploys. Custom domain: add in Vercel → Domains → `RentalsByChuk.com`.
 
 ---
 
@@ -99,14 +101,13 @@ Logo: **R** monogram = key + palm frond. Wordmark: `RENTALS BY CHUK` with Coral 
 - [x] v0.1 — Market research + strategy doc
 - [x] v0.1 — Brand guide + logo system
 - [x] v0.1 — Interactive homepage mockup
-- [ ] v0.2 — Next.js scaffold + Tailwind + design tokens
-- [ ] v0.2 — 12 community pages (SEO pillars)
-- [ ] v0.3 — MLS/IDX integration (BeachesMLS)
-- [ ] v0.3 — HOA database (Airtable) + checker
-- [ ] v0.3 — Seasonal + Rent-vs-Sell calculators
+- [x] v0.2 — Next.js 16 + Tailwind + real homepage (faithful mockup port)
+- [x] v0.2 — sitemap/robots/OG image, loading/error/not-found, metadata on all routes
+- [ ] v0.3 — 12 community [slug] pages (SEO pillars)
+- [ ] v0.3 — Expand HOA DB to 300+ (Airtable→JSON)
+- [ ] v0.3 — Lead capture (Resend) + /admin auth
 - [ ] v0.4 — Tenant Vault + showing scheduler
-- [ ] v0.4 — Market Pulse CMS
-- [ ] v1.0 — Launch + Goldilocks Alert campaign
+- [ ] v1.0 — Launch + Goldilocks Alert campaign + analytics
 
 ---
 
@@ -117,7 +118,3 @@ This is a private client project. For questions, open an issue or text Chuk.
 ## License
 
 © 2026 RentalsByChuk. All rights reserved.
-
----
-
-*Next: `npx create-next-app` → Tailwind → port `RentalsByChuk_Mockup.html` to `app/page.tsx` → wire up MLS.*

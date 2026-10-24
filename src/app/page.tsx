@@ -1,7 +1,8 @@
 "use client";
+import Link from "next/link";
 import { useState, useMemo } from "react";
 
-const demoListings = [
+const demoListings: Array<{ city: string; title: string; price: string; beds: string; hood: string; badge: string; img: string; tag: string; hoa: string; badgeClass?: string }> = [
   { city: "Jupiter", title: "3BR Single-Family — Abacoa", price: "$4,850/mo", beds: "3bd • 2ba • 1,850 sqft", hood: "Abacoa • Gated", badge: "Abacoa", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop", tag: "Pet-Friendly", hoa: "HOA: 14 days" },
   { city: "Palm Beach Gardens", title: "4BR Golf Home — Mirasol", price: "$6,400/mo", beds: "4bd • 3ba • 2,600 sqft", hood: "Mirasol • Golf", badge: "Mirasol", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop", tag: "Golf Front", hoa: "HOA: 10 days" },
   { city: "West Palm Beach", title: "2BR Loft — Downtown Clematis", price: "$2,950/mo", beds: "2bd • 2ba • 1,100 sqft", hood: "Downtown • Walkable", badge: "Downtown", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop", tag: "New Listing", hoa: "No HOA" },
@@ -10,7 +11,7 @@ const demoListings = [
   { city: "Palm Beach Gardens", title: "3BR — PGA National", price: "$4,200/mo", beds: "3bd • 2ba • 1,950 sqft", hood: "PGA National • Resort", badge: "PGA National", img: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800&auto=format&fit=crop", tag: "Pool", hoa: "HOA: 12 days" },
 ];
 
-const hoaDB: Record<string, any> = {
+const hoaDB: Record<string, { name: string; city: string; hoa: string; board: string; max: string; str: string; grand: string }> = {
   mirasol: { name: "Mirasol", city: "PBG", hoa: "6-mo min ✓", board: "Yes — 10-15 days • $150/app", max: "2× / year", str: "Prohibited — $100/day fines", grand: "No — 6mo retroactive" },
   abacoa: { name: "Abacoa", city: "Jupiter", hoa: "6-mo min (varies by village)", board: "Yes — 5-10 days • $75/app", max: "3× / year", str: "30-day min only", grand: "Village-specific — we check" },
   frenchman: { name: "Frenchman's Creek", city: "PBG", hoa: "12-mo min", board: "Yes — 15-30 days • interview", max: "1× / year", str: "Prohibited", grand: "Pre-2021 may be grandfathered" },
@@ -100,7 +101,7 @@ export default function Home() {
         <div className="hero-card">
           <div className="hero-img"></div>
           <div className="hero-floating">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" alt="" />
+            <img alt="Chuk — Rentals-Only Realtor" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" />
             <div>
               <div style={{ fontWeight: 800, fontFamily: "Sora, sans-serif", fontSize: "13px" }}>Chuk • Rentals-Only</div>
               <div style={{ fontSize: "12px", color: "var(--muted)" }}>Avg. 21 days to lease • 561-555-0142</div>
@@ -135,18 +136,18 @@ export default function Home() {
           <div><div className="k">Featured Rentals — Updated Today</div><h2>Homes that lease in days, not months.</h2></div>
           <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
             <select value={filterCity} onChange={e => setFilterCity(e.target.value)} style={{ border: "1px solid var(--line)", borderRadius: "999px", padding: "8px 12px", background: "#fff" }}><option value="">All cities</option><option>West Palm Beach</option><option>Palm Beach Gardens</option><option>Jupiter</option></select>
-            <a className="btn btn-ghost" href="/rentals">View All 1,847 →</a>
+            <Link className="btn btn-ghost" href="/rentals">View All 1,847 →</Link>
           </div>
         </div>
         <div className="grid3">
           {filtered.map(l => (
             <div key={l.title} className="card">
-              <div className="listing-img"><img src={l.img} alt="" /><span className={`badge ${(l as any).badgeClass || ""}`}>{l.badge}</span><span className="heart">♡</span><span style={{ position: "absolute", bottom: "10px", left: "10px", background: "#fff", border: "1px solid var(--line)", padding: "6px 10px", borderRadius: "999px", fontSize: "11px", fontWeight: 800 }}>{l.hoa}</span></div>
+              <div className="listing-img"><img src={l.img} alt={l.title} /><span className={`badge ${l.badgeClass || ""}`}>{l.badge}</span><span className="heart">♡</span><span style={{ position: "absolute", bottom: "10px", left: "10px", background: "#fff", border: "1px solid var(--line)", padding: "6px 10px", borderRadius: "999px", fontSize: "11px", fontWeight: 800 }}>{l.hoa}</span></div>
               <div style={{ padding: "14px" }}>
                 <div className="price">{l.price} <span style={{ fontWeight: 500, color: "var(--muted)", fontSize: "13px" }}>• {l.hood}</span></div>
                 <div style={{ fontWeight: 700, marginTop: "2px" }}>{l.title}</div>
                 <div className="muted">{l.beds}</div>
-                <div style={{ marginTop: "10px", display: "flex", gap: "8px", flexWrap: "wrap" as const }}><span className="pill">{l.tag}</span><span className="pill">{l.city}</span><a className="btn btn-navy" style={{ marginLeft: "auto", padding: "8px 12px", fontSize: "13px" }} href="/rentals">Tour →</a></div>
+                <div style={{ marginTop: "10px", display: "flex", gap: "8px", flexWrap: "wrap" as const }}><span className="pill">{l.tag}</span><span className="pill">{l.city}</span><Link className="btn btn-navy" style={{ marginLeft: "auto", padding: "8px 12px", fontSize: "13px" }} href="/rentals">Tour →</Link></div>
               </div>
             </div>
           ))}
@@ -272,14 +273,14 @@ export default function Home() {
       <section id="communities" className="section" style={{ background: "#fff", borderTop: "1px solid var(--line)" }}><div className="container">
         <div className="section-head"><h2>12 Villages. Know them like a local.</h2><a className="btn btn-ghost" href="/communities">All Communities →</a></div>
         <div className="grid4">
-          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=600&auto=format&fit=crop" alt="" /><div className="comm-label"><b>Downtown Clematis</b><div className="mono" style={{ color: "#E2E8F0" }}>WPB • $2,500-$4k • Walkable</div></div></a>
-          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop" alt="" /><div className="comm-label"><b>Flamingo Park</b><div className="mono" style={{ color: "#E2E8F0" }}>WPB • Historic • $2,200-$3,500</div></div></a>
-          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600&auto=format&fit=crop" alt="" /><div className="comm-label"><b>Northwood</b><div className="mono" style={{ color: "#E2E8F0" }}>WPB • Revitalizing • $1,800-$2,800</div></div></a>
-          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?q=80&w=600&auto=format&fit=crop" alt="" /><div className="comm-label"><b>Mirasol</b><div className="mono" style={{ color: "#E2E8F0" }}>PBG • Golf • $4k-$7k</div></div></a>
-          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=600&auto=format&fit=crop" alt="" /><div className="comm-label"><b>PGA National</b><div className="mono" style={{ color: "#E2E8F0" }}>PBG • Resort • $3,500-$6k</div></div></a>
-          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=600&auto=format&fit=crop" alt="" /><div className="comm-label"><b>Abacoa</b><div className="mono" style={{ color: "#E2E8F0" }}>Jupiter • Walkable • $3,800-$5,200</div></div></a>
-          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600566753190-17f63baa68a8?q=80&w=600&auto=format&fit=crop" alt="" /><div className="comm-label"><b>Intracoastal</b><div className="mono" style={{ color: "#E2E8F0" }}>Jupiter • Waterfront • $8k-$25k+</div></div></a>
-          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=600&auto=format&fit=crop" alt="" /><div className="comm-label"><b>Egret Landing</b><div className="mono" style={{ color: "#E2E8F0" }}>Jupiter • Gated • $4,500-$7k</div></div></a>
+          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=600&auto=format&fit=crop" /><div className="comm-label"><b>Downtown Clematis</b><div className="mono" style={{ color: "#E2E8F0" }}>WPB • $2,500-$4k • Walkable</div></div></a>
+          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop" /><div className="comm-label"><b>Flamingo Park</b><div className="mono" style={{ color: "#E2E8F0" }}>WPB • Historic • $2,200-$3,500</div></div></a>
+          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600&auto=format&fit=crop" /><div className="comm-label"><b>Northwood</b><div className="mono" style={{ color: "#E2E8F0" }}>WPB • Revitalizing • $1,800-$2,800</div></div></a>
+          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?q=80&w=600&auto=format&fit=crop" /><div className="comm-label"><b>Mirasol</b><div className="mono" style={{ color: "#E2E8F0" }}>PBG • Golf • $4k-$7k</div></div></a>
+          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=600&auto=format&fit=crop" /><div className="comm-label"><b>PGA National</b><div className="mono" style={{ color: "#E2E8F0" }}>PBG • Resort • $3,500-$6k</div></div></a>
+          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=600&auto=format&fit=crop" /><div className="comm-label"><b>Abacoa</b><div className="mono" style={{ color: "#E2E8F0" }}>Jupiter • Walkable • $3,800-$5,200</div></div></a>
+          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600566753190-17f63baa68a8?q=80&w=600&auto=format&fit=crop" /><div className="comm-label"><b>Intracoastal</b><div className="mono" style={{ color: "#E2E8F0" }}>Jupiter • Waterfront • $8k-$25k+</div></div></a>
+          <a className="comm" href="/communities"><img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=600&auto=format&fit=crop" /><div className="comm-label"><b>Egret Landing</b><div className="mono" style={{ color: "#E2E8F0" }}>Jupiter • Gated • $4,500-$7k</div></div></a>
         </div>
       </div></section>
 

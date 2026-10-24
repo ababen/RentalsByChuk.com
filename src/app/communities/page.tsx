@@ -1,5 +1,8 @@
 
 import Link from "next/link";
+
+export const metadata = { title: "Communities — 12 Villages | RentalsByChuk", description: "Explore 12 villages across WPB, PBG & Jupiter — rents, schools, vibe, HOA rules." };
+
 const comms = [
   { n:"Downtown Clematis", city:"West Palm Beach", price:"$2,500-$4k", blurb:"Walkable, river, nightlife. Young pros & Brightline commuters." },
   { n:"Flamingo Park", city:"West Palm Beach", price:"$2,200-$3,500", blurb:"Historic bungalows, Norton Museum, tree-lined streets." },

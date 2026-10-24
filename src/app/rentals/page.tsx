@@ -3,6 +3,7 @@ import { filterProperties } from "@/lib/properties";
 import PropertyCard from "@/components/PropertyCard";
 import Link from "next/link";
 
+export const metadata = { title: "Rentals — Browse All | RentalsByChuk", description: "Browse 6+ rentals in West Palm Beach, Palm Beach Gardens & Jupiter. Pet-friendly, waterfront, seasonal — HOA-checked, 21-day guarantee." };
 export default async function RentalsPage({ searchParams }: { searchParams: Promise<{ q?: string; city?: string; pet?: string; seasonal?: string }> }) {
   const sp = await searchParams;
   const filtered = filterProperties({

@@ -6,17 +6,36 @@ import Footer from "@/components/Footer";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-const cormorant = Cormorant_Garamond({ variable: "--font-cormorant", subsets: ["latin"], weight: ["400","600","700"] });
-const sora = Sora({ variable: "--font-sora", subsets: ["latin"], weight: ["600","700","800"] });
+const cormorant = Cormorant_Garamond({ variable: "--font-cormorant", subsets: ["latin"], weight: ["400", "600", "700"] });
+const sora = Sora({ variable: "--font-sora", subsets: ["latin"], weight: ["600", "700", "800"] });
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "RentalsByChuk — WPB • Palm Beach Gardens • Jupiter Rentals",
+  title: {
+    default: "RentalsByChuk — WPB • Palm Beach Gardens • Jupiter Rentals",
+    template: "%s | RentalsByChuk",
+  },
   description: "Rentals-only Realtor for West Palm Beach, Palm Beach Gardens & Jupiter. HOA-checked, neighborhood-priced, 21-day lease guarantee.",
+  metadataBase: new URL("https://rentalsbychuk.com"),
   openGraph: {
     title: "RentalsByChuk — Rentals Isn't Our Side Hustle",
     description: "The Northern Triangle's rentals-only Realtor. WPB • PBG • Jupiter.",
-  }
+    url: "https://rentalsbychuk.com",
+    siteName: "RentalsByChuk",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RentalsByChuk — WPB • PBG • Jupiter Rentals",
+    description: "Rentals-only Realtor for West Palm Beach, Palm Beach Gardens & Jupiter.",
+  },
+  verification: {
+    google: "pending-add-your-code",
+  },
+  alternates: {
+    canonical: "https://rentalsbychuk.com",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
