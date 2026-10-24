@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RentalsByChuk — West Palm Beach • Palm Beach Gardens • Jupiter Rentals</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,600&family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0B1D3A;--navy2:#13294B;--navy3:#1E3A5F;--sand:#E8DDD0;--sand2:#F4EDE2;--paper:#FCFBF8;--coral:#FF6B4A;--coral2:#FF8A6B;--aqua:#2EC4B6;--aqua2:#0CA89A;--line:#E7E5E4;--muted:#78716C;--stone:#57534E}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--navy);line-height:1.5}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--aqua2)}
+h1,h2{font-family:'Cormorant Garamond',serif;letter-spacing:-.02em}
+.btn{border:0;border-radius:999px;padding:11px 18px;font-family:'Sora',sans-serif;font-weight:700;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:var(--navy2)}
+.btn-coral{background:var(--coral);color:#fff}
+.btn-coral:hover{background:#E85A3A}
+.btn-ghost{background:#fff;border:1px solid var(--line);color:var(--navy)}
+.btn-ghost:hover{border-color:var(--navy)}
+.pill{font-family:'Sora',sans-serif;font-size:12px;font-weight:700;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;display:inline-flex;align-items:center;gap:6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+
+/* top alert */
+.alert{background:var(--navy);color:#fff;font-size:13px}
+.alert-inner{max-width:1200px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.alert b{color:var(--coral2)}
+.alert a{background:var(--coral);color:#fff;padding:6px 12px;border-radius:999px;font-weight:700;font-size:12px}
+
+/* header */
+.header{position:sticky;top:0;z-index:40;background:rgba(252,251,248,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.nav{display:flex;align-items:center;gap:18px;font-size:13px;font-weight:600;color:#44403C}
+.nav a{padding:6px 8px;border-radius:999px}
+.nav a:hover{background:#fff;border:1px solid var(--line);margin:-1px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:38px;height:38px;border-radius:12px;background:var(--navy);display:grid;place-items:center;color:#fff;font-family:'Sora',sans-serif;font-weight:800;font-size:16px;position:relative}
+.logo-mark:after{content:"";position:absolute;right:6px;bottom:8px;width:10px;height:2px;background:var(--aqua);border-radius:999px;transform:rotate(-18deg)}
+.logo-mark:before{content:"";position:absolute;right:7px;bottom:11px;width:10px;height:2px;background:var(--coral);border-radius:999px;transform:rotate(-18deg)}
+.search-mini{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 6px 6px 14px}
+.search-mini input{border:0;outline:0;font-size:14px;width:200px}
+.search-mini button{width:32px;height:32px;border-radius:999px;border:0;background:var(--navy);color:#fff;display:grid;place-items:center;cursor:pointer}
+
+/* hero */
+.hero{background:linear-gradient(180deg,var(--sand2) 0%, var(--paper) 65%);padding:36px 0 24px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+.hero h1{font-size:54px;line-height:.95}
+.hero h1 i{font-weight:400;color:var(--coral);font-style:italic}
+.hero-sub{margin-top:14px;color:var(--stone);font-size:16px;max-width:560px}
+.hero-sub b{color:var(--navy)}
+.chips{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+.hero-card{position:relative}
+.hero-img{height:420px;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:
+  linear-gradient(180deg,rgba(11,29,58,.08),rgba(11,29,58,.35)),
+  url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop') center/cover}
+.hero-floating{position:absolute;left:-12px;bottom:16px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:flex;gap:12px;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.hero-floating img{width:44px;height:44px;border-radius:999px;object-fit:cover}
+.search-panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px;box-shadow:0 6px 20px rgba(0,0,0,.05)}
+.search-panel input,.search-panel select{border:1px solid var(--line);border-radius:999px;padding:10px 14px;font-size:14px;outline:0;background:#fff}
+.search-panel input{flex:1;min-width:180px}
+.stats{margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}
+.stat b{font-family:'Sora',sans-serif;font-size:18px}
+.stat div{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+
+/* pulse */
+.pulse{background:var(--navy);color:#fff;padding:14px 0;overflow:hidden}
+.pulse-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.pulse-items{display:flex;gap:10px;flex-wrap:wrap}
+.pulse-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:8px 12px;border-radius:999px;font-size:12px;font-weight:700;display:flex;gap:8px;align-items:center}
+.pulse-pill b{color:var(--aqua)}
+
+/* sections */
+.section{padding:48px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.section-head h2{font-size:34px}
+.section-head p{color:var(--stone);max-width:560px;font-size:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.listing-img{height:170px;background:#E7E5E4;position:relative;overflow:hidden}
+.listing-img img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;top:10px;left:10px;background:rgba(11,29,58,.92);color:#fff;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.badge.coral{background:var(--coral)}
+.badge.aqua{background:var(--aqua);color:#0B1D3A}
+.price{font-family:'Sora',sans-serif;font-weight:800;font-size:18px}
+.muted{color:var(--muted);font-size:13px}
+.heart{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:999px;background:rgba(255,255,255,.92);display:grid;place-items:center;border:1px solid var(--line);cursor:pointer}
+
+/* rescue */
+.rescue{background:linear-gradient(135deg,#FFF1E6 0%, #FFE4D6 50%, #FFD1B8 100%);border:1px solid #FDBA74;border-radius:24px;padding:22px;display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:center;overflow:hidden;position:relative}
+.rescue:after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;background:radial-gradient(circle at 30% 30%, rgba(255,107,74,.25), transparent 60%);pointer-events:none}
+.quiz{list-style:none;display:grid;gap:8px;margin-top:12px}
+.quiz li{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600;cursor:pointer}
+.quiz li:hover{border-color:var(--navy)}
+
+/* HOA checker */
+.hoa{background:var(--navy);color:#fff;border-radius:24px;padding:22px;display:grid;grid-template-columns:1.05fr .95fr;gap:18px;overflow:hidden}
+.hoa-input{display:flex;gap:8px;background:#fff;border-radius:999px;padding:6px;border:1px solid var(--line)}
+.hoa-input input{flex:1;border:0;outline:0;padding:8px 12px;font-size:14px;border-radius:999px}
+.hoa-results{background:#0E2246;border:1px solid #1E3A5F;border-radius:16px;padding:14px;display:grid;gap:10px}
+.hoa-row{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;background:rgba(255,255,255,.06);border-radius:12px;font-size:13px}
+
+/* calc */
+.calc{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.range{width:100%;accent-color:var(--coral)}
+.kpi{background:var(--sand2);border:1px solid #E7DDCC;border-radius:16px;padding:14px}
+.kpi b{font-family:'Sora',sans-serif;font-size:22px}
+
+/* communities */
+.comm{height:180px;border-radius:20px;overflow:hidden;position:relative;border:1px solid var(--line);background:#E7E5E4}
+.comm img{width:100%;height:100%;object-fit:cover}
+.comm:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 35%, rgba(11,29,58,.75) 100%)}
+.comm-label{position:absolute;left:14px;bottom:12px;color:#fff}
+.comm-label b{font-family:'Sora',sans-serif}
+
+/* footer */
+.footer{background:var(--navy);color:#E2E8F0;padding:28px 0 18px}
+.footer a{color:#CBD5E1}
+.footer a:hover{color:#fff}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+
+@media(max-width:980px){
+  .hero-grid,.rescue,.hoa,.calc,.grid3,.grid4,.grid2{grid-template-columns:1fr}
+  .hero h1{font-size:40px}
+  .hero-img{height:320px}
+  .search-mini input{width:120px}
+  .nav span{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ALERT -->
+<div class="alert"><div class="alert-inner">
+  <div>🌴 <b>Goldilocks Alert</b> — Seasonal conversions start in <b>~6 weeks</b>. Get notified when Jupiter & PBG inventory spikes. <span style="opacity:.8">May/June = best deals.</span></div>
+  <a href="#alert" id="alertBtn">Get Notified →</a>
+</div></div>
+
+<!-- HEADER -->
+<header class="header"><div class="header-inner">
+  <a class="logo" href="#">
+    <div class="logo-mark">R</div>
+    <div>
+      <div style="font-family:'Sora',sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1">RENTALS<span style="color:var(--coral)">BY</span>CHUK</div>
+      <div class="mono" style="color:var(--aqua2);font-size:10px">WPB • PBG • JUPITER</div>
+    </div>
+  </a>
+  <nav class="nav">
+    <a href="#rentals">Find a Rental</a>
+    <a href="#landlords">For Landlords</a>
+    <a href="#communities">Communities</a>
+    <a href="#reports">Market Reports</a>
+  </nav>
+  <div style="display:flex;gap:8px;align-items:center">
+    <div class="search-mini" style="display:none"><input placeholder="Mirasol, Abacoa, 33458..."><button>⌕</button></div>
+    <a class="btn btn-ghost" href="#hoa" style="padding:9px 14px">HOA Check</a>
+    <a class="btn btn-navy" href="#estimate">Free Rent Estimate</a>
+  </div>
+</div></header>
+
+<!-- HERO -->
+<section class="hero"><div class="container hero-grid">
+  <div>
+    <div class="k">Rentals-only Realtor • The Northern Triangle</div>
+    <h1>Find your<br><i>village,</i> not just<br>a rental.</h1>
+    <p class="hero-sub">We do <b>only rentals</b> in <b>West Palm Beach, Palm Beach Gardens & Jupiter</b>. No sales pitch. Just neighborhood-level pricing, HOA clearance, and video-first tours.</p>
+
+    <div class="chips">
+      <span class="pill">✓ HOA Approval Timeline Upfront</span>
+      <span class="pill">✓ Seasonal vs. Annual Math</span>
+      <span class="pill" style="background:var(--navy);color:#fff;border-color:var(--navy)">21-Day Lease Guarantee</span>
+    </div>
+
+    <!-- Search -->
+    <div class="search-panel">
+      <input id="q" placeholder="Search by community, address, or ZIP (try 'Abacoa')">
+      <select id="city">
+        <option value="">All 3 Cities</option>
+        <option>West Palm Beach</option>
+        <option>Palm Beach Gardens</option>
+        <option>Jupiter</option>
+      </select>
+      <select id="beds">
+        <option value="">Any beds</option>
+        <option>1+ bed</option>
+        <option>2+ beds</option>
+        <option>3+ beds</option>
+        <option>4+ beds</option>
+      </select>
+      <button class="btn btn-navy" onclick="doSearch()">Search →</button>
+    </div>
+    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+      <button class="pill" onclick="fillQ('Pet-friendly')">🐾 Pet-friendly</button>
+      <button class="pill" onclick="fillQ('Waterfront')">🌊 Waterfront</button>
+      <button class="pill" onclick="fillQ('Furnished seasonal')">☀️ Furnished Seasonal</button>
+      <button class="pill" onclick="fillQ('Mirasol')">⛳ Mirasol</button>
+      <button class="pill" onclick="fillQ('Downtown Clematis')">🌃 Downtown WPB</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>687</b><div>PBG rentals — tight</div><div style="color:var(--aqua2);font-size:12px">↓ 20% YoY</div></div>
+      <div class="stat"><b>~5%</b><div>Jupiter vacancy</div><div style="color:var(--coral);font-size:12px">94-96% occupied</div></div>
+      <div class="stat"><b>+2.2%</b><div>WPB rent growth YoY</div><div style="color:var(--aqua2);font-size:12px">vs. FL declining</div></div>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="hero-img"></div>
+    <div class="hero-floating">
+      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" alt="">
+      <div>
+        <div style="font-weight:800;font-family:'Sora',sans-serif;font-size:13px">Chuk • Rentals-Only</div>
+        <div style="font-size:12px;color:var(--muted)">Avg. 21 days to lease • 561-555-0142</div>
+        <div style="margin-top:6px;display:flex;gap:6px"><span class="mono" style="background:var(--navy);color:#fff;padding:4px 8px;border-radius:999px">Text Chuk</span><span class="mono" style="background:#fff;border:1px solid var(--line);padding:4px 8px;border-radius:999px">WhatsApp</span></div>
+      </div>
+    </div>
+    <div style="position:absolute;top:14px;right:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;box-shadow:0 6px 18px rgba(0,0,0,.08)">
+      <div class="k">Live Market Pulse</div>
+      <div style="margin-top:6px;display:grid;gap:6px;font-size:12px">
+        <div><b>Jupiter 3BR SFH</b> $4,150 <span style="color:var(--aqua2)">↑ 2.8%</span></div>
+        <div><b>WPB Central</b> asking +10% YoY</div>
+        <div><b>PBG Median</b> $2,944 <span style="color:var(--coral)">• 18 DOM</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- PULSE BAR -->
+<div class="pulse"><div class="pulse-inner">
+  <div style="font-family:'Sora',sans-serif;font-weight:800;letter-spacing:.04em;font-size:12px">LIVE PULSE — OCT 2026</div>
+  <div class="pulse-items">
+    <span class="pulse-pill"><b>WPB:</b> +2.2% YoY • 2,150 median 2BR</span>
+    <span class="pulse-pill"><b>PBG:</b> $2,944 median • -20% inventory</span>
+    <span class="pulse-pill"><b>JUP:</b> 5% vacancy • 14-28 days to lease</span>
+    <a href="#reports" style="background:#fff;color:var(--navy);padding:8px 12px;border-radius:999px;font-weight:800;font-size:12px">Full Report →</a>
+  </div>
+</div></div>
+
+<!-- FEATURED -->
+<section id="rentals" class="section"><div class="container">
+  <div class="section-head">
+    <div><div class="k">Featured Rentals — Updated Today</div><h2>Homes that lease in days, not months.</h2></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <select id="filterCity" onchange="filterListings()" style="border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:#fff"><option value="">All cities</option><option>West Palm Beach</option><option>Palm Beach Gardens</option><option>Jupiter</option></select>
+      <a class="btn btn-ghost" href="#">View All 1,847 →</a>
+    </div>
+  </div>
+
+  <div class="grid3" id="listings">
+    <!-- cards injected by JS for filter demo -->
+  </div>
+
+  <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+    <span class="pill" style="background:var(--sand2)">🏠 3BR under $4k in Jupiter</span>
+    <span class="pill" style="background:var(--sand2)">⛳ Golf community SFH</span>
+    <span class="pill" style="background:var(--sand2)">🌴 Furnished seasonal — Dec-Apr</span>
+  </div>
+</div></section>
+
+<!-- RESCUE -->
+<section class="section" style="padding-top:0"><div class="container">
+  <div id="landlords" class="rescue">
+    <div>
+      <div class="k" style="color:#9A3412">For Landlords • Accidental Landlord Rescue</div>
+      <h2 style="font-size:32px;margin-top:6px">Didn't sell? <span style="color:var(--coral)">Rent smart.</span></h2>
+      <p style="color:#7C2D12;font-size:14px;margin-top:8px">55.9% of WPB listings sat 60+ days. If you're holding a $750k+ home that won't move, renting beats a price cut — if you price by <i>neighborhood</i>, not ZIP.</p>
+      <ul class="quiz">
+        <li onclick="toast('Great — we\'ll run rent comps by *your* street, not county avg.')">Should I rent or sell my 2026 home? <span>→</span></li>
+        <li onclick="toast('48-hr Rental Analysis — free. We pull live comps in Abacoa, Mirasol, etc.')">Get my 48-hr Rental Analysis <span>→</span></li>
+        <li onclick="toast('Calculator opened below ↓')">Rent vs. Sell Math for my address <span>→</span></li>
+      </ul>
+      <div style="margin-top:12px;display:flex;gap:8px"><a class="btn btn-navy" href="#estimate">Get Free Estimate</a><a class="btn btn-ghost" href="#">See 2-tier landlord guide</a></div>
+    </div>
+    <div class="card" style="padding:16px">
+      <div class="k">What mispricing costs</div>
+      <div style="margin-top:8px;display:grid;gap:10px">
+        <div style="display:flex;justify-content:space-between;font-size:13px"><span>Overpriced 10% → 38-52 days vacant</span><b style="color:var(--coral)">-$2,450</b></div>
+        <div style="height:10px;background:#E7E5E4;border-radius:999px;overflow:hidden"><div style="width:68%;height:100%;background:var(--coral)"></div></div>
+        <div class="mono" style="color:var(--muted)">Atlis audit of failed self-listings • 600 doors</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+          <div class="kpi"><div class="k">Correct price</div><b>14-21 days</b><div class="muted">to lease</div></div>
+          <div class="kpi"><div class="k">Our avg</div><b>21 days</b><div class="muted">lease-up</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- MATCHMAKER -->
+<section class="section" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="container grid2" style="align-items:center">
+  <div>
+    <div class="k">Neighborhood Matchmaker</div>
+    <h2>Find my village.</h2>
+    <p style="color:var(--stone);font-size:14px;margin-top:8px">8 questions. 90-second video. 3 live matches with school + commute. Because Downtown Clematis ≠ Abacoa ≠ PGA National.</p>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-navy" onclick="quiz()">Take 60-Sec Quiz →</button>
+      <span class="pill">⛳ Golf</span><span class="pill">🌊 Intracoastal</span><span class="pill">🚲 Walkable</span><span class="pill">🎓 Schools</span>
+    </div>
+    <div id="quizResult" style="margin-top:12px;background:var(--sand2);border:1px solid #E7DDCC;border-radius:14px;padding:12px;display:none;font-size:14px"></div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="height:220px;background:linear-gradient(135deg,#E8DDD0,#2EC4B6);display:grid;place-items:center;color:var(--navy);font-family:'Cormorant Garamond',serif;font-size:28px">Abacoa Green — Jupiter</div>
+    <div style="padding:14px;display:flex;justify-content:space-between;align-items:center">
+      <div><b>Abacoa</b> — bikes, porches, farmers market <div class="muted">3BR SFH $3,800-$5,200 • Most walkable in Jupiter</div></div>
+      <a class="btn btn-ghost" href="#">Watch 60s →</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- HOA CHECKER -->
+<section id="hoa" class="section"><div class="container">
+  <div class="hoa">
+    <div>
+      <div class="k" style="color:var(--aqua)">The Moat — HOA Rental Rights Checker</div>
+      <h2 style="color:#fff">Check before you list. Or pay later.</h2>
+      <p style="color:#CBD5E1;font-size:14px;margin-top:8px">PBG & Jupiter are HOA minefields. 6-mo minimums, 3x/year caps, board denials. Search any of 300+ communities — see if you're grandfathered.</p>
+      <div class="hoa-input" style="margin-top:14px">
+        <input id="hoaQ" placeholder="Try 'Mirasol' or 'Abacoa' or 'BallenIsles'" oninput="hoaSearch(this.value)">
+        <button class="btn btn-navy" onclick="hoaSearch(document.getElementById('hoaQ').value)">Check →</button>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);color:#fff" onclick="hoaSearch('Mirasol')">Mirasol</span>
+        <span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);color:#fff" onclick="hoaSearch('Abacoa')">Abacoa</span>
+        <span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);color:#fff" onclick="hoaSearch('Frenchman')">Frenchman's Creek</span>
+        <span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);color:#fff" onclick="hoaSearch('PGA National')">PGA National</span>
+      </div>
+      <div class="mono" style="color:#94A3B8;margin-top:10px">Demo data • Full DB = 300+ • Attorney-reviewed $199</div>
+    </div>
+    <div class="hoa-results" id="hoaResults">
+      <div class="hoa-row"><span><b>Mirasol</b> — PBG • 12 HOAs</span><span style="color:#2EC4B6;font-weight:800">6-mo min ✓</span></div>
+      <div class="hoa-row"><span>Board approval</span><b>Yes — 10-15 days • $150/app cap</b></div>
+      <div class="hoa-row"><span>Max rentals / year</span><b>2× (all owners)</b></div>
+      <div class="hoa-row"><span>Short-term (Airbnb)</span><b style="color:var(--coral)">Prohibited — fines $100/day</b></div>
+      <div class="hoa-row"><span>Grandfathered if bought before</span><b>July 2021? No — 6mo rule retroactive</b></div>
+      <a class="btn btn-coral" style="justify-content:center;margin-top:4px" href="#">Get Attorney Review $199 →</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- CALCULATOR -->
+<section class="section" style="padding-top:0"><div class="container">
+  <div class="calc">
+    <div>
+      <div class="k">Seasonal vs. Annual Engine</div>
+      <h2>Two markets. One house. Do the math.</h2>
+      <p style="color:var(--stone);font-size:14px;margin-top:8px">Jupiter runs annual + seasonal simultaneously. Furnished Dec-Apr can be 2-3× annual rent. Model both.</p>
+
+      <div style="margin-top:14px;display:grid;gap:12px">
+        <label style="font-size:13px;font-weight:700">Annual rent (unfurnished)
+          <input id="annual" type="range" min="2500" max="9000" value="5200" class="range" oninput="calc()"><div style="display:flex;justify-content:space-between" class="mono"><span>$2,500</span><b id="annualV">$5,200/mo</b><span>$9,000</span></div>
+        </label>
+        <label style="font-size:13px;font-weight:700">Seasonal premium (Dec-Apr)
+          <input id="premium" type="range" min="120" max="300" value="210" class="range" oninput="calc()"><div style="display:flex;justify-content:space-between" class="mono"><span>1.2×</span><b id="premV">2.1×</b><span>3.0×</span></div>
+        </label>
+        <label style="font-size:13px;font-weight:700">Summer vacancy tolerance
+          <input id="vacancy" type="range" min="0" max="4" value="2" class="range" oninput="calc()"><div style="display:flex;justify-content:space-between" class="mono"><span>0 mo</span><b id="vacV">2 mo vacant</b><span>4 mo</span></div>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div style="display:grid;gap:10px">
+        <div class="kpi"><div class="k">Annual strategy</div><b id="annualNet">$62,400 / yr</b><div class="muted">$5,200 × 12 • 0 vacancy</div></div>
+        <div class="kpi" style="background:var(--navy);color:#fff;border-color:var(--navy)"><div class="k" style="color:var(--aqua)">Seasonal strategy</div><b id="seasonNet">$68,640 / yr</b><div style="color:#CBD5E1;font-size:13px" id="seasonExplain">5 mo @ $10,920 + 5 mo @ $5,200 minus 2 mo vacant</div></div>
+        <div style="background:#ECFDF5;border:1px solid #6EE7B7;border-radius:14px;padding:10px 12px;font-size:13px"><b style="color:#065F46">Winner: Seasonal by $6,240</b> — but requires furnishing ($8k-$15k) + HOA allows it. <a href="#" style="color:var(--aqua2);font-weight:700">See full playbook →</a></div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px"><a class="btn btn-navy" href="#">Model My Property</a><a class="btn btn-ghost" href="#">Watch: Jupiter Two-Market Playbook</a></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- COMMUNITIES -->
+<section id="communities" class="section" style="background:#fff;border-top:1px solid var(--line)"><div class="container">
+  <div class="section-head"><h2>12 Villages. Know them like a local.</h2><a class="btn btn-ghost" href="#">All Communities →</a></div>
+  <div class="grid4">
+    <a class="comm" href="#"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=600&auto=format&fit=crop"><div class="comm-label"><b>Downtown Clematis</b><div class="mono" style="color:#E2E8F0">WPB • $2,500-$4k • Walkable</div></div></a>
+    <a class="comm" href="#"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop"><div class="comm-label"><b>Flamingo Park</b><div class="mono" style="color:#E2E8F0">WPB • Historic • $2,200-$3,500</div></div></a>
+    <a class="comm" href="#"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600&auto=format&fit=crop"><div class="comm-label"><b>Northwood</b><div class="mono" style="color:#E2E8F0">WPB • Revitalizing • $1,800-$2,800</div></div></a>
+    <a class="comm" href="#"><img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?q=80&w=600&auto=format&fit=crop"><div class="comm-label"><b>Mirasol</b><div class="mono" style="color:#E2E8F0">PBG • Golf • $4k-$7k</div></div></a>
+    <a class="comm" href="#"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=600&auto=format&fit=crop"><div class="comm-label"><b>PGA National</b><div class="mono" style="color:#E2E8F0">PBG • Resort • $3,500-$6k</div></div></a>
+    <a class="comm" href="#"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=600&auto=format&fit=crop"><div class="comm-label"><b>Abacoa</b><div class="mono" style="color:#E2E8F0">Jupiter • Walkable • $3,800-$5,200</div></div></a>
+    <a class="comm" href="#"><img src="https://images.unsplash.com/photo-1600566753190-17f63baa68a8?q=80&w=600&auto=format&fit=crop"><div class="comm-label"><b>Intracoastal</b><div class="mono" style="color:#E2E8F0">Jupiter • Waterfront • $8k-$25k+</div></div></a>
+    <a class="comm" href="#"><img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=600&auto=format&fit=crop"><div class="comm-label"><b>Egret Landing</b><div class="mono" style="color:#E2E8F0">Jupiter • Gated • $4,500-$7k</div></div></a>
+  </div>
+</div></section>
+
+<!-- RELOCATION -->
+<section class="section" style="background:linear-gradient(180deg,#F4EDE2 0%, #FCFBF8 100%)"><div class="container grid2" style="align-items:center">
+  <div class="card" style="padding:0;overflow:hidden"><div style="height:240px;background:linear-gradient(135deg,#0B1D3A,#2EC4B6);display:grid;place-items:center;color:#fff"><div style="text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:28px">Try-Before-You-Buy</div><div class="mono" style="color:#E0F2F1">6-mo rental + 3 home tours + schools</div><div style="margin-top:10px"><span style="background:#fff;color:var(--navy);padding:8px 12px;border-radius:999px;font-weight:800;font-size:13px">From NY/NJ? Start here →</span></div></div></div><div style="padding:14px"><b>Rent smart. Buy smarter.</b><div class="muted" style="margin-top:4px">Relocating professionals rent 12-24 months while house-hunting. We make the landing soft — then feed HomesByChuk when you're ready.</div></div></div>
+  <div>
+    <div class="k">Relocation • Corporate</div>
+    <h2>Moving a hospital team? A fund? A family?</h2>
+    <p style="color:var(--stone);font-size:14px;margin-top:8px">We invoice the employer. Jupiter Medical, Good Samaritan, Scripps, PGA HQ, WPB finance — annual leases, pre-qualified, zero hassle.</p>
+    <div style="margin-top:14px;display:grid;gap:8px">
+      <div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;justify-content:space-between;align-items:center"><span><b>For Employers</b><div class="muted">Volume housing for incoming cohorts</div></span><a class="btn btn-navy" href="#">Partner →</a></div>
+      <div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;justify-content:space-between;align-items:center"><span><b>For Families</b><div class="muted">Schools, commute, village match</div></span><a class="btn btn-ghost" href="#">Start Relocation Quiz</a></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- TRUST -->
+<section class="section" style="background:#fff;border-top:1px solid var(--line)"><div class="container">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+    <div class="card" style="text-align:center;padding:18px"><div style="font-size:28px">⭐ 4.9</div><div style="font-weight:800;font-family:'Sora',sans-serif">Google Reviews</div><div class="muted">From tenants & landlords • WPB/PBG/Jupiter only</div></div>
+    <div class="card" style="text-align:center;padding:18px"><div style="font-size:28px">21 days</div><div style="font-weight:800;font-family:'Sora',sans-serif">Avg. to Lease</div><div class="muted">Guaranteed or 1 month free management</div></div>
+    <div class="card" style="text-align:center;padding:18px"><div style="font-size:28px">300+</div><div style="font-weight:800;font-family:'Sora',sans-serif">HOAs Checked</div><div class="muted">Don't list before you know the rules</div></div>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="footer"><div class="container">
+  <div style="display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr;gap:20px">
+    <div>
+      <div style="display:flex;gap:10px;align-items:center"><div class="logo-mark">R</div><div><b>RENTALS<span style="color:var(--coral)">BY</span>CHUK</b><div class="mono" style="color:#94A3B8">Sister to HomesByChuk</div></div></div>
+      <p style="margin-top:10px;color:#94A3B8;font-size:13px;max-width:360px">Rentals-only Realtor for West Palm Beach • Palm Beach Gardens • Jupiter. We price by neighborhood, clear your HOA, and lease in 21 days.</p>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><span class="pill" style="background:#13294B;border-color:#334155;color:#E2E8F0">561-555-0142</span><span class="pill" style="background:#13294B;border-color:#334155;color:#E2E8F0">Text Chuk</span><span class="pill" style="background:#13294B;border-color:#334155;color:#E2E8F0">WhatsApp</span></div>
+    </div>
+    <div><b>Find a Rental</b><div style="margin-top:8px;display:grid;gap:6px;font-size:14px"><a href="#">Map Search</a><a href="#">Pet-Friendly</a><a href="#">Waterfront</a><a href="#">Furnished Seasonal</a><a href="#">Tenant Vault</a></div></div>
+    <div><b>For Landlords</b><div style="margin-top:8px;display:grid;gap:6px;font-size:14px"><a href="#">Rent vs Sell Quiz</a><a href="#">HOA Checker</a><a href="#">Seasonal Calculator</a><a href="#">Guarantees</a><a href="#">Owner Login</a></div></div>
+    <div><b>The Triangle</b><div style="margin-top:8px;display:grid;gap:6px;font-size:14px"><a href="#">West Palm Beach</a><a href="#">Palm Beach Gardens</a><a href="#">Jupiter</a><a href="#">Market Reports</a><a href="#">About Chuk</a></div></div>
+  </div>
+  <div style="margin-top:18px;border-top:1px solid #1E3A5F;padding-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap" class="mono">
+    <span style="color:#64748B">© 2026 RentalsByChuk.com • All rights reserved • WPB • PBG • Jupiter • Not a property manager — a rentals-only Realtor + management partner network.</span>
+    <span><a href="RentalsByChuk_BrandGuide.html" style="color:#2EC4B6">Brand Guide →</a> • <a href="RentalsByChuk_Strategy.md" style="color:#94A3B8">Strategy Doc</a></span>
+  </div>
+</div></footer>
+
+<div id="toast" style="position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy);color:#fff;padding:12px 16px;border-radius:999px;font-size:13px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.18);transition:.3s;opacity:0;pointer-events:none;z-index:99">Saved</div>
+
+<script>
+const listingsData=[
+  {city:'Jupiter',title:'3BR Single-Family — Abacoa',price:'$4,850/mo',beds:'3bd • 2ba • 1,850 sqft',hood:'Abacoa • Gated',badge:'Abacoa',img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop',tag:'Pet-Friendly',hoa:'HOA: 14 days'},
+  {city:'Palm Beach Gardens',title:'4BR Golf Home — Mirasol',price:'$6,400/mo',beds:'4bd • 3ba • 2,600 sqft',hood:'Mirasol • Golf',badge:'Mirasol',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop',tag:'Golf Front',hoa:'HOA: 10 days'},
+  {city:'West Palm Beach',title:'2BR Loft — Downtown Clematis',price:'$2,950/mo',beds:'2bd • 2ba • 1,100 sqft',hood:'Downtown • Walkable',badge:'Downtown',img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop',tag:'New Listing',hoa:'No HOA'},
+  {city:'Jupiter',title:'Intracoastal Furnished — Seasonal',price:'$12,500/mo',beds:'3bd • 2.5ba • Furnished',hood:'Intracoastal • Seasonal Dec-Apr',badge:'Seasonal',img:'https://images.unsplash.com/photo-1600566753190-17f63baa68a8?q=80&w=800&auto=format&fit=crop',tag:'Seasonal',hoa:'HOA: 7 days'},
+  {city:'West Palm Beach',title:'3BR Bungalow — Flamingo Park',price:'$3,350/mo',beds:'3bd • 2ba • 1,400 sqft',hood:'Flamingo Park • Historic',badge:'Flamingo Park',img:'https://images.unsplash.com/photo-1600607688969-a5bfcd646154?q=80&w=800&auto=format&fit=crop',tag:'Pet-Friendly',hoa:'No HOA'},
+  {city:'Palm Beach Gardens',title:'3BR — PGA National',price:'$4,200/mo',beds:'3bd • 2ba • 1,950 sqft',hood:'PGA National • Resort',badge:'PGA National',img:'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800&auto=format&fit=crop',tag:'Pool',hoa:'HOA: 12 days'},
+];
+function renderListings(filter=''){
+  const c=document.getElementById('listings'); c.innerHTML='';
+  listingsData.filter(x=>!filter||x.city===filter).forEach(l=>{
+    c.innerHTML+=`<div class="card">
+      <div class="listing-img"><img src="${l.img}"><span class="badge ${l.badge==='Seasonal'?'aqua':''}">${l.badge}</span><span class="heart">♡</span><span style="position:absolute;bottom:10px;left:10px;background:#fff;border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800">${l.hoa}</span></div>
+      <div style="padding:14px">
+        <div class="price">${l.price} <span style="font-weight:500;color:var(--muted);font-size:13px">• ${l.hood}</span></div>
+        <div style="font-weight:700;margin-top:2px">${l.title}</div>
+        <div class="muted">${l.beds}</div>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><span class="pill">${l.tag}</span><span class="pill">${l.city}</span><a class="btn btn-navy" style="margin-left:auto;padding:8px 12px;font-size:13px" href="#">Tour →</a></div>
+      </div>
+    </div>`
+  })
+}
+function filterListings(){ renderListings(document.getElementById('filterCity').value) }
+function doSearch(){
+  const city=document.getElementById('city').value;
+  const beds=document.getElementById('beds').value;
+  const q=document.getElementById('q').value;
+  // simple: filter by city if selected
+  if(city) document.getElementById('filterCity').value=city;
+  filterListings(city);
+  toast(`Searching: ${[q,city,beds].filter(Boolean).join(' • ') || 'All rentals'}`);
+  document.getElementById('rentals').scrollIntoView({behavior:'smooth'});
+}
+function fillQ(t){ document.getElementById('q').value=t; doSearch(); }
+function toast(m){
+  const t=document.getElementById('toast'); t.textContent=m; t.style.transform='translateX(-50%) translateY(0)'; t.style.opacity='1';
+  setTimeout(()=>{t.style.transform='translateX(-50%) translateY(80px)'; t.style.opacity='0'},2200);
+}
+document.getElementById('alertBtn').onclick=(e)=>{e.preventDefault(); toast('You\'re on the Goldilocks Alert — we\'ll text you in May!')};
+
+const hoaDB={
+  'mirasol':{name:'Mirasol',city:'PBG',hoa:'6-mo min ✓',board:'Yes — 10-15 days • $150/app',max:'2× / year',str:'Prohibited — $100/day fines',grand:'No — 6mo retroactive'},
+  'abacoa':{name:'Abacoa',city:'Jupiter',hoa:'6-mo min (varies by village)',board:'Yes — 5-10 days • $75/app',max:'3× / year',str:'30-day min only',grand:'Village-specific — we check'},
+  'frenchman':{name:"Frenchman's Creek",city:'PBG',hoa:'12-mo min',board:'Yes — 15-30 days • interview',max:'1× / year',str:'Prohibited',grand:'Pre-2021 may be grandfathered'},
+  'pga national':{name:'PGA National',city:'PBG',hoa:'6-mo min ✓',board:'Yes — 12 days • $100/app',max:'2× / year',str:'Prohibited',grand:'No — 6mo retroactive'},
+  'ballenisles':{name:'BallenIsles',city:'PBG',hoa:'6-mo min ✓',board:'Yes — 14 days • $150/app',max:'2× / year',str:'Prohibited',grand:'No — retroactive'},
+  'admirals cove':{name:'Admirals Cove',city:'Jupiter',hoa:'12-mo min',board:'Board + club approval • 20 days',max:'1× / year',str:'Prohibited',grand:'Check estoppel'},
+};
+function hoaSearch(q){
+  if(!q) return;
+  const k=q.toLowerCase();
+  let found=null;
+  for(const key in hoaDB){ if(k.includes(key) || key.includes(k)) found=hoaDB[key]; }
+  if(!found) found={name:q, city:'PBG/Jupiter', hoa:'Check governing docs', board:'Varies — we verify', max:'Varies', str:'Varies — many prohibit', grand:'We check §720.306 for you'};
+  document.getElementById('hoaResults').innerHTML=`
+    <div class="hoa-row"><span><b>${found.name}</b> — ${found.city}</span><span style="color:#2EC4B6;font-weight:800">${found.hoa}</span></div>
+    <div class="hoa-row"><span>Board approval</span><b>${found.board}</b></div>
+    <div class="hoa-row"><span>Max rentals / year</span><b>${found.max}</b></div>
+    <div class="hoa-row"><span>Short-term (Airbnb)</span><b style="color:var(--coral)">${found.str}</b></div>
+    <div class="hoa-row"><span>Grandfathered if bought before July 2021?</span><b>${found.grand}</b></div>
+    <a class="btn btn-coral" style="justify-content:center;margin-top:4px" href="#">Get Attorney Review $199 →</a>
+  `;
+  toast('HOA record found for '+found.name);
+}
+function calc(){
+  const a=parseInt(document.getElementById('annual').value);
+  const p=parseInt(document.getElementById('premium').value);
+  const v=parseInt(document.getElementById('vacancy').value);
+  document.getElementById('annualV').textContent='$'+a.toLocaleString()+'/mo';
+  document.getElementById('premV').textContent=(p/100).toFixed(1)+'×';
+  document.getElementById('vacV').textContent=v+' mo vacant';
+  const annualNet=a*12;
+  const seasonalMonthly=Math.round(a*(p/100));
+  const seasonalNet= seasonalMonthly*5 + a*(5 - v);
+  // actually: 5 mo seasonal + (7 - v) mo annual? Simpler: 5 seasonal + 5 annual - v vacant = 12 - v? Use 5+ (7-v) ?
+  // We'll use 5 seasonal + (7 - v) annual
+  const correctSeasonal = seasonalMonthly*5 + a*(7 - v);
+  document.getElementById('annualNet').textContent='$'+annualNet.toLocaleString()+' / yr';
+  document.getElementById('seasonNet').textContent='$'+correctSeasonal.toLocaleString()+' / yr';
+  document.getElementById('seasonExplain').textContent=`5 mo @ $${seasonalMonthly.toLocaleString()} + ${7-v} mo @ $${a.toLocaleString()}${v?` minus ${v} mo vacant`:''}`;
+}
+function quiz(){
+  const q=document.getElementById('quizResult');
+  q.style.display='block';
+  q.innerHTML='<b>You\'re an Abacoa person.</b> Walkable, young, bikes to the green. 3BR $3,800-$5,200. <a href="#" style="color:var(--aqua2);font-weight:700">See 7 live matches →</a>';
+  toast('Match: Abacoa • Jupiter');
+}
+renderListings(); calc();
+</script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RentalsByChuk — Brand Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0B1D3A;--navy2:#13294B;--sand:#E8DDD0;--sand2:#F4EDE2;--coral:#FF6B4A;--coral2:#FF8A6B;--aqua:#2EC4B6;--aqua2:#0FB5A3;--ink:#0B1D3A;--muted:#6B7280;--line:#E7E5E4}
+body{font-family:'Inter',system-ui,sans-serif;background:#FCFBF8;color:var(--navy);line-height:1.6}
+a{color:inherit}
+.container{max-width:1100px;margin:0 auto;padding:0 32px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(252,251,248,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-links{display:flex;gap:24px;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#6B7280}
+.nav-links a{text-decoration:none}
+.nav-links a:hover{color:var(--navy)}
+.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:700;font-size:14px;cursor:pointer}
+.btn-dark{background:var(--navy);color:#fff}
+.btn-coral{background:var(--coral);color:#fff}
+.hero{padding:72px 0 48px;background:linear-gradient(180deg,#F4EDE2 0%, #FCFBF8 100%)}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:64px;line-height:.95;letter-spacing:-.02em}
+.hero h1 i{font-weight:400;color:var(--coral)}
+.hero h1 span{display:block;font-size:14px;font-family:'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--aqua2);margin-bottom:12px;font-weight:700}
+.hero p{margin-top:16px;color:#57534E;max-width:640px;font-size:17px}
+.meta{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#fff}
+.kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--aqua2);margin-bottom:8px}
+h2{font-family:'Cormorant Garamond',serif;font-size:36px;line-height:1;letter-spacing:-.02em}
+h3{font-family:'Sora',sans-serif;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+.section{padding:56px 0;border-top:1px solid var(--line)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+.card.dark{background:var(--navy);color:#fff;border-color:var(--navy2)}
+.card.sand{background:var(--sand2);border-color:#E7DDCC}
+.swatch{border-radius:16px;padding:18px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;min-height:132px;border:1px solid rgba(0,0,0,.06)}
+.swatch.light{color:var(--navy)}
+.swatch b{font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.swatch span{font-size:12px;opacity:.9}
+.logo-wall{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.logo-tile{border:1px solid var(--line);border-radius:20px;padding:28px;display:flex;align-items:center;justify-content:center;min-height:160px;background:#fff}
+.logo-tile.dark{background:var(--navy);border-color:var(--navy)}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:12px}
+.rule{height:1px;background:var(--line);margin:14px 0}
+.type-spec{display:grid;grid-template-columns:160px 1fr;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.type-spec:last-child{border:0}
+.dont{position:relative;overflow:hidden}
+.dont:after{content:"✕ DON'T";position:absolute;top:10px;right:10px;background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;font-size:10px;font-weight:800;letter-spacing:.08em;padding:4px 8px;border-radius:999px}
+.do:after{content:"✓ DO";position:absolute;top:10px;right:10px;background:#ECFDF5;color:#059669;border:1px solid #A7F3D0;font-size:10px;font-weight:800;letter-spacing:.08em;padding:4px 8px;border-radius:999px}
+.preview-bar{display:flex;gap:8px;flex-wrap:wrap}
+.pill{padding:8px 12px;border-radius:999px;font-size:13px;font-weight:700;border:1px solid var(--line);background:#fff}
+.pill.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.mock{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.mock-head{height:36px;background:#F5F5F4;display:flex;align-items:center;gap:6px;padding:0 12px}
+.dot{width:10px;height:10px;border-radius:999px;background:#E7E5E4}
+@media(max-width:900px){.grid2,.grid3,.grid4,.logo-wall{grid-template-columns:1fr}.hero h1{font-size:42px}}
+</style>
+</head>
+<body>
+<div class="nav"><div class="container nav-inner">
+  <div style="display:flex;align-items:center;gap:12px">
+    <div style="width:36px;height:36px;border-radius:10px;background:var(--navy);display:grid;place-items:center;color:#fff;font-family:'Sora',sans-serif;font-weight:800">R</div>
+    <b style="font-family:'Sora',sans-serif;letter-spacing:.02em">RentalsByChuk <span style="color:var(--coral)">•</span> Brand Guide</b>
+  </div>
+  <div class="nav-links">
+    <a href="#logo">Logo</a><a href="#color">Color</a><a href="#type">Type</a><a href="#voice">Voice</a><a href="#apps">Applications</a>
+    <a href="RentalsByChuk_Mockup.html" target="_blank" style="background:var(--navy);color:#fff;padding:8px 14px;border-radius:999px">View Mockup →</a>
+  </div>
+</div></div>
+
+<!-- HERO -->
+<section class="hero"><div class="container">
+  <div class="kicker">West Palm Beach • Palm Beach Gardens • Jupiter</div>
+  <h1><span>RentalsByChuk.com</span>Rentals isn't our<br><i>side hustle.</i> It's our<br>only hustle.</h1>
+  <p>Sister brand to <b>HomesByChuk</b> — same trust, sharper edge. RentalsByChuk is coastal-modern, renter-friendly, and built for speed. Navy anchors credibility. Coral & Aqua signal water, sun, and action.</p>
+  <div class="meta">
+    <span class="chip">Rentals-Only Specialist</span>
+    <span class="chip">The Northern Triangle</span>
+    <span class="chip" style="background:var(--navy);color:#fff;border-color:var(--navy)">Est. 2026</span>
+  </div>
+</div></section>
+
+<!-- LOGO -->
+<section id="logo" class="section"><div class="container">
+  <div class="kicker">01 — Logo System</div>
+  <h2>The Mark</h2>
+  <p style="color:#57534E;max-width:680px;margin:10px 0 22px">The "R" monogram is a key + palm hybrid. The stem is a house-key; the bowl is a palm frond. Works at 16px favicon to 6ft yard sign. Wordmark is custom-tuned Sora + Cormorant for Chuk's signature.</p>
+
+  <div class="logo-wall">
+    <div class="logo-tile" style="flex-direction:column;gap:14px">
+      <!-- Primary lockup -->
+      <svg width="300" height="72" viewBox="0 0 300 72" role="img" aria-label="RentalsByChuk primary">
+        <rect x="0" y="6" width="56" height="56" rx="14" fill="#0B1D3A"/>
+        <!-- R key-palm -->
+        <g transform="translate(12,14)">
+          <path d="M10 8 H22 C29 8 32 13 32 18 C32 23 29 28 22 28 H14 V40 H10 V8 Z M14 24 H21 C26 24 28 21 28 18 C28 15 26 12 21 12 H14 V24 Z" fill="white"/>
+          <path d="M22 28 C22 28 28 31 31 36" stroke="#2EC4B6" stroke-width="2.2" stroke-linecap="round" opacity=".95"/>
+          <path d="M21 30 C23 32 27 34 30 33" stroke="#FF6B4A" stroke-width="2.2" stroke-linecap="round" opacity=".95"/>
+        </g>
+        <text x="72" y="30" font-family="Sora, sans-serif" font-size="16" font-weight="800" letter-spacing="-0.02em" fill="#0B1D3A">RENTALS<tspan dx="4" fill="#FF6B4A">BY</tspan><tspan dx="4" fill="#0B1D3A">CHUK</tspan></text>
+        <text x="72" y="46" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="0.18em" fill="#0FB5A3">WEST PALM BEACH • PALM BEACH GARDENS • JUPITER</text>
+        <rect x="72" y="52" width="190" height="3" rx="2" fill="#E8DDD0"/>
+      </svg>
+      <span class="mono" style="color:#78716C">Primary — Navy on Sand (web header, business cards)</span>
+    </div>
+    <div class="logo-tile dark" style="flex-direction:column;gap:14px">
+      <svg width="280" height="56" viewBox="0 0 280 56">
+        <rect x="0" y="4" width="48" height="48" rx="12" fill="white"/>
+        <g transform="translate(8,12)">
+          <path d="M10 8 H22 C29 8 32 13 32 18 C32 23 29 28 22 28 H14 V40 H10 V8 Z M14 24 H21 C26 24 28 21 28 18 C28 15 26 12 21 12 H14 V24 Z" fill="#0B1D3A"/>
+          <path d="M22 28 C22 28 28 31 31 36" stroke="#2EC4B6" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M21 30 C23 32 27 34 30 33" stroke="#FF6B4A" stroke-width="2.2" stroke-linecap="round"/>
+        </g>
+        <text x="64" y="26" font-family="Sora, sans-serif" font-size="15" font-weight="800" fill="white">RENTALS<tspan fill="#FF8A6B">BY</tspan>CHUK</text>
+        <text x="64" y="40" font-family="Inter, sans-serif" font-size="8.5" font-weight="700" letter-spacing="0.16em" fill="#2EC4B6">WEST PALM BEACH • PALM BEACH GARDENS • JUPITER</text>
+      </svg>
+      <span class="mono" style="color:#E7E5E4">Reversed — White on Navy (footer, yard sign, merch)</span>
+    </div>
+  </div>
+
+  <div style="height:16px"></div>
+  <div class="grid3">
+    <div class="card">
+      <h3>Wordmark Only</h3>
+      <div style="margin:12px 0;font-family:'Sora',sans-serif;font-weight:800;letter-spacing:-.02em">RENTALS<span style="color:var(--coral)">BY</span>CHUK</div>
+      <div class="mono" style="color:#57534E">For tight bars, email signatures, favicons. Never stack without the R.</div>
+    </div>
+    <div class="card">
+      <h3>Monogram Only</h3>
+      <div style="display:flex;gap:10px;align-items:center;margin:12px 0">
+        <div style="width:44px;height:44px;border-radius:12px;background:var(--navy);display:grid;place-items:center;color:#fff;font-weight:800">R</div>
+        <div style="width:44px;height:44px;border-radius:12px;background:var(--coral);display:grid;place-items:center;color:#fff;font-weight:800">R</div>
+        <div style="width:44px;height:44px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:var(--navy);font-weight:800">R</div>
+      </div>
+      <div class="mono" style="color:#57534E">App icon, social avatar, map pins, watermarks.</div>
+    </div>
+    <div class="card sand">
+      <h3>Lockup Rule</h3>
+      <div class="mono" style="color:#44403C;line-height:1.7">
+        Minimum clear space = height of the R on all sides.<br>
+        Minimum size: 24px tall (digital), 1" (print).<br>
+        Never rotate, stretch, or add drop shadow.<br>
+        Coral BY is fixed — don't recolor it.
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:20px">
+    <div class="card dont" style="background:#FFF7ED;border-color:#FDBA74">
+      <h3 style="color:#9A3412">Don't</h3>
+      <ul style="margin:10px 0 0 18px;color:#7C2D12;font-size:14px;line-height:1.7">
+        <li>Use coral as background for navy logo (vibrates)</li>
+        <li>Put the R in a circle — it's a squircle (14px radius)</li>
+        <li>Swap tagline cities — always WPB • PBG • Jupiter in that order</li>
+      </ul>
+    </div>
+    <div class="card do" style="background:#ECFDF5;border-color:#6EE7B7">
+      <h3 style="color:#065F46">Do</h3>
+      <ul style="margin:10px 0 0 18px;color:#064E3B;font-size:14px;line-height:1.7">
+        <li>Pair with HomesByChuk navy on same page (sister lockup)</li>
+        <li>Use Aqua underline (3px) under tagline — signature</li>
+        <li>Let the R be the favicon / Apple touch icon</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- COLOR -->
+<section id="color" class="section" style="background:#fff"><div class="container">
+  <div class="kicker">02 — Color</div>
+  <h2>Coastal Authority</h2>
+  <p style="color:#57534E;margin:10px 0 18px;max-width:680px">Navy is trust + HomesByChuk lineage. Sand is beach light. Coral is action. Aqua is water. Warm neutrals keep it human, not corporate.</p>
+
+  <div class="grid4">
+    <div class="swatch" style="background:#0B1D3A"><b>Deep Navy — Primary</b><span>#0B1D3A • headers, buttons, text</span></div>
+    <div class="swatch" style="background:#13294B"><b>Navy Ink — Hover</b><span>#13294B • hovers, footer</span></div>
+    <div class="swatch" style="background:#FF6B4A"><b>Coral Pop — CTA</b><span>#FF6B4A • buttons, BY, alerts</span></div>
+    <div class="swatch" style="background:#2EC4B6"><b>Aqua — Accent</b><span>#2EC4B6 • links, underlines, data</span></div>
+  </div>
+  <div class="grid4" style="margin-top:14px">
+    <div class="swatch light" style="background:#E8DDD0;border:1px solid #D6CFC0"><b>Warm Sand</b><span>#E8DDD0 • hero, cards</span></div>
+    <div class="swatch light" style="background:#F4EDE2;border:1px solid #E7DDCC"><b>Sand Light</b><span>#F4EDE2 • section bg</span></div>
+    <div class="swatch light" style="background:#FCFBF8;border:1px solid var(--line)"><b>Paper</b><span>#FCFBF8 • page bg</span></div>
+    <div class="swatch light" style="background:#57534E"><b>Stone — Body</b><span>#57534E • body text</span></div>
+  </div>
+
+  <div class="grid3" style="margin-top:18px">
+    <div class="card">
+      <h3>Accessibility</h3>
+      <div class="mono" style="color:#57534E;margin-top:8px;line-height:1.7">
+        Navy on White 15.2:1 AAA ✓<br>
+        White on Coral 3.1:1 — use navy text on coral buttons for AA<br>
+        Aqua for large text / accents only (4.2:1 on navy)
+      </div>
+    </div>
+    <div class="card">
+      <h3>Gradient (hero only)</h3>
+      <div style="height:56px;border-radius:12px;background:linear-gradient(90deg,#F4EDE2 0%, #FCFBF8 100%);border:1px solid var(--line)"></div>
+      <div class="mono" style="margin-top:8px;color:#57534E">F4EDE2 → FCFBF8 • 180deg • hero bg</div>
+    </div>
+    <div class="card">
+      <h3>Data Colors</h3>
+      <div style="display:flex;gap:8px;margin-top:8px"><span style="width:28px;height:28px;border-radius:999px;background:#0B1D3A"></span><span style="width:28px;height:28px;border-radius:999px;background:#FF6B4A"></span><span style="width:28px;height:28px;border-radius:999px;background:#2EC4B6"></span><span style="width:28px;height:28px;border-radius:999px;background:#E8DDD0;border:1px solid #D6CFC0"></span><span style="width:28px;height:28px;border-radius:999px;background:#A8A29E"></span></div>
+      <div class="mono" style="margin-top:8px;color:#57534E">Charts: navy → coral → aqua → sand → stone</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- TYPE -->
+<section id="type" class="section"><div class="container">
+  <div class="kicker">03 — Typography</div>
+  <h2>Editorial, Not Corporate</h2>
+  <p style="color:#57534E;margin:10px 0 18px;max-width:680px">Serif for story, sans for speed. Mimics a high-end magazine + a leasing app.</p>
+
+  <div class="card" style="padding:0;overflow:hidden">
+    <div class="type-spec"><b class="mono" style="color:#78716C">Display</b><div><div style="font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1">We know which board takes 30 days.</div><div class="mono" style="color:#57534E">Cormorant Garamond 600/700 • H1-H2 • Pull quotes • Hero</div></div></div>
+    <div class="type-spec"><b class="mono" style="color:#78716C">Headline Sans</b><div><div style="font-family:'Sora',sans-serif;font-weight:800;letter-spacing:-.02em">RENTALSBYCHUK • FIND MY VILLAGE • GOLDILOCKS ALERT</div><div class="mono" style="color:#57534E">Sora 700/800 • Nav, labels, badges, CTAs</div></div></div>
+    <div class="type-spec"><b class="mono" style="color:#78716C">Body</b><div><div style="font-family:'Inter',sans-serif">Clean, legible UI. Inter 400/500/600. 15-17px on desktop, 14px mobile. 1.6 line height. Max 68ch measure.</div><div class="mono" style="color:#57534E">Inter 400/500/600/700 • Body, forms, captions</div></div></div>
+    <div class="type-spec"><b class="mono" style="color:#78716C">Mono</b><div><div style="font-family:ui-monospace,monospace;font-size:13px">33410 • 52 DOM • +2.2% YOY • $2,944 MEDIAN</div><div class="mono" style="color:#57534E">UI Mono • Stats, ZIPs, disclaimers, data</div></div></div>
+  </div>
+
+  <div class="grid2" style="margin-top:18px">
+    <div class="card sand">
+      <h3>Scale</h3>
+      <div style="margin-top:10px;display:grid;gap:6px;font-size:13px;color:#44403C" class="mono">
+        <div>Hero: 56-64px Cormorant / -0.02em</div>
+        <div>H1: 36-44px Cormorant / -0.02em</div>
+        <div>H2: 28-32px Cormorant</div>
+        <div>H3: 15px Sora / .06em uppercase</div>
+        <div>Kicker: 11px Inter / .14em uppercase / 800</div>
+        <div>Body: 15-17px Inter / 1.6</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Voice Examples</h3>
+      <div style="margin-top:10px;display:grid;gap:10px;font-size:14px;color:#44403C">
+        <div><b>Headline:</b> <span style="font-family:'Cormorant Garamond',serif;font-size:18px">Your HOA can't void your lease if we check first.</span></div>
+        <div><b>CTA:</b> <span style="font-family:'Sora',sans-serif;font-weight:800">CHECK MY HOA →</span></div>
+        <div><b>Body:</b> We run screening, then HOA approval, then the lease. Never the other way around. That's 21 days saved.</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- VOICE -->
+<section id="voice" class="section" style="background:#fff"><div class="container">
+  <div class="kicker">04 — Voice & Photography</div>
+  <h2>Sound Like a Neighbor Who Happens to Be an Expert</h2>
+  <div class="grid2" style="margin-top:16px">
+    <div class="card">
+      <h3>Voice Principles</h3>
+      <ul style="margin:10px 0 0 18px;color:#44403C;font-size:14px;line-height:1.8">
+        <li><b>Direct:</b> "We price by neighborhood, not zip code."</li>
+        <li><b>Helpful:</b> "Here's the math — seasonal vs. annual, side by side."</li>
+        <li><b>A little cocky:</b> "Most agents treat rentals as a side hustle. We made it the whole business."</li>
+        <li><b>Local:</b> Name the board, the street, the school. Never "Palm Beach County area."</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Photography</h3>
+      <ul style="margin:10px 0 0 18px;color:#44403C;font-size:14px;line-height:1.8">
+        <li>Golden-hour, vertical video first (Reels/TikTok native)</li>
+        <li>No fake HDR — warm, lived-in, palm shadows allowed</li>
+        <li>People > empty rooms: show the village (Abacoa green, Clematis at night)</li>
+        <li>Overlay: subtle sand gradient, never heavy filters</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid3" style="margin-top:18px">
+    <div class="card" style="padding:0;overflow:hidden"><div style="height:140px;background:linear-gradient(135deg,#0B1D3A 0%, #1E3A5F 100%);display:grid;place-items:center;color:#E8DDD0;font-family:'Cormorant Garamond',serif;font-size:22px">Downtown at Night</div><div style="padding:12px" class="mono">CLEM ATIS • WPB • neon, river, walkable</div></div>
+    <div class="card" style="padding:0;overflow:hidden"><div style="height:140px;background:linear-gradient(135deg,#E8DDD0 0%, #2EC4B6 100%);display:grid;place-items:center;color:#0B1D3A;font-family:'Cormorant Garamond',serif;font-size:22px">Abacoa Green</div><div style="padding:12px" class="mono">ABACOA • JUPITER • bikes, porches, farmers market</div></div>
+    <div class="card" style="padding:0;overflow:hidden"><div style="height:140px;background:linear-gradient(135deg,#F4EDE2 0%, #FF6B4A 50%, #0B1D3A 100%);display:grid;place-items:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:22px">PGA National</div><div style="padding:12px" class="mono">PGA NATIONAL • PBG • fairways, gates, sunset</div></div>
+  </div>
+</div></section>
+
+<!-- COMPONENTS -->
+<section class="section"><div class="container">
+  <div class="kicker">05 — Core Components</div>
+  <h2>Buttons, Badges, Cards</h2>
+  <div class="grid3" style="margin-top:16px">
+    <div class="card">
+      <h3>Buttons</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px">
+        <button class="btn btn-dark">Search Rentals</button>
+        <button class="btn btn-coral">Check My HOA →</button>
+        <button class="btn" style="background:#fff;border:1px solid var(--line)">Take the Quiz</button>
+      </div>
+      <div class="mono" style="margin-top:10px;color:#57534E">Rounded-full • 14px Sora 700 • 10px 18px • Coral = primary action</div>
+    </div>
+    <div class="card">
+      <h3>Badges</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
+        <span class="pill active">HOA: 10 Days</span>
+        <span class="pill">Pet-Friendly</span>
+        <span class="pill" style="border-color:#FDBA74;background:#FFF7ED;color:#9A3412">Goldilocks Alert</span>
+        <span class="pill" style="border-color:#6EE7B7;background:#ECFDF5;color:#065F46">Seasonal Ready</span>
+      </div>
+      <div class="mono" style="margin-top:10px;color:#57534E">Pill • 11-13px • Sora 700 • Use for HOA, pet, funnel stages</div>
+    </div>
+    <div class="card">
+      <h3>Stat Pills</h3>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+        <span class="mono" style="background:var(--navy);color:#fff;padding:6px 10px;border-radius:999px">+2.2% YOY</span>
+        <span class="mono" style="background:#fff;border:1px solid var(--line);padding:6px 10px;border-radius:999px">52 DOM</span>
+        <span class="mono" style="background:var(--aqua);color:#fff;padding:6px 10px;border-radius:999px">5% VACANCY</span>
+      </div>
+      <div class="mono" style="margin-top:10px;color:#57534E">Mono • data-dense • for Market Pulse widget</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- APPLICATIONS -->
+<section id="apps" class="section" style="background:#0B1D3A;color:#fff"><div class="container">
+  <div class="kicker" style="color:#2EC4B6">06 — Applications</div>
+  <h2 style="color:#fff">Where It Lives</h2>
+  <div class="grid3" style="margin-top:18px">
+    <div class="card" style="background:#13294B;border-color:#1E3A5F;color:#fff">
+      <h3 style="color:#E8DDD0">Yard Sign</h3>
+      <div class="mock" style="margin-top:12px;background:#FCFBF8;color:var(--navy)">
+        <div style="padding:18px;text-align:center">
+          <div style="font-family:'Sora',sans-serif;font-weight:800;letter-spacing:-.02em">RENTALS<span style="color:var(--coral)">BY</span>CHUK</div>
+          <div style="font-size:11px;letter-spacing:.14em;font-weight:800;color:var(--aqua2)">FOR LEASE</div>
+          <div style="margin-top:8px;font-size:12px;font-weight:700;background:var(--navy);color:#fff;display:inline-block;padding:6px 12px;border-radius:999px">561-555-0142</div>
+        </div>
+      </div>
+      <div class="mono" style="color:#94A3B8;margin-top:8px">Navy + white + coral phone. No realtor.com clutter.</div>
+    </div>
+    <div class="card" style="background:#13294B;border-color:#1E3A5F;color:#fff">
+      <h3 style="color:#E8DDD0">Instagram</h3>
+      <div class="mock" style="margin-top:12px;background:#fff;color:var(--navy)">
+        <div style="height:90px;background:linear-gradient(135deg,#FF6B4A 0%, #2EC4B6 100%);display:grid;place-items:center;color:#fff;font-weight:800;font-family:'Sora',sans-serif">60-SEC ABACOA TOUR</div>
+        <div style="padding:12px"><div style="font-weight:800;font-family:'Sora',sans-serif;font-size:13px">Who actually lives here?</div><div class="mono" style="color:#57534E">Chuk walks Abacoa • 42k views</div></div>
+      </div>
+      <div class="mono" style="color:#94A3B8;margin-top:8px">Vertical video cover • R monogram watermark bottom-right</div>
+    </div>
+    <div class="card" style="background:#13294B;border-color:#1E3A5F;color:#fff">
+      <h3 style="color:#E8DDD0">Business Card</h3>
+      <div class="mock" style="margin-top:12px;background:#FCFBF8;color:var(--navy)">
+        <div style="padding:16px;display:flex;gap:12px;align-items:center">
+          <div style="width:40px;height:40px;border-radius:12px;background:var(--navy);display:grid;place-items:center;color:#fff;font-weight:800">R</div>
+          <div><div style="font-family:'Sora',sans-serif;font-weight:800">Chuk Nwankwo</div><div class="mono" style="color:#57534E">Rentals-Only Realtor • 561-555-0142</div></div>
+        </div>
+        <div style="height:6px;background:linear-gradient(90deg,var(--coral),var(--aqua))"></div>
+      </div>
+      <div class="mono" style="color:#94A3B8;margin-top:8px">Front: R + name. Back: QR to HOA Checker + 3 cities.</div>
+    </div>
+  </div>
+  <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+    <span class="chip" style="background:#13294B;border-color:#334155;color:#E2E8F0">Favicon: R on Navy</span>
+    <span class="chip" style="background:#13294B;border-color:#334155;color:#E2E8F0">Email header: Primary lockup on Sand</span>
+    <span class="chip" style="background:#13294B;border-color:#334155;color:#E2E8F0">Watermark: 80% white R on video</span>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid var(--line);padding:28px 0;background:#FCFBF8"><div class="container" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap">
+  <div class="mono" style="color:#78716C">© 2026 RentalsByChuk.com • Sister to HomesByChuk • West Palm Beach • Palm Beach Gardens • Jupiter</div>
+  <a href="RentalsByChuk_Mockup.html" class="btn btn-dark" style="text-decoration:none;display:inline-block">Open Homepage Mockup →</a>
+</div></footer>
+</body>
+</html>
