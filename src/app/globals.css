@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #0B1D3A;
+  --navy2: #13294B;
+  --sand: #E8DDD0;
+  --sand2: #F4EDE2;
+  --paper: #FCFBF8;
+  --coral: #FF6B4A;
+  --aqua: #2EC4B6;
+  --aqua2: #0CA89A;
+  --line: #E7E5E4;
+  --muted: #78716C;
+  --stone: #57534E;
+}
+
+body {
+  background: var(--paper);
+  color: var(--navy);
+}
+
+h1, h2 { font-family: "Cormorant Garamond", serif; }
