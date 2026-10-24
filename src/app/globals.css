@@ -39,7 +39,7 @@ h1,h2{font-family:'Cormorant Garamond',serif;letter-spacing:-.02em}
 .hero-sub b{color:var(--navy)}
 .chips{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
 .hero-card{position:relative}
-.hero-img{height:420px;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(180deg,rgba(11,29,58,.08),rgba(11,29,58,.35)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop') center/cover}
+.hero-img{height:420px;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(180deg,rgba(11,29,58,.08),rgba(11,29,58,.35)), url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1200&auto=format&fit=crop') center/cover}
 .hero-floating{position:absolute;left:-12px;bottom:16px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:flex;gap:12px;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.08)}
 .hero-floating img{width:44px;height:44px;border-radius:999px;object-fit:cover}
 .search-panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px;box-shadow:0 6px 20px rgba(0,0,0,.05)}
