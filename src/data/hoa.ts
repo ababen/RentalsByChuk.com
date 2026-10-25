@@ -66,13 +66,13 @@ export const hoaDB: Record<string, HOAEntry> = {
   admiralscove: {
     name: "Admirals Cove",
     city: "Jupiter",
-    // Not yet sourced from the association (Oct 2026 research did not
-    // cover this community) — stated honestly, BallenIsles pattern (F6).
-    minLease: "Minimum not published — I confirm from the association before you apply",
-    maxPerYear: "Not published — confirmed per home",
+    // Sourced: Admirals Cove MPOA Rules & Regulations (approved
+    // Oct 30, 2020), rule 54 — master rules; sub-associations vary.
+    minLease: "3 consecutive months (MPOA master rule)",
+    maxPerYear: "Once per year (MPOA) — exception if the tenant is an existing Admirals Cove owner",
     board: "Board + club approval required — timeline confirmed per home",
-    str: "Not published — confirmed before you apply",
-    grandfather: "Unverified — confirmed against the association documents before you apply",
+    str: "Under 3 months: not allowed (MPOA master rule)",
+    grandfather: "Sub-association rules can be stricter — verified per home",
   },
 };
 

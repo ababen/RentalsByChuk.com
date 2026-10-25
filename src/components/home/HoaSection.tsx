@@ -32,7 +32,7 @@ export default function HoaSection() {
           <div className="hoa-examples">
             {EXAMPLES.map((x) => <button key={x} type="button" onClick={() => search(x)}>{x}</button>)}
           </div>
-          <p style={{ fontSize: "13px", color: "#9DBEA9", marginTop: "12px" }}>From association documents for Mirasol · Abacoa · Frenchman&apos;s Creek · PGA National · BallenIsles · Admirals Cove — ask me about any other.</p>
+          <p style={{ fontSize: "13px", color: "#9DBEA9", marginTop: "12px" }}>From association documents for Mirasol · Abacoa · Admirals Cove — PGA National, BallenIsles & Frenchman&apos;s Creek I confirm with the association before you apply. Ask me about any other.</p>
         </div>
         <div className="hoa-panel">
           <h3><span>{result.displayName}</span><span className="hoa-min">{result.minLease}</span></h3>
