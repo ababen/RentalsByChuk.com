@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import LeadForm from "@/components/LeadForm";
-import CompDisclosure from "@/components/CompDisclosure";
 import { CHUK_HEAD } from "@/data/chukImages";
 
 const money = (n: number) => "$" + Math.round(n).toLocaleString();
@@ -54,7 +53,6 @@ export default function OwnersSection() {
             blurb="Real rents from your street, your HOA's rental rules, the season-vs-year math. I turn these around within two business days in the normal course. No listing pitch attached."
             ctaLabel="Run my numbers →"
           />
-          <CompDisclosure style={{ marginTop: "10px" }} />
           <p style={{ fontSize: "12px", color: "var(--muted)", textAlign: "center", fontWeight: 700, marginTop: "10px" }}>One analysis, one follow-up. Then I stop emailing you.</p>
           <div style={{ marginTop: "16px", borderTop: "1px solid var(--line)", paddingTop: "13px", display: "grid", gap: "7px", fontSize: "14.5px", color: "var(--ink-soft)" }}>
             <div>🛡️ <b style={{ color: "var(--ink)" }}>My 21-day goal:</b> a signed lease in about 21 days on priced-right, show-ready homes — the target I work to, not a promise I can make for every home.</div>

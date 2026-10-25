@@ -1,8 +1,7 @@
 /**
- * SOP 12-1 compensation disclosure — sits adjacent to every
- * "$0 / free to renters" claim on the site. States who pays,
- * when, how the amount is set, and that renters owe nothing
- * for search, touring, and lease help.
+ * Compact compensation one-liner — sits next to the "$0" promise
+ * in the Hero only. The full SOP 12-1 disclosure lives in the FAQ
+ * answer (HomePage FAQS + its JSON-LD twin in app/page.tsx).
  */
 export default function CompDisclosure({
   dark = false,
@@ -13,9 +12,7 @@ export default function CompDisclosure({
 }) {
   return (
     <p className={`comp-disc ${dark ? "on-dark" : "light"}`} style={style}>
-      How Chuk gets paid: the property side (owner/landlord) pays when a lease signs, at the
-      rate set in that property&apos;s listing agreement — it varies by property. Renters owe
-      $0 for search, touring, and lease help, whether they sign or not.
+      The property side pays me when a lease signs — always $0 to you.
     </p>
   );
 }

@@ -2,7 +2,6 @@
 import { hoaDB } from "@/data/hoa";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
-import CompDisclosure from "@/components/CompDisclosure";
 
 export const metadata = { title: "HOA Checker — Rental Rights | RentalsByChuk", description: "Check the rental rules for Mirasol, Abacoa, Frenchman's Creek, PGA National, BallenIsles and Admirals Cove — min lease, max/year, board timeline, STR rules, grandfather status. Any other community: ask Chuk, he pulls the association documents." };
 export default async function HOACheckerPage({ searchParams }: { searchParams: Promise<{ q?: string }> }){
@@ -14,7 +13,7 @@ export default async function HOACheckerPage({ searchParams }: { searchParams: P
   return (
     <div className="max-w-[1200px] mx-auto px-6 py-8">
       <h1 className="text-3xl">HOA Rental Rights Checker</h1>
-      <p className="text-sm text-[#40564C] mt-1">Rental rules on file for Mirasol, Abacoa, Frenchman&apos;s Creek, PGA National, BallenIsles, and Admirals Cove — check before you list, or pay later. Don&apos;t see your community? Ask me about any other — I pull the association documents and confirm before you apply.</p>
+      <p className="text-sm text-[#40564C] mt-1">Rental rules on file for Mirasol · Abacoa · Frenchman&apos;s Creek · PGA National · BallenIsles · Admirals Cove — ask me about any other.</p>
       <form className="mt-4 flex gap-2 max-w-xl">
         <input name="q" defaultValue={q} placeholder="Try Mirasol, Abacoa, BallenIsles…" className="flex-1 border border-[#EEE0C4] rounded-full px-4 py-2.5 text-sm bg-white" />
         <button className="bg-[#0E3B2A] text-white px-6 py-2.5 rounded-full text-sm font-bold">Check →</button>
@@ -38,7 +37,7 @@ export default async function HOACheckerPage({ searchParams }: { searchParams: P
       <div id="hoa-lead" className="mt-8 bg-[#0E3B2A] text-white rounded-2xl p-6">
         <h2 className="text-2xl text-white">Get a full HOA document review</h2>
         <p className="text-sm text-[#CFE4D4] mt-1 mb-4 max-w-[640px]">Tell Chuk which community and where to send the result. $199 for the full review — the association documents pulled and checked line by line. Not sure yet? Ask for the free summary instead — just say so in the message.</p>
-        <div className="max-w-[640px]"><LeadForm dark intent="hoa-review" context={q || undefined} ctaLabel="Request My HOA Check →" /><CompDisclosure dark style={{ marginTop: "10px" }} /></div>
+        <div className="max-w-[640px]"><LeadForm dark intent="hoa-review" context={q || undefined} ctaLabel="Request My HOA Check →" /></div>
       </div>
     </div>
   );

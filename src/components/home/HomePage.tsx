@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import LeadForm from "@/components/LeadForm";
-import CompDisclosure from "@/components/CompDisclosure";
 import { site } from "@/lib/site";
 import type { Property } from "@/lib/types";
 import Hero from "./Hero";
@@ -98,7 +97,7 @@ export default function HomePage({ properties }: { properties: Property[] }) {
             <div className="trow"><span>Applications &amp; negotiating</span><b>≈ 3 hrs</b></div>
             <div className="trow"><span>On your own</span><b>≈ 19 hrs</b></div>
             <div className="trow" style={{ borderBottom: 0 }}><span>With me</span><b style={{ color: "var(--green)" }}>≈ 3 hrs</b></div>
-            <div className="save"><div className="big">Illustration: about 15 hours back.</div><p>Not a measurement — but the shape is real: a typical DIY hunt eats evenings for weeks, while my clients mostly just text me back. And it costs you $0; I&apos;m paid by the property side.</p><CompDisclosure style={{ marginTop: "8px" }} /></div>
+            <div className="save"><div className="big">Illustration: about 15 hours back.</div><p>A typical DIY hunt eats evenings for weeks — my clients mostly just text me back. And it costs you $0; I&apos;m paid by the property side.</p></div>
           </div>
         </div>
         <div className="extras-line">And when it&apos;s time to actually move: 🚚 <b>I coordinate the movers</b> • 🛋️ <b>junk removal arranged</b> • 🛡️ <b>renters insurance set up</b> (usually $15–$30/mo) • 📈 <b>credit help</b> — how landlords read your application, and how on-time rent builds your score.</div>
@@ -143,7 +142,6 @@ export default function HomePage({ properties }: { properties: Property[] }) {
                 blurb={tourTarget ? "Tell me where to send the video tour + showing times — it'll ride along with your details." : "What do you need? e.g. 3 bed, Jupiter, a dog, under $4,500 — drop it in the last box."}
                 ctaLabel="Put me on the list →"
               />
-              <p style={{ fontSize: "12px", color: "#BCD2C0", textAlign: "center", fontWeight: 700, marginTop: "8px" }}>Reply STOP anytime. Your number is used only for your rental search — never sold.</p>
             </div>
           </div>
         </div>

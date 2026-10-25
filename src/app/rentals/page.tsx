@@ -32,7 +32,7 @@ export default async function RentalsPage({ searchParams }: { searchParams: Prom
         </form>
       </div>
       <div className="mt-4 rounded-2xl border border-[#F2C14E] bg-[#FEF6DC] px-4 py-3 text-sm font-bold text-[#7A5B00]">
-        ⚠️ These are sample homes for illustration — not current listings, and prices are typical neighborhood rents. Live homes and real availability go to my text list first. <Link href="/#get-matched" className="underline">Join the text list →</Link>
+        Sample homes — typical rents shown. <Link href="/#get-matched" className="underline">Text me for the live list →</Link>
       </div>
       {sp.q || sp.city ? <div className="mt-4 text-sm">Showing samples for <b>{[sp.q, sp.city].filter(Boolean).join(" • ")}</b></div> : null}
       <div className="mt-6 grid md:grid-cols-3 gap-4">

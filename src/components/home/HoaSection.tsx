@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import LeadForm from "@/components/LeadForm";
-import CompDisclosure from "@/components/CompDisclosure";
 import { lookupHoa } from "@/data/hoa";
 
 const EXAMPLES = ["Mirasol", "Abacoa", "Frenchman's Creek", "PGA National", "BallenIsles"];
@@ -33,7 +32,7 @@ export default function HoaSection() {
           <div className="hoa-examples">
             {EXAMPLES.map((x) => <button key={x} type="button" onClick={() => search(x)}>{x}</button>)}
           </div>
-          <p style={{ fontSize: "13px", color: "#9DBEA9", marginTop: "12px" }}>Rules below come from association documents I&apos;ve pulled for the covered communities. Don&apos;t see yours? I pull its documents before you apply. Full HOA document review for a contract: $199.</p>
+          <p style={{ fontSize: "13px", color: "#9DBEA9", marginTop: "12px" }}>From association documents for Mirasol · Abacoa · Frenchman&apos;s Creek · PGA National · BallenIsles · Admirals Cove — ask me about any other.</p>
         </div>
         <div className="hoa-panel">
           <h3><span>{result.displayName}</span><span className="hoa-min">{result.minLease}</span></h3>
@@ -45,7 +44,6 @@ export default function HoaSection() {
           </div>
           <div className="mini-form">
             <LeadForm dark compact intent="hoa-report" context={result.name} heading="Email me the full rule sheet — free" ctaLabel="Send it →" />
-            <CompDisclosure dark style={{ marginTop: "10px" }} />
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
-import CompDisclosure from "@/components/CompDisclosure";
 export const metadata = { title: "For Landlords — Accidental Landlord Rescue | RentalsByChuk", description: "Didn’t sell? Rent smart. Rent-vs-sell math, a no-cost 48-hr analysis, and my goal: a signed lease in about 21 days." };
 export default function LandlordsPage(){
   return (
@@ -24,7 +23,7 @@ export default function LandlordsPage(){
       <div id="analysis" className="mt-8 bg-white border border-[#E7E5E4] rounded-2xl p-6">
         <h2 className="text-2xl">Request your 48-hr Rental Analysis — no cost to you</h2>
         <p className="text-sm text-[#57534E] mt-1 mb-4 max-w-[640px]">Tell Chuk where to send it. You&apos;ll get current comps by your street, an HOA rental-rights check, and seasonal-vs-annual math for your exact home — I turn these around within two business days in the normal course.</p>
-        <div className="max-w-[640px]"><LeadForm intent="landlord-analysis" ctaLabel="Run My Analysis →" /><CompDisclosure style={{ marginTop: "10px" }} /></div>
+        <div className="max-w-[640px]"><LeadForm intent="landlord-analysis" ctaLabel="Run My Analysis →" /></div>
       </div>
       <div className="mt-6 bg-white border border-[#E7E5E4] rounded-2xl p-5 flex flex-wrap justify-between items-center gap-3">
         <div><b>Agent adds properties manually</b><div className="text-sm text-[#57534E]">No MLS/IDX — every live home is checked against its HOA rules before it&apos;s offered.</div></div>

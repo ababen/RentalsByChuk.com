@@ -163,10 +163,7 @@ export default function LeadForm({
         {site.brokerage}
       </p>
       <p className={`text-[11px] text-center ${dark ? "text-slate-400" : "text-[#9AA695]"}`}>
-        No spam, no sales pitch — rentals only. Reply STOP to any text to opt out.
-      </p>
-      <p className={`text-[11px] text-center ${dark ? "text-slate-400" : "text-[#9AA695]"}`}>
-        Your details are used only to work on your rental search and are stored with this site&apos;s form and CRM providers — never sold.
+        No spam, no sales pitch — rentals only. Your details are used only for your rental search — never sold. Reply STOP to any text to opt out.
       </p>
     </form>
   );

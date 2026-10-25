@@ -34,7 +34,7 @@ export default function Listings({ properties, filter, onCityTab, onTour }: Prop
     <section id="homes" style={{ paddingTop: "6px" }}><div className="wrap">
       <div className="head-row">
         <div><div className="kicker">Sample homes</div><h2>The kinds of homes I hunt</h2>
-        <p className="lede" style={{ marginTop: "6px" }}>Sample homes — illustrative only, not current listings. Prices are typical rents for each neighborhood, not an asking price on an available home. The live list — real homes, real availability — goes to my text list first.</p></div>
+        <p className="lede" style={{ marginTop: "6px" }}>Sample homes — typical rents shown. <Link href="/#get-matched" style={{ color: "var(--green)", fontWeight: 900 }}>Text me for the live list →</Link></p></div>
         <div className="tabs">
           {CITIES.map((c) => (
             <button key={c || "all"} className={`pill${filter.city === c ? " on" : ""}`} type="button" onClick={() => onCityTab(c)}>{c || "All cities"}</button>
