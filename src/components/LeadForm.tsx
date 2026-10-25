@@ -54,8 +54,8 @@ export default function LeadForm({
   const [error, setError] = useState("");
 
   const inputCls = dark
-    ? "w-full rounded-full border border-white/25 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-slate-400 outline-none focus:border-[#2EC4B6]"
-    : "w-full rounded-full border border-[#E7E5E4] bg-white px-4 py-2.5 text-sm text-[#0B1D3A] placeholder:text-[#A8A29E] outline-none focus:border-[#0CA89A]";
+    ? "w-full rounded-full border border-white/25 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-slate-400 outline-none focus:border-[#35B586]"
+    : "w-full rounded-full border border-[#EEE0C4] bg-white px-4 py-2.5 text-sm text-[#122E25] placeholder:text-[#9AA695] outline-none focus:border-[#1E7A55]";
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -97,13 +97,13 @@ export default function LeadForm({
     return (
       <div
         className={`rounded-2xl p-5 text-center ${
-          dark ? "bg-white/10 border border-white/15 text-white" : "bg-[#ECFDF5] border border-[#6EE7B7] text-[#0B1D3A]"
+          dark ? "bg-white/10 border border-white/15 text-white" : "bg-[#ECFDF5] border border-[#6EE7B7] text-[#122E25]"
         }`}
         role="status"
       >
         <div className="text-2xl">✅</div>
         <div className="font-extrabold mt-1">Got it — you&apos;re in.</div>
-        <p className={`text-sm mt-1 ${dark ? "text-slate-300" : "text-[#57534E]"}`}>
+        <p className={`text-sm mt-1 ${dark ? "text-slate-300" : "text-[#40564C]"}`}>
           Chuk replies personally, usually within the hour during business hours.
           Need it faster? <a href={site.smsHref} className="font-bold underline">Text {site.phoneDisplay}</a>
         </p>
@@ -115,8 +115,8 @@ export default function LeadForm({
     <form onSubmit={submit} className="grid gap-2.5" noValidate>
       {heading && (
         <div>
-          <div className={`font-extrabold ${dark ? "text-white" : "text-[#0B1D3A]"}`}>{heading}</div>
-          {blurb && <p className={`text-sm mt-0.5 ${dark ? "text-slate-300" : "text-[#57534E]"}`}>{blurb}</p>}
+          <div className={`font-extrabold ${dark ? "text-white" : "text-[#122E25]"}`}>{heading}</div>
+          {blurb && <p className={`text-sm mt-0.5 ${dark ? "text-slate-300" : "text-[#40564C]"}`}>{blurb}</p>}
         </div>
       )}
       <div className={compact ? "grid gap-2.5" : "grid gap-2.5 sm:grid-cols-2"}>
@@ -155,11 +155,11 @@ export default function LeadForm({
       <button
         type="submit"
         disabled={state === "sending"}
-        className="bg-[#FF6B4A] hover:bg-[#E85A3A] disabled:opacity-60 text-white rounded-full py-3 px-6 font-bold text-sm transition-colors"
+        className="bg-[#FF8A3D] hover:bg-[#E56F22] disabled:opacity-60 text-white rounded-full py-3 px-6 font-bold text-sm transition-colors"
       >
         {state === "sending" ? "Sending…" : ctaLabel}
       </button>
-      <p className={`text-[11px] text-center ${dark ? "text-slate-400" : "text-[#A8A29E]"}`}>
+      <p className={`text-[11px] text-center ${dark ? "text-slate-400" : "text-[#9AA695]"}`}>
         No spam, no sales pitch — rentals only. Reply STOP to any text to opt out.
       </p>
     </form>

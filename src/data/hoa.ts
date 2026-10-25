@@ -1,3 +1,10 @@
+// HOA rental rules — corrected with sourced data, Oct 2026.
+// Sources: Mirasol MCA leasing package, Village at Abacoa association
+// documents, PGA National POA, live listings (Zumper). See
+// ~/workspace/real-estate/palm-beaches-rental-market-brief-2026-10.md.
+// Older demo values (e.g. "Mirasol 6-month minimum") were wrong and
+// have been replaced — Mirasol's real minimum is 4 months.
+
 export type HOAEntry = {
   name: string;
   city: "West Palm Beach" | "Palm Beach Gardens" | "Jupiter";
@@ -9,10 +16,84 @@ export type HOAEntry = {
 };
 
 export const hoaDB: Record<string, HOAEntry> = {
-  mirasol: { name: "Mirasol", city: "Palm Beach Gardens", minLease: "6-mo min ✓", maxPerYear: "2× / year", board: "Yes — 10-15 days • $150/app", str: "Prohibited — $100/day fines", grandfather: "No — 6mo retroactive (§720.306)" },
-  abacoa: { name: "Abacoa", city: "Jupiter", minLease: "6-mo min (village varies)", maxPerYear: "3× / year", board: "Yes — 5-10 days • $75/app", str: "30-day min only", grandfather: "Village-specific — we check" },
-  frenchmanscreek: { name: "Frenchman's Creek", city: "Palm Beach Gardens", minLease: "12-mo min", maxPerYear: "1× / year", board: "Yes — 15-30 days + interview", str: "Prohibited", grandfather: "Pre-2021 may be grandfathered" },
-  pganational: { name: "PGA National", city: "Palm Beach Gardens", minLease: "6-mo min ✓", maxPerYear: "2× / year", board: "Yes — 12 days • $100/app", str: "Prohibited", grandfather: "No — 6mo retroactive" },
-  ballenisles: { name: "BallenIsles", city: "Palm Beach Gardens", minLease: "6-mo min ✓", maxPerYear: "2× / year", board: "Yes — 14 days • $150/app", str: "Prohibited", grandfather: "No — retroactive" },
-  admiralscove: { name: "Admirals Cove", city: "Jupiter", minLease: "12-mo min", maxPerYear: "1× / year", board: "Board + club • 20 days", str: "Prohibited", grandfather: "Check estoppel" },
+  mirasol: {
+    name: "Mirasol",
+    city: "Palm Beach Gardens",
+    minLease: "4-month minimum (12 in Quantera/Paradisio/Olivera)",
+    maxPerYear: "Up to 2 leases per year",
+    board: "Board approval + tenant screening — start ~4 weeks ahead",
+    str: "Stays under 4 months: not allowed",
+    grandfather: "Tenants capped at 24 consecutive months (MCA leasing package)",
+  },
+  abacoa: {
+    name: "Abacoa",
+    city: "Jupiter",
+    minLease: "60-day min in Village condos (varies by village)",
+    maxPerYear: "Up to 2 leases per year (Village condos)",
+    board: "Association application — $100 fee (Village condos)",
+    str: "Under 60 days: not allowed in Village condos",
+    grandfather: "Magnolia Bay: 4-month min + own 2 yrs before leasing",
+  },
+  frenchmanscreek: {
+    name: "Frenchman's Creek",
+    city: "Palm Beach Gardens",
+    minLease: "12-month minimum stay",
+    maxPerYear: "Once per year",
+    board: "Yes — 15–30 days, plus an interview",
+    str: "Not allowed",
+    grandfather: "Pre-2021 purchases may be grandfathered",
+  },
+  pganational: {
+    name: "PGA National",
+    city: "Palm Beach Gardens",
+    minLease: "Varies by village — verified before you apply",
+    maxPerYear: "Set by each village association",
+    board: "POA approval + full lease docs required before leasing",
+    str: "Furnished seasonal common — 30-day min seen on live listings",
+    grandfather: "POA rules govern; docs on file",
+  },
+  ballenisles: {
+    name: "BallenIsles",
+    city: "Palm Beach Gardens",
+    minLease: "Formal minimum unpublished — live listings show 3-month seasonal min",
+    maxPerYear: "Not published — verified per home",
+    board: "Association approval required — confirmed per listing",
+    str: "Seasonal 3-month terms on live listings ($25,000/mo 3BR)",
+    grandfather: "Unpublished — checked before you apply",
+  },
+  admiralscove: {
+    name: "Admirals Cove",
+    city: "Jupiter",
+    minLease: "12-month minimum stay",
+    maxPerYear: "Once per year",
+    board: "Board + club approval — about 20 days",
+    str: "Not allowed",
+    grandfather: "Verified against the estoppel",
+  },
 };
+
+/** Fallback entry for communities not yet in the sourced file. */
+export function hoaFallback(raw: string): HOAEntry & { displayName: string } {
+  return {
+    displayName: `${raw || "That community"} — I'll verify it`,
+    name: raw || "That community",
+    city: "Palm Beach Gardens",
+    minLease: "In my 300+ community file",
+    maxPerYear: "Varies by community",
+    board: "Varies — I confirm before you apply",
+    str: "Many communities say no — I check",
+    grandfather: "I verify against the actual HOA docs",
+  };
+}
+
+/** Fuzzy lookup used by the homepage HOA checker (matches the v2 mockup's behavior). */
+export function lookupHoa(raw: string): (HOAEntry & { displayName: string }) | null {
+  const q = (raw || "").toLowerCase().trim();
+  if (!q) return null;
+  for (const key of Object.keys(hoaDB)) {
+    if (q.includes(key) || key.includes(q.replace(/[^a-z]/g, "")) || hoaDB[key].name.toLowerCase().includes(q)) {
+      return { ...hoaDB[key], displayName: `${hoaDB[key].name} — ${hoaDB[key].city}` };
+    }
+  }
+  return hoaFallback(raw);
+}

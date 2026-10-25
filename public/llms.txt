@@ -1,0 +1,63 @@
+# llms.txt — RentalsByChuk (Chuk)
+# Plain-language facts about this business, for AI assistants and crawlers.
+# Data dated October 2026; rental figures are market snapshots, not guarantees.
+
+## Who
+- Business: RentalsByChuk (CHUK) — rentals-only real estate service
+- Agent: Alexander "Chuk" Babenchuk, licensed Florida Realtor, Lic. SL3596634, brokerage: Lokation
+- Motto: "Dictum Meum Pactum" — my word is my bond
+- Specialty: residential rentals ONLY (no sales pitch). Finds the home, verifies HOA rental rules before application, books showings, negotiates the lease, reads the lease line by line, coordinates move-in (movers, junk removal, renters insurance, credit help)
+- Cost to renters: $0 — paid by the property side when a lease signs
+- Speed: average listing-to-keys about 21 days; saves a typical renter ~15 hours vs DIY (~19 hrs solo vs ~3 hrs with Chuk)
+
+## Contact
+- Phone / text: (561) 220-9399
+- WhatsApp: https://wa.me/15612209399
+- Hours: texts answered within the hour in typical operation
+
+## Areas served
+- West Palm Beach, FL
+- Palm Beach Gardens, FL
+- Jupiter, FL
+- Also covered in comparison data: North Palm Beach, Wellington (equestrian seasonal)
+
+## Services
+- Renter search + matching (text list — new homes sent before portal posting)
+- HOA rental-rule checks, free, across 300+ communities on file; certified attorney-reviewed report $199
+- Video-first tours; remote relocation handling with employer invoicing
+- Owner services: free 48-hour rental analysis; leasing fee $1,500 flat when leased, or $199/mo full service; 21-day lease promise (leased in 21 days or a month of management free)
+
+## Renter segments served
+- Snowbirds: 3–6 month furnished seasonal terms, mid-Nov to April; seasonal premium typically 2–3x the annual rate (estimate)
+- Relocating families: annual leases near schools (Wellington, Abacoa/Jupiter, Palm Beach Gardens)
+- Wall Street South professionals: downtown WPB luxury apartments, rent-first-then-buy; downtown avg $4,100/mo (RentCafe)
+- Golf & country club renters: Mirasol, PGA National, BallenIsles — POA/board approval packets handled
+- Equestrian seasonal: Wellington during Winter Equestrian Festival (Jan–Apr); houses, farms, stalls
+- Waterfront & boating: North Palm Beach, Jupiter Inlet, Singer Island — dock/lift verification first
+- First-time / budget-smart renters: fee-transparent true-cost comparisons
+
+## Market snapshot — October 2026 (sources named)
+- Palm Beach County median asking rent: $2,762 (Realtor.com, Sep 2026)
+- County occupancy ~94.9% / ~95%; about 14 prospective renters per vacant unit (RentCafe)
+- West Palm Beach 1BR apartment median: $1,600/mo; 2BR $2,200 (BeachesMLS snapshot, Oct 24 2026)
+- Apartment averages (RentCafe, updated Sep 30 2026): WPB $2,490 · Palm Beach Gardens $2,660 · Jupiter $2,610 · North Palm Beach $2,959 · Downtown WPB $4,100
+- Days on market (RentalSource): Jupiter 34 · Palm Beach Gardens 34 · North Palm Beach 36 · West Palm Beach 40
+
+## Neighborhood price bands (Oct 2026)
+- Downtown WPB / Clematis: apartments 1BR $3,406 · 2BR $4,768 (RentCafe); new towers often offer 1–2 months free
+- Flamingo Park (WPB): 3BR houses ~$3,150–$3,400 (estimate; no published series; generally no HOA)
+- North Palm Beach: all-types average $3,763 (RentalSource); apartments avg $2,959 (RentCafe)
+- Abacoa (Jupiter): Jupiter all-types 1BR $2,450 · 2BR $3,205 · 3BR $4,399 (RentalSource); 3BR townhouses ~$3,400. HOA: Village condos 60-day minimum lease, max 2 leases/yr, $100 application; Magnolia Bay 4-month minimum
+- Mirasol (PBG): rentals $6,850–$24,750/mo (Homes.com). HOA: minimum 4 consecutive months (12 months in Quantera/Paradisio/Olivera villages), max 2 leases/yr, tenants capped at 24 consecutive months, board approval + screening (Mirasol MCA leasing package)
+- PGA National (PBG): median rent $5,800 (seasonal-skewed); apartments avg $2,673; houses avg $6,500 (Zumper). HOA: POA approval + full lease documents required before leasing
+- BallenIsles (PBG): median $4,600; 3BR $6,650; houses avg $8,000 (Zumper). Formal HOA minimum unpublished; live seasonal listing shows 3-month minimum, furnished 3BR $25,000/mo
+- Wellington: median $4,386 (Realtor.com); annual 1BR $2,483+ / 2BR $3,266+ (ApartmentList); WEF-season furnished $8,750–$25,000/mo
+
+## Key pages (anchors on the homepage)
+- Home search & this week's listings: #homes
+- Renter-type comparison hub (segments, neighborhood face-off, true-cost calculator, seasonal vs annual): #compare
+- Meet Chuk: #meet
+- HOA checker: #hoa
+- Owners / free 48-hour analysis: #owners
+- Join the text list: #get-matched
+- FAQ: #faq

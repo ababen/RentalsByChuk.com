@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono, Cormorant_Garamond, Sora, Inter } from "next/font/google";
+import { Archivo, Nunito } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,46 +10,54 @@ import { site } from "@/lib/site";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 // LocalBusiness structured data — helps Google show the business
-// (phone, areas served, ratings surface) in local + map results.
+// (phone, areas served, license) in local + map results.
+// Ported from the approved Chuk v2 design.
+const telE164 = site.phoneHref.replace("tel:", "");
+const telPretty = telE164.replace(/^\+1(\d{3})(\d{3})(\d{4})$/, "+1-$1-$2-$3");
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "RealEstateAgent",
-  name: site.name,
+  name: 'Alexander "Chuk" Babenchuk — RentalsByChuk',
+  alternateName: "Chuk",
   description:
-    "Rentals-only Realtor for West Palm Beach, Palm Beach Gardens & Jupiter. HOA-checked, neighborhood-priced, 21-day lease guarantee.",
+    "Rentals-only Realtor in West Palm Beach, Palm Beach Gardens and Jupiter, Florida. Finds the home, checks the HOA, books tours, negotiates the lease. Renters pay $0; average listing to keys about 21 days.",
   url: site.url,
-  telephone: site.phoneDisplay,
+  telephone: telPretty,
   email: site.email,
-  areaServed: site.areasServed.map((name) => ({ "@type": "City", name })),
+  slogan: "Dictum Meum Pactum — my word is my bond.",
+  worksFor: { "@type": "Organization", name: "Lokation" },
+  identifier: { "@type": "PropertyValue", name: "Florida Real Estate License", value: "SL3596634" },
+  areaServed: site.areasServed.map((name) => ({ "@type": "City", name: `${name}, FL` })),
+  knowsAbout: ["Residential rentals", "Seasonal rentals", "HOA rental rules", "Corporate relocation rentals", "Equestrian seasonal rentals"],
   address: { "@type": "PostalAddress", addressRegion: "FL", addressCountry: "US" },
   priceRange: "$$",
 };
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-const cormorant = Cormorant_Garamond({ variable: "--font-cormorant", subsets: ["latin"], weight: ["400", "600", "700"] });
-const sora = Sora({ variable: "--font-sora", subsets: ["latin"], weight: ["600", "700", "800"] });
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
+const archivo = Archivo({ variable: "--font-archivo", subsets: ["latin"], weight: ["700", "800", "900"] });
+const nunito = Nunito({ variable: "--font-nunito", subsets: ["latin"], weight: ["400", "600", "700", "800", "900"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "RentalsByChuk — WPB • Palm Beach Gardens • Jupiter Rentals",
+    default: "CHUK — Rentals in West Palm Beach, Palm Beach Gardens & Jupiter. Consider it handled.",
     template: "%s | RentalsByChuk",
   },
-  description: "Rentals-only Realtor for West Palm Beach, Palm Beach Gardens & Jupiter. HOA-checked, neighborhood-priced, 21-day lease guarantee.",
+  description:
+    "I'm Chuk. I only do rentals in West Palm Beach, Palm Beach Gardens and Jupiter — I find the home, check the HOA, book the tour, negotiate the lease, and hand you the keys in about 21 days.",
   metadataBase: new URL("https://rentalsbychuk.com"),
   openGraph: {
-    title: "RentalsByChuk — Rentals Isn't Our Side Hustle",
-    description: "The Northern Triangle's rentals-only Realtor. WPB • PBG • Jupiter.",
+    title: "CHUK — Rentals in West Palm Beach, Palm Beach Gardens & Jupiter. Consider it handled.",
+    description:
+      "Rentals-only local expert: I find the home, check the HOA, book the tour, negotiate the lease — keys in about 21 days, $0 to renters. Plus renter comparison tools with Oct 2026 Palm Beach County market data.",
     url: "https://rentalsbychuk.com",
     siteName: "RentalsByChuk",
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "RentalsByChuk — WPB • PBG • Jupiter Rentals",
-    description: "Rentals-only Realtor for West Palm Beach, Palm Beach Gardens & Jupiter.",
+    card: "summary",
+    title: "CHUK — Rentals in West Palm Beach, Palm Beach Gardens & Jupiter. Consider it handled.",
+    description: "Rentals-only Realtor for West Palm Beach, Palm Beach Gardens & Jupiter. $0 to renters, keys in about 21 days.",
   },
   // To verify Google Search Console: add your code here, e.g.
   // verification: { google: "your-code" },
@@ -60,8 +68,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${sora.variable} ${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[#FCFBF8] text-[#0B1D3A]">
+    <html lang="en" className={`${archivo.variable} ${nunito.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-[#FFFBF1] text-[#122E25]">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         {GA_ID && (
           <>
