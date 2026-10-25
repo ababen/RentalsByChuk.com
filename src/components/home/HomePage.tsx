@@ -68,7 +68,6 @@ export default function HomePage({ properties }: { properties: Property[] }) {
               <div>⏱️ <b>~15 hours back.</b> A typical DIY hunt can eat ~19 hours (illustration below). My clients mostly just text me back.</div>
               <div>🌎 <b>Off the clock:</b> El Yunque trails, Havana classics, beach cookouts — home in time for the Daddy/Daughter Dance.</div>
             </div>
-            <div className="motto">&quot;DICTUM MEUM PACTUM.&quot;<span>My word is my bond — I do what I say I&apos;ll do, when I say I&apos;ll do it.</span></div>
           </div>
         </div>
       </div></section>
