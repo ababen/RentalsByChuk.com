@@ -1,5 +1,16 @@
 import type { Property } from "@/lib/types";
 
+// ─────────────────────────────────────────────────────────────
+// SAMPLE DATA — these six homes are illustrative examples, NOT
+// real or current listings (compliance fix F4, Oct 2026). Every
+// surface that renders them must label them "Sample home —
+// illustrative only," show neighborhood + city (never the street
+// addresses below), frame prices as typical neighborhood rents,
+// and never show availability dates or listing status. Live
+// inventory is shared with renters by text instead.
+// ─────────────────────────────────────────────────────────────
+export const SAMPLE_LISTINGS = true;
+
 export const properties: Property[] = [
   {
     id: "abacoa-3br-001",
@@ -48,7 +59,7 @@ export const properties: Property[] = [
     hoa: "Mirasol — 12 days",
     hoaTimelineDays: 12,
     status: "available",
-    description: "Golf-front on Grande Preserve. Pool, summer kitchen, 3-car garage. Mirasol Country Club access negotiable. HOA requires 6-mo minimum.",
+    description: "Golf-front on Grande Preserve. Pool, summer kitchen, 3-car garage. Mirasol Country Club access negotiable. Mirasol's HOA requires a 4-month minimum stay.",
     images: ["https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=800&auto=format&fit=crop"],
     createdAt: "2026-10-18T00:00:00Z",
     updatedAt: "2026-10-18T00:00:00Z",
@@ -144,8 +155,8 @@ export const properties: Property[] = [
     availableFrom: "2026-05-20",
     hoa: "PGA National — 12 days",
     hoaTimelineDays: 12,
-    status: "pending",
-    description: "Villa on the Champion course — screened pool, vaulted ceilings, 2-car garage. 6-mo minimum per HOA.",
+    status: "available",
+    description: "Villa on the Champion course — screened pool, vaulted ceilings, 2-car garage. PGA National POA approval is required before leasing.",
     images: ["https://images.unsplash.com/photo-1517912181840-ec77e6f1292f?q=80&w=800&auto=format&fit=crop"],
     createdAt: "2026-10-19T00:00:00Z",
     updatedAt: "2026-10-19T00:00:00Z",

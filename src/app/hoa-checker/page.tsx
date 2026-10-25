@@ -2,8 +2,9 @@
 import { hoaDB } from "@/data/hoa";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import CompDisclosure from "@/components/CompDisclosure";
 
-export const metadata = { title: "HOA Checker — Rental Rights | RentalsByChuk", description: "Check 300+ HOAs in WPB/PBG/Jupiter. Min lease, max/year, board timeline, STR rules, grandfather status." };
+export const metadata = { title: "HOA Checker — Rental Rights | RentalsByChuk", description: "Check the rental rules for Mirasol, Abacoa, Frenchman's Creek, PGA National, BallenIsles and Admirals Cove — min lease, max/year, board timeline, STR rules, grandfather status. Any other community: ask Chuk, he pulls the association documents." };
 export default async function HOACheckerPage({ searchParams }: { searchParams: Promise<{ q?: string }> }){
   const { q } = await searchParams;
   const query = (q ?? "").toLowerCase().trim();
@@ -13,7 +14,7 @@ export default async function HOACheckerPage({ searchParams }: { searchParams: P
   return (
     <div className="max-w-[1200px] mx-auto px-6 py-8">
       <h1 className="text-3xl">HOA Rental Rights Checker</h1>
-      <p className="text-sm text-[#40564C] mt-1">Search 300+ WPB/PBG/Jupiter communities. Check before you list — or pay later. (Demo: 6 entries, full DB in Airtable → JSON)</p>
+      <p className="text-sm text-[#40564C] mt-1">Rental rules on file for Mirasol, Abacoa, Frenchman&apos;s Creek, PGA National, BallenIsles, and Admirals Cove — check before you list, or pay later. Don&apos;t see your community? Ask me about any other — I pull the association documents and confirm before you apply.</p>
       <form className="mt-4 flex gap-2 max-w-xl">
         <input name="q" defaultValue={q} placeholder="Try Mirasol, Abacoa, BallenIsles…" className="flex-1 border border-[#EEE0C4] rounded-full px-4 py-2.5 text-sm bg-white" />
         <button className="bg-[#0E3B2A] text-white px-6 py-2.5 rounded-full text-sm font-bold">Check →</button>
@@ -30,14 +31,14 @@ export default async function HOACheckerPage({ searchParams }: { searchParams: P
               <div className="flex justify-between"><span className="text-[#75816F]">Short-term</span><b className="text-[#E56F22]">{h.str}</b></div>
               <div className="flex justify-between"><span className="text-[#75816F]">Grandfather</span><b>{h.grandfather}</b></div>
             </div>
-            <div className="mt-3 text-xs text-[#75816F]">Attorney review $199 • <a href="#hoa-lead" className="text-[#1E7A55] font-bold">Request check →</a></div>
+            <div className="mt-3 text-xs text-[#75816F]">Full document review $199 • <a href="#hoa-lead" className="text-[#1E7A55] font-bold">Request check →</a></div>
           </div>
         ))}
       </div>
       <div id="hoa-lead" className="mt-8 bg-[#0E3B2A] text-white rounded-2xl p-6">
-        <h2 className="text-2xl text-white">Get an attorney-reviewed HOA check</h2>
-        <p className="text-sm text-[#CFE4D4] mt-1 mb-4 max-w-[640px]">Tell Chuk which community and where to send the result. $199, attorney-reviewed, and credited toward placement if you list with us. Not sure yet? Ask for the free summary instead — just say so in the message.</p>
-        <div className="max-w-[640px]"><LeadForm dark intent="hoa-review" context={q || undefined} ctaLabel="Request My HOA Check →" /></div>
+        <h2 className="text-2xl text-white">Get a full HOA document review</h2>
+        <p className="text-sm text-[#CFE4D4] mt-1 mb-4 max-w-[640px]">Tell Chuk which community and where to send the result. $199 for the full review — the association documents pulled and checked line by line. Not sure yet? Ask for the free summary instead — just say so in the message.</p>
+        <div className="max-w-[640px]"><LeadForm dark intent="hoa-review" context={q || undefined} ctaLabel="Request My HOA Check →" /><CompDisclosure dark style={{ marginTop: "10px" }} /></div>
       </div>
     </div>
   );

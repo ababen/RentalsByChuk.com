@@ -21,12 +21,12 @@ const jsonLd = {
   name: 'Alexander "Chuk" Babenchuk — RentalsByChuk',
   alternateName: "Chuk",
   description:
-    "Rentals-only Realtor in West Palm Beach, Palm Beach Gardens and Jupiter, Florida. Finds the home, checks the HOA, books tours, negotiates the lease. Renters pay $0; average listing to keys about 21 days.",
+    "Rentals-only service in West Palm Beach, Palm Beach Gardens and Jupiter, Florida, with LoKation Real Estate. Finds the home, checks the HOA, books tours, negotiates the lease. Renters pay $0 for search, touring and lease help — Chuk is paid by the property side (owner/landlord) when a lease signs, at the rate set in that property's listing agreement. Goal: keys in about 21 days.",
   url: site.url,
   telephone: telPretty,
   email: site.email,
   slogan: "Dictum Meum Pactum — my word is my bond.",
-  worksFor: { "@type": "Organization", name: "Lokation" },
+  worksFor: { "@type": "Organization", name: "LoKation Real Estate" },
   identifier: { "@type": "PropertyValue", name: "Florida Real Estate License", value: "SL3596634" },
   areaServed: site.areasServed.map((name) => ({ "@type": "City", name: `${name}, FL` })),
   knowsAbout: ["Residential rentals", "Seasonal rentals", "HOA rental rules", "Corporate relocation rentals", "Equestrian seasonal rentals"],
@@ -43,12 +43,12 @@ export const metadata: Metadata = {
     template: "%s | RentalsByChuk",
   },
   description:
-    "I'm Chuk. I only do rentals in West Palm Beach, Palm Beach Gardens and Jupiter — I find the home, check the HOA, book the tour, negotiate the lease, and hand you the keys in about 21 days.",
+    "I'm Chuk, with LoKation Real Estate. I only do rentals in West Palm Beach, Palm Beach Gardens and Jupiter — I find the home, check the HOA, book the tour, negotiate the lease. My goal: keys in about 21 days.",
   metadataBase: new URL("https://rentalsbychuk.com"),
   openGraph: {
     title: "CHUK — Rentals in West Palm Beach, Palm Beach Gardens & Jupiter. Consider it handled.",
     description:
-      "Rentals-only local expert: I find the home, check the HOA, book the tour, negotiate the lease — keys in about 21 days, $0 to renters. Plus renter comparison tools with Oct 2026 Palm Beach County market data.",
+      "Rentals-only local expert with LoKation Real Estate: I find the home, check the HOA, book the tour, negotiate the lease — my goal is keys in about 21 days, and renters pay $0 (I'm paid by the property side when a lease signs). Plus renter comparison tools with Oct 2026 Palm Beach County market data.",
     url: "https://rentalsbychuk.com",
     siteName: "RentalsByChuk",
     locale: "en_US",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "CHUK — Rentals in West Palm Beach, Palm Beach Gardens & Jupiter. Consider it handled.",
-    description: "Rentals-only Realtor for West Palm Beach, Palm Beach Gardens & Jupiter. $0 to renters, keys in about 21 days.",
+    description: "Rentals only for West Palm Beach, Palm Beach Gardens & Jupiter — with LoKation Real Estate. $0 to renters (paid by the property side when a lease signs); my goal is keys in about 21 days.",
   },
   // To verify Google Search Console: add your code here, e.g.
   // verification: { google: "your-code" },

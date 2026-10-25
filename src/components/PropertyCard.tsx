@@ -8,11 +8,12 @@ export default function PropertyCard({ p }: { p: Property }) {
       <div className="relative h-44 bg-[#EEE0C4] overflow-hidden">
         <img src={p.images[0]} alt={p.title} className="w-full h-full object-cover" />
         <span className="absolute top-2.5 left-2.5 bg-[#0E3B2A]/90 text-white px-2.5 py-1 rounded-full text-[11px] font-extrabold tracking-widest uppercase">{p.neighborhood}</span>
-        {p.status === "pending" && <span className="absolute top-2.5 right-2.5 bg-[#FF8A3D] text-white px-2.5 py-1 rounded-full text-[11px] font-extrabold">PENDING</span>}
-        {p.seasonal && <span className="absolute bottom-2.5 left-2.5 bg-[#1E7A55] text-white px-2.5 py-1 rounded-full text-[11px] font-extrabold">SEASONAL READY</span>}
+        {/* Sample labeling (F4) — these are illustrative homes, not listings. No status badges. */}
+        <span className="absolute top-2.5 right-2.5 bg-[#FF8A3D] text-white px-2.5 py-1 rounded-full text-[11px] font-extrabold">SAMPLE — ILLUSTRATIVE ONLY</span>
+        {p.seasonal && <span className="absolute bottom-2.5 left-2.5 bg-[#1E7A55] text-white px-2.5 py-1 rounded-full text-[11px] font-extrabold">SEASONAL</span>}
       </div>
       <div className="p-4">
-        <div className="font-extrabold text-lg leading-none">{formatPrice(p.price)} <span className="font-medium text-[#75816F] text-sm">• {p.city}</span></div>
+        <div className="font-extrabold text-lg leading-none">Typical rent {formatPrice(p.price)} <span className="font-medium text-[#75816F] text-sm">• {p.city}</span></div>
         <div className="font-bold mt-1 text-sm">{p.title}</div>
         <div className="text-xs text-[#75816F]">{p.beds}bd • {p.baths}ba • {p.sqft.toLocaleString()} sqft • {p.type}</div>
         <div className="mt-3 flex flex-wrap gap-1.5">

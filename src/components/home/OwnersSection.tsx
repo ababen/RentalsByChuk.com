@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import LeadForm from "@/components/LeadForm";
+import CompDisclosure from "@/components/CompDisclosure";
 import { CHUK_HEAD } from "@/data/chukImages";
 
 const money = (n: number) => "$" + Math.round(n).toLocaleString();
@@ -21,8 +22,8 @@ export default function OwnersSection() {
   return (
     <section id="owners" className="owners"><div className="wrap">
       <div className="kicker" style={{ color: "var(--sun-dark)" }}>Own a home?</div>
-      <h2>Owners: give me 21 days.</h2>
-      <p className="lede" style={{ marginTop: "8px" }}>More than half of West Palm listings sat unsold for 60+ days last season. Before another price cut, run the rent math — a furnished home here can pull 2–3× in season. Slide it yourself:</p>
+      <h2>Owners: my goal is 21 days.</h2>
+      <p className="lede" style={{ marginTop: "8px" }}>Before another price cut, run the rent math — a furnished home here can pull 2–3× in season (the Palm Beach County seasonal premium, per local broker guides). Slide it yourself:</p>
       <div className="owner-grid" style={{ marginTop: "24px" }}>
         <div className="calc-card">
           <div className="form-title">Season vs. all year — your numbers</div>
@@ -42,20 +43,21 @@ export default function OwnersSection() {
           {diff > 0 ? (
             <div className="verdict seasonal"><b>Seasonal wins by ≈ {money(diff)} a year</b> — if your HOA allows it and you furnish it (≈ $8k–$15k once). <Link href="/#hoa" style={{ color: "var(--green)", fontWeight: 900 }}>Let me check your HOA →</Link></div>
           ) : (
-            <div className="verdict annual"><b>All-year wins by ≈ {money(Math.abs(diff))} a year</b> at these settings. My free analysis swaps estimates for your street&apos;s real numbers.</div>
+            <div className="verdict annual"><b>All-year wins by ≈ {money(Math.abs(diff))} a year</b> at these settings. My no-cost analysis swaps estimates for your street&apos;s real numbers.</div>
           )}
-          <p style={{ fontSize: "12.5px", color: "var(--muted)", marginTop: "10px", fontWeight: 700 }}>Ballpark math, labeled as such. My free analysis uses live rents on your street — and first confirms your HOA allows seasonal renting.</p>
+          <p style={{ fontSize: "12.5px", color: "var(--muted)", marginTop: "10px", fontWeight: 700 }}>Ballpark math, labeled as such. My no-cost analysis uses current rents on your street — and first confirms your HOA allows seasonal renting.</p>
         </div>
         <div className="formcard" id="analysis">
           <LeadForm
             intent="landlord-analysis"
-            heading="My free 48-hour analysis"
-            blurb="Real rents from your street, your HOA's rental rules, the season-vs-year math. Back in 48 hours — my word is my bond. No listing pitch attached."
+            heading="My 48-hour rental analysis — no cost to you"
+            blurb="Real rents from your street, your HOA's rental rules, the season-vs-year math. I turn these around within two business days in the normal course. No listing pitch attached."
             ctaLabel="Run my numbers →"
           />
-          <p style={{ fontSize: "12px", color: "var(--muted)", textAlign: "center", fontWeight: 700, marginTop: "-2px" }}>One analysis, one follow-up. Then I stop emailing you.</p>
+          <CompDisclosure style={{ marginTop: "10px" }} />
+          <p style={{ fontSize: "12px", color: "var(--muted)", textAlign: "center", fontWeight: 700, marginTop: "10px" }}>One analysis, one follow-up. Then I stop emailing you.</p>
           <div style={{ marginTop: "16px", borderTop: "1px solid var(--line)", paddingTop: "13px", display: "grid", gap: "7px", fontSize: "14.5px", color: "var(--ink-soft)" }}>
-            <div>🛡️ <b style={{ color: "var(--ink)" }}>My 21-day promise:</b> leased in 21 days, or a month of management is on me.</div>
+            <div>🛡️ <b style={{ color: "var(--ink)" }}>My 21-day goal:</b> a signed lease in about 21 days on priced-right, show-ready homes — the target I work to, not a promise I can make for every home.</div>
             <div>🔑 <b style={{ color: "var(--ink)" }}>My fees, published:</b> $1,500 flat when leased, or $199/mo full service. Nothing else.</div>
             <div>🏢 <b style={{ color: "var(--ink)" }}>Relocating a team?</b> I invoice the employer and handle every landing. <Link href="/#get-matched" style={{ color: "var(--green)", fontWeight: 900 }}>Ask me →</Link></div>
           </div>

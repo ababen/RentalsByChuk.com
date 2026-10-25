@@ -9,10 +9,11 @@ export default function Footer() {
         <div>
           <Link className="logo on-dark" href="/">
             <img src={CHUK_HEAD} alt="Chuk" />
-            <span><span className="nm">CHUK</span><br /><span className="sb">RENTALS • RENTALS BY CHUK</span></span>
+            <span><span className="nm">CHUK</span><br /><span className="sb">LOKATION REAL ESTATE</span><br /><span className="sb2">RENTALS BY CHUK</span></span>
           </Link>
-          <p style={{ fontSize: "14.5px", maxWidth: "38ch", marginTop: "12px" }}>Rentals only, handled personally. West Palm Beach, Palm Beach Gardens &amp; Jupiter. HOA checked first, keys in about 21 days, my word is my bond.</p>
-          <p style={{ marginTop: "12px", fontSize: "15px" }}>
+          <p style={{ fontSize: "14.5px", maxWidth: "38ch", marginTop: "12px" }}>Rentals only, handled personally. West Palm Beach, Palm Beach Gardens &amp; Jupiter. HOA checked first — my goal is keys in about 21 days. My word is my bond.</p>
+          <p style={{ fontWeight: 900, color: "#fff", fontSize: "15px", marginTop: "14px" }}>{site.brokerage}</p>
+          <p style={{ marginTop: "2px", fontSize: "15px" }}>
             <a className="inline" href={site.phoneHref} style={{ color: "#fff" }}>{site.phoneDisplay}</a>
             {" • "}
             <a className="inline" href={site.smsHref}>Text</a>
@@ -28,7 +29,7 @@ export default function Footer() {
         </div>
         <div><b>Owners</b>
           <Link href="/#owners">The rent math</Link>
-          <Link href="/#analysis">Free analysis</Link>
+          <Link href="/#analysis">Owner analysis</Link>
           <Link href="/landlords">For landlords</Link>
           <Link href="/#faq">My fees</Link>
         </div>
@@ -40,7 +41,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="fine">
-        <span>© 2026 RentalsByChuk.com — Alexander &quot;Chuk&quot; Babenchuk, Lokation. FL Lic. SL3596634.</span>
+        <span>© 2026 RentalsByChuk.com — Alexander &quot;Chuk&quot; Babenchuk, LoKation Real Estate. FL Lic. SL3596634.</span>
         <span>Dictum Meum Pactum — my word is my bond.</span>
       </div>
     </div></footer>

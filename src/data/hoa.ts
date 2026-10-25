@@ -37,11 +37,13 @@ export const hoaDB: Record<string, HOAEntry> = {
   frenchmanscreek: {
     name: "Frenchman's Creek",
     city: "Palm Beach Gardens",
-    minLease: "12-month minimum stay",
-    maxPerYear: "Once per year",
-    board: "Yes — 15–30 days, plus an interview",
-    str: "Not allowed",
-    grandfather: "Pre-2021 purchases may be grandfathered",
+    // Not yet sourced from the association (Oct 2026 research did not
+    // cover this community) — stated honestly, BallenIsles pattern (F6).
+    minLease: "Minimum not published — I confirm from the association before you apply",
+    maxPerYear: "Not published — confirmed per home",
+    board: "Association approval required — timeline confirmed per home",
+    str: "Not published — confirmed before you apply",
+    grandfather: "Unverified — I check the association documents",
   },
   pganational: {
     name: "PGA National",
@@ -64,11 +66,13 @@ export const hoaDB: Record<string, HOAEntry> = {
   admiralscove: {
     name: "Admirals Cove",
     city: "Jupiter",
-    minLease: "12-month minimum stay",
-    maxPerYear: "Once per year",
-    board: "Board + club approval — about 20 days",
-    str: "Not allowed",
-    grandfather: "Verified against the estoppel",
+    // Not yet sourced from the association (Oct 2026 research did not
+    // cover this community) — stated honestly, BallenIsles pattern (F6).
+    minLease: "Minimum not published — I confirm from the association before you apply",
+    maxPerYear: "Not published — confirmed per home",
+    board: "Board + club approval required — timeline confirmed per home",
+    str: "Not published — confirmed before you apply",
+    grandfather: "Unverified — confirmed against the association documents before you apply",
   },
 };
 
@@ -78,7 +82,7 @@ export function hoaFallback(raw: string): HOAEntry & { displayName: string } {
     displayName: `${raw || "That community"} — I'll verify it`,
     name: raw || "That community",
     city: "Palm Beach Gardens",
-    minLease: "In my 300+ community file",
+    minLease: "Not in my checked file yet — I pull the association documents and confirm before you apply",
     maxPerYear: "Varies by community",
     board: "Varies — I confirm before you apply",
     str: "Many communities say no — I check",

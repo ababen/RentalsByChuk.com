@@ -1,5 +1,10 @@
-import { properties } from "@/data/properties";
+import { properties, SAMPLE_LISTINGS } from "@/data/properties";
 import type { Property } from "@/lib/types";
+
+/** True while the catalog is illustrative sample homes, not live listings. */
+export { SAMPLE_LISTINGS };
+export const SAMPLE_NOTE =
+  "Sample homes — illustrative only, not current listings. Live homes and real availability come by text.";
 
 export function getAllProperties(): Property[] {
   return properties.filter((p) => p.status !== "leased");
@@ -25,7 +30,9 @@ export function filterProperties(filters: {
     if (filters.seasonal && !p.seasonal) return false;
     if (filters.q) {
       const q = filters.q.toLowerCase();
-      const hay = `${p.title} ${p.neighborhood} ${p.address} ${p.city} ${p.description}`.toLowerCase();
+      // Street addresses are intentionally NOT searchable/displayed —
+      // these are sample homes, not real listings (F4).
+      const hay = `${p.title} ${p.neighborhood} ${p.city} ${p.description}`.toLowerCase();
       if (!hay.includes(q)) return false;
     }
     return true;

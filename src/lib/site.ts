@@ -11,7 +11,8 @@ const PHONE_E164 = "+15612209399"; // digits only, country code first
 
 export const site = {
   name: "RentalsByChuk",
-  tagline: "Rentals-only Realtor — WPB • Palm Beach Gardens • Jupiter",
+  tagline: "Rentals only — WPB • Palm Beach Gardens • Jupiter",
+  brokerage: "LoKation Real Estate",
   url: "https://rentalsbychuk.com",
   email: "chuk@rentalsbychuk.com",
   phoneDisplay: PHONE_DISPLAY,

@@ -6,13 +6,13 @@ export default function Header() {
   return (
     <>
       <div className="topstrip"><div className="wrap">
-        <div>⚡ <b>14 new homes</b> hit my list this week — my people hear before the apps post them</div>
-        <div>Text me: <a href={site.smsHref}>{site.phoneDisplay}</a></div>
+        <div>⚡ <b>New homes</b> hit my list every week — my people hear first</div>
+        <div><b>{site.brokerage}</b> • Text me: <a href={site.smsHref}>{site.phoneDisplay}</a></div>
       </div></div>
       <header className="site-header"><div className="wrap">
-        <Link className="logo" href="/" aria-label="Chuk — rentals">
+        <Link className="logo" href="/" aria-label="Chuk — rentals with LoKation Real Estate">
           <img src={CHUK_HEAD} alt="Chuk" />
-          <span><span className="nm">CHUK</span><br /><span className="sb">RENTALS • WPB • PBG • JUPITER</span></span>
+          <span><span className="nm">CHUK</span><br /><span className="sb">LOKATION REAL ESTATE</span><br /><span className="sb2">RENTALS • WPB • PBG • JUPITER</span></span>
         </Link>
         <nav className="main">
           <Link href="/#homes">Homes</Link>

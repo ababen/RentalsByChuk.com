@@ -4,15 +4,15 @@ import Link from "next/link";
 export const metadata = { title: "Communities — 12 Villages | RentalsByChuk", description: "Explore 12 villages across WPB, PBG & Jupiter — rents, schools, vibe, HOA rules." };
 
 const comms = [
-  { n:"Downtown Clematis", city:"West Palm Beach", price:"$2,500-$4k", blurb:"Walkable, river, nightlife. Young pros & Brightline commuters." },
+  { n:"Downtown Clematis", city:"West Palm Beach", price:"$2,500-$4k", blurb:"Walkable, river, nightlife — Brightline at your door." },
   { n:"Flamingo Park", city:"West Palm Beach", price:"$2,200-$3,500", blurb:"Historic bungalows, Norton Museum, tree-lined streets." },
   { n:"Northwood", city:"West Palm Beach", price:"$1,800-$2,800", blurb:"Revitalization corridor — creative economy, upside." },
-  { n:"Mirasol", city:"Palm Beach Gardens", price:"$4k-$7k", blurb:"Golf-front, country club, gated. 6-mo min." },
+  { n:"Mirasol", city:"Palm Beach Gardens", price:"$4k-$7k", blurb:"Golf-front, country club, gated. 4-month min (sourced rule)." },
   { n:"PGA National", city:"Palm Beach Gardens", price:"$3,500-$6k", blurb:"Resort living on the Champion course." },
   { n:"BallenIsles", city:"Palm Beach Gardens", price:"$3,800-$6,500", blurb:"Private club, family-friendly, schools." },
   { n:"Abacoa", city:"Jupiter", price:"$3,800-$5,200", blurb:"Most walkable — porches, green, farmers market." },
   { n:"Intracoastal", city:"Jupiter", price:"$8k-$25k+", blurb:"Waterfront, docks, seasonal premium 2-3×." },
-  { n:"Egret Landing", city:"Jupiter", price:"$4,500-$7k", blurb:"Gated, Intracoastal access, families." },
+  { n:"Egret Landing", city:"Jupiter", price:"$4,500-$7k", blurb:"Gated, Intracoastal access, tennis and trails." },
   { n:"The Bluffs", city:"Jupiter", price:"$4k-$6k", blurb:"Quiet, Jupiter schools, easy to beach." },
   { n:"Admirals Cove", city:"Jupiter", price:"$9k-$20k+", blurb:"Estate + marina. Board interview required." },
   { n:"Old Palm", city:"Palm Beach Gardens", price:"$6k-$12k", blurb:"Ultra-private golf, large lots." },

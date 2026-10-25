@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { ListingFilter } from "./HomePage";
 import { CHUK_WAVE } from "@/data/chukImages";
+import CompDisclosure from "@/components/CompDisclosure";
 
 type Props = {
   onSearch: (f: Partial<ListingFilter>) => void;
@@ -25,12 +26,13 @@ export default function Hero({ onSearch, activeTag }: Props) {
       <div>
         <div className="kicker">Rentals only • West Palm Beach • Palm Beach Gardens • Jupiter</div>
         <h1>Rentals? <span className="hl">Consider it handled.</span></h1>
-        <p className="lede">I&apos;m <b>Chuk</b> — and I only do rentals here. Tell me what home feels like, and I&apos;ll find it, check its HOA, book the tour, negotiate the lease, and hand you the keys in about 21 days. You? You just pack.</p>
+        <p className="lede">I&apos;m <b>Chuk</b> — and I only do rentals here. Tell me what home feels like, and I&apos;ll find it, check its HOA, book the tour, negotiate the lease. My goal: keys in your hand in about 21 days. You? You just pack.</p>
         <div className="promise">
           <span>🛡️ <b>HOA checked</b> before you apply</span>
           <span>💵 Renters pay <b>$0</b></span>
-          <span>⚡ I answer <b>within the hour</b></span>
+          <span>⚡ <b>Fast replies</b> — usually within the hour, business hours</span>
         </div>
+        <CompDisclosure style={{ marginTop: "10px" }} />
         <div className="searchcard">
           <div className="hi">Let&apos;s find yours 👇</div>
           <div className="searchgrid">

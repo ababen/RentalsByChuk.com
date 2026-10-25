@@ -109,7 +109,7 @@ export const segments: Segment[] = [
     fits: "West Palm Beach · North Palm Beach · Abacoa villages (Jupiter)",
     lease: "12-month annual — where a renter's leverage actually lives",
     gotcha: "Fee stacking: HOA application fees ($100 in Abacoa's Village condos), admin fees, and deposits of 1–2 months can add thousands before you get a key. Compare true cost below, never the headline rent.",
-    tip: "About 14 renters chase every vacant unit in this county (RentCafe). Being application-ready — documents, deposit, renters insurance — beats being first. I'll get your packet ready before we tour.",
+    tip: "About 14 renters chase every unit in this county (RentCafe). Being application-ready — documents, deposit, renters insurance — beats being first. I'll get your packet ready before we tour.",
   },
 ];
 
@@ -135,7 +135,7 @@ export const neighborhoods: Neighborhood[] = [
   { key: "abacoa", name: "Abacoa (Jupiter)", head: "Jupiter all-types avg $3,446 ✅", r1: "$2,450 (Jupiter) ✅", r2: "$3,205 (Jupiter) ✅", r3: "$4,399 (Jupiter) ✅ · townhouses ~$3,400", min: "Village condos: 60-day min lease · Magnolia Bay: 4-month min", strict: "Strict-ish — $100 application, max 2 leases/yr (Village condos)", furn: "Limited", dom: "Jupiter: 34 days (RentalSource)", vibe: "New-urbanist porches, Town Center, Roger Dean Stadium, FAU Jupiter", take: "Every village writes its own lease rules here — I check the village, not just the town." },
   { key: "mirasol", name: "Mirasol (PBG)", head: "Rentals $6,850–$24,750/mo ✅ (Homes.com)", r1: "— (gated club community)", r2: "— (gated club community)", r3: "From $6,850/mo ✅", min: "4 consecutive months (12 in Quantera/Paradisio/Olivera villages)", strict: "Strictest — board approval + screening, 24-month tenant cap", furn: "Yes — golf seasonal stock", dom: "PBG: 34 days (RentalSource)", vibe: "Two championship courses inside the gates, club polish", take: "The strictest lease book in the Gardens. Start your approval about 4 weeks early and it's painless." },
   { key: "pga", name: "PGA National (PBG)", head: "Median $5,800 (seasonal-skewed) ✅", r1: "Apartments avg $2,673 ✅", r2: "— (village mix)", r3: "Houses avg $6,500 ✅", min: "Varies by village; POA approval comes first", strict: "Strict — POA approval + full lease docs required", furn: "Yes — furnished 4BR $13,500/mo, $16,000 in peak season (Zumper)", dom: "PBG: 34 days (RentalSource)", vibe: "Resort golf villages around the Champion course", take: "The POA reads your lease before you sign it. I pre-build the whole packet." },
-  { key: "ballenisles", name: "BallenIsles (PBG)", head: "Median $4,600 ✅", r1: "— (gated club community)", r2: "— (gated club community)", r3: "$6,650 · 4BR $9,250 · houses avg $8,000 ✅", min: "Formal minimum unpublished — live seasonal listing shows 3-month min", strict: "Strict — gated club community approval (per listing)", furn: "Yes — 3BR furnished $25,000/mo, 3-mo min (live listing)", dom: "PBG: 34 days (RentalSource)", vibe: "Serene, retiree-skewed, two courses, serious tennis", take: "Seasonal gold — one furnished 3BR is asking $25k a month right now. The unpublished minimum is exactly why you call me first." },
+  { key: "ballenisles", name: "BallenIsles (PBG)", head: "Median $4,600 ✅", r1: "— (gated club community)", r2: "— (gated club community)", r3: "$6,650 · 4BR $9,250 · houses avg $8,000 ✅", min: "Formal minimum unpublished — live seasonal listing shows 3-month min", strict: "Strict — gated club community approval (per listing)", furn: "Yes — 3BR furnished $25,000/mo, 3-mo min (live listing)", dom: "PBG: 34 days (RentalSource)", vibe: "Serene, two championship courses, serious tennis, gated club living", take: "Seasonal gold — one furnished 3BR is asking $25k a month right now. The unpublished minimum is exactly why you call me first." },
   { key: "wellington", name: "Wellington", head: "Median $4,386 ✅ (Realtor.com)", r1: "$2,483+ (ApartmentList) ✅", r2: "$3,266+ (ApartmentList) ✅", r3: "Seasonal furnished $8,750–$20,000+/mo ✅", min: "Seasonal terms for WEF (Jan–Apr); annual leases available", strict: "Moderate — HOA/farm rules vary by enclave", furn: "Yes — the WEF furnished market", dom: "— (not in RentalSource series)", vibe: "Equestrian capital + A-rated schools; suburban calm off-season", take: "A two-speed town: sane annual rents, championship prices Jan–Apr. First question I ask: which speed are you?" },
 ];
 
@@ -156,19 +156,21 @@ export type Vibe = { key: string; label: string; html: string };
 
 export const vibes: Vibe[] = [
   { key: "golf", label: "⛳ Golf & quiet", html: "<b>You're PGA National or Mirasol.</b> Fairways out the window, quiet streets, resort pools. $3,500–$7,000/mo — I'll line up the golf homes first." },
-  { key: "walk", label: "🚲 Walkable", html: "<b>You're Abacoa.</b> Porches, bikes, a Saturday farmers market. $3,800–$5,200/mo — my families love it there." },
+  { key: "walk", label: "🚲 Walkable", html: "<b>You're Abacoa.</b> Porches, bikes, a Saturday farmers market. $3,800–$5,200/mo — walkable village living at its best." },
   { key: "night", label: "🌃 Nightlife", html: "<b>You're Downtown Clematis.</b> Dinner, live music, the waterfront — plus the Brightline when Miami calls. $2,500–$4,000/mo." },
   { key: "family", label: "🎓 Schools", html: "<b>You're Abacoa or Egret Landing.</b> Jupiter schools, front porches, kids on bikes till dinner. $3,800–$7,000/mo." },
 ];
 
-/** "HOA: checked" framing shown on homepage listing cards, keyed by property id. */
+/** Community-rules framing shown on homepage sample-home cards, keyed by
+ *  property id. States the community's rules posture — not a claim that a
+ *  specific (sample) home was individually cleared (F4). */
 export const listingHoaFraming: Record<string, string> = {
-  "abacoa-3br-001": "HOA: I checked — ≈ 2 wks",
-  "mirasol-4br-002": "HOA: I checked — ≈ 10 days",
-  "clematis-2br-003": "No HOA — fastest move-in",
-  "intracoastal-seasonal-004": "HOA: I checked — ≈ 1 wk",
-  "flamingo-3br-005": "No HOA — fastest move-in",
-  "pga-3br-006": "HOA: I checked — ≈ 12 days",
+  "abacoa-3br-001": "Abacoa village rules on file",
+  "mirasol-4br-002": "Mirasol rules: 4-month minimum",
+  "clematis-2br-003": "No HOA",
+  "intracoastal-seasonal-004": "HOA rules confirmed per home",
+  "flamingo-3br-005": "No HOA",
+  "pga-3br-006": "PGA POA approval required",
 };
 
 /** Tags shown on homepage listing cards, keyed by property id (from the v2 mockup). */
