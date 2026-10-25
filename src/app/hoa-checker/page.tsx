@@ -1,6 +1,7 @@
 
 import { hoaDB } from "@/data/hoa";
 import Link from "next/link";
+import LeadForm from "@/components/LeadForm";
 
 export const metadata = { title: "HOA Checker — Rental Rights | RentalsByChuk", description: "Check 300+ HOAs in WPB/PBG/Jupiter. Min lease, max/year, board timeline, STR rules, grandfather status." };
 export default async function HOACheckerPage({ searchParams }: { searchParams: Promise<{ q?: string }> }){
@@ -29,9 +30,14 @@ export default async function HOACheckerPage({ searchParams }: { searchParams: P
               <div className="flex justify-between"><span className="text-[#78716C]">Short-term</span><b className="text-[#FF6B4A]">{h.str}</b></div>
               <div className="flex justify-between"><span className="text-[#78716C]">Grandfather</span><b>{h.grandfather}</b></div>
             </div>
-            <div className="mt-3 text-xs text-[#78716C]">Attorney review $199 • <a href="mailto:chuk@rentalsbychuk.com" className="text-[#0CA89A] font-bold">Request check →</a></div>
+            <div className="mt-3 text-xs text-[#78716C]">Attorney review $199 • <a href="#hoa-lead" className="text-[#0CA89A] font-bold">Request check →</a></div>
           </div>
         ))}
+      </div>
+      <div id="hoa-lead" className="mt-8 bg-[#0B1D3A] text-white rounded-2xl p-6">
+        <h2 className="text-2xl text-white">Get an attorney-reviewed HOA check</h2>
+        <p className="text-sm text-[#CBD5E1] mt-1 mb-4 max-w-[640px]">Tell Chuk which community and where to send the result. $199, attorney-reviewed, and credited toward placement if you list with us. Not sure yet? Ask for the free summary instead — just say so in the message.</p>
+        <div className="max-w-[640px]"><LeadForm dark intent="hoa-review" context={q || undefined} ctaLabel="Request My HOA Check →" /></div>
       </div>
     </div>
   );

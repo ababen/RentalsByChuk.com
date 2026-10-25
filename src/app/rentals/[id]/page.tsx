@@ -3,6 +3,8 @@ import { getPropertyById } from "@/lib/properties";
 import { formatPrice } from "@/lib/properties";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import LeadForm from "@/components/LeadForm";
+import { site } from "@/lib/site";
 
 export default async function PropertyPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -37,9 +39,13 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
           <div className="bg-white border border-[#E7E5E4] rounded-2xl p-5">
             <div className="text-2xl font-extrabold">{formatPrice(p.price)}</div>
             <div className="text-xs text-[#78716C]">+ HOA timeline: {p.hoaTimelineDays ? `${p.hoaTimelineDays} days` : "No HOA"}</div>
-            <a href="tel:+15615550142" className="mt-4 block text-center bg-[#FF6B4A] text-white py-3 rounded-full font-bold">Text Chuk — 561-555-0142</a>
-            <Link href="/rentals" className="mt-2 block text-center bg-[#0B1D3A] text-white py-3 rounded-full font-bold">Schedule Tour →</Link>
-            <div className="mt-3 text-xs text-[#78716C] text-center">Avg. 21 days to lease • HOA checked before you sign</div>
+            <div className="mt-4">
+              <LeadForm compact intent="tour" context={p.title} heading="Book a video or in-person tour" blurb="Chuk confirms within the hour during business hours." ctaLabel="Request Tour →" />
+            </div>
+            <div className="mt-3 text-xs text-[#78716C] text-center">
+              Prefer to talk? <a href={site.phoneHref} className="font-bold text-[#0CA89A]">Call</a> or <a href={site.smsHref} className="font-bold text-[#0CA89A]">text {site.phoneDisplay}</a>
+              <br />Avg. 21 days to lease • HOA checked before you sign
+            </div>
           </div>
           <div className="bg-[#0B1D3A] text-white rounded-2xl p-5">
             <div className="font-extrabold">Why RentalsByChuk?</div>

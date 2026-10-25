@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -7,7 +8,7 @@ export default function Footer() {
         <div>
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}><div className="logo-mark">R</div><div><b>RENTALS<span style={{ color: "var(--coral)" }}>BY</span>CHUK</b><div className="mono" style={{ color: "#94A3B8" }}>Sister to HomesByChuk</div></div></div>
           <p style={{ marginTop: "10px", color: "#94A3B8", fontSize: "13px", maxWidth: "360px" }}>Rentals-only Realtor for West Palm Beach • Palm Beach Gardens • Jupiter. We price by neighborhood, clear your HOA, and lease in 21 days.</p>
-          <div style={{ marginTop: "12px", display: "flex", gap: "8px", flexWrap: "wrap" as const }}><span className="pill" style={{ background: "#13294B", borderColor: "#334155", color: "#E2E8F0" }}>561-555-0142</span><span className="pill" style={{ background: "#13294B", borderColor: "#334155", color: "#E2E8F0" }}>Text Chuk</span><span className="pill" style={{ background: "#13294B", borderColor: "#334155", color: "#E2E8F0" }}>WhatsApp</span></div>
+          <div style={{ marginTop: "12px", display: "flex", gap: "8px", flexWrap: "wrap" as const }}><a href={site.phoneHref} className="pill" style={{ background: "#13294B", borderColor: "#334155", color: "#E2E8F0" }}>{site.phoneDisplay}</a><a href={site.smsHref} className="pill" style={{ background: "#13294B", borderColor: "#334155", color: "#E2E8F0" }}>Text Chuk</a><a href={site.whatsappHref} target="_blank" rel="noreferrer" className="pill" style={{ background: "#13294B", borderColor: "#334155", color: "#E2E8F0" }}>WhatsApp</a></div>
         </div>
         <div><b>Find a Rental</b><div style={{ marginTop: "8px", display: "grid", gap: "6px", fontSize: "14px" }}><Link href="/rentals">Map Search</Link><Link href="/rentals?pet=1">Pet-Friendly</Link><Link href="/rentals?seasonal=1">Waterfront</Link><Link href="/rentals?seasonal=1">Furnished Seasonal</Link><Link href="/rentals">Tenant Vault</Link></div></div>
         <div><b>For Landlords</b><div style={{ marginTop: "8px", display: "grid", gap: "6px", fontSize: "14px" }}><Link href="/landlords">Rent vs Sell Quiz</Link><Link href="/hoa-checker">HOA Checker</Link><Link href="/landlords">Seasonal Calculator</Link><Link href="/landlords">Guarantees</Link><Link href="/admin">Owner Login</Link></div></div>

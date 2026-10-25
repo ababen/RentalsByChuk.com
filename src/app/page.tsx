@@ -1,14 +1,16 @@
 "use client";
 import Link from "next/link";
 import { useState, useMemo } from "react";
+import LeadForm from "@/components/LeadForm";
+import { site } from "@/lib/site";
 
-const demoListings: Array<{ city: string; title: string; price: string; beds: string; hood: string; badge: string; img: string; tag: string; hoa: string; badgeClass?: string }> = [
-  { city: "Jupiter", title: "3BR Single-Family — Abacoa", price: "$4,850/mo", beds: "3bd • 2ba • 1,850 sqft", hood: "Abacoa • Gated", badge: "Abacoa", img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=800&auto=format&fit=crop", tag: "Pet-Friendly", hoa: "HOA: 14 days" },
-  { city: "Palm Beach Gardens", title: "4BR Golf Home — Mirasol", price: "$6,400/mo", beds: "4bd • 3ba • 2,600 sqft", hood: "Mirasol • Golf", badge: "Mirasol", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=800&auto=format&fit=crop", tag: "Golf Front", hoa: "HOA: 10 days" },
-  { city: "West Palm Beach", title: "2BR Loft — Downtown Clematis", price: "$2,950/mo", beds: "2bd • 2ba • 1,100 sqft", hood: "Downtown • Walkable", badge: "Downtown", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop", tag: "New Listing", hoa: "No HOA" },
-  { city: "Jupiter", title: "Intracoastal Furnished — Seasonal", price: "$12,500/mo", beds: "3bd • 2.5ba • Furnished", hood: "Intracoastal • Seasonal Dec-Apr", badge: "Seasonal", img: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=800&auto=format&fit=crop", tag: "Seasonal", hoa: "HOA: 7 days", badgeClass: "aqua" },
-  { city: "West Palm Beach", title: "3BR Bungalow — Flamingo Park", price: "$3,350/mo", beds: "3bd • 2ba • 1,400 sqft", hood: "Flamingo Park • Historic", badge: "Flamingo Park", img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=800&auto=format&fit=crop", tag: "Pet-Friendly", hoa: "No HOA" },
-  { city: "Palm Beach Gardens", title: "3BR — PGA National", price: "$4,200/mo", beds: "3bd • 2ba • 1,950 sqft", hood: "PGA National • Resort", badge: "PGA National", img: "https://images.unsplash.com/photo-1517912181840-ec77e6f1292f?q=80&w=800&auto=format&fit=crop", tag: "Pool", hoa: "HOA: 12 days" },
+const demoListings: Array<{ id: string; city: string; title: string; price: string; beds: string; hood: string; badge: string; img: string; tag: string; hoa: string; badgeClass?: string }> = [
+  { city: "Jupiter", id: "abacoa-3br-001", title: "3BR Single-Family — Abacoa", price: "$4,850/mo", beds: "3bd • 2ba • 1,850 sqft", hood: "Abacoa • Gated", badge: "Abacoa", img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=800&auto=format&fit=crop", tag: "Pet-Friendly", hoa: "HOA: 14 days" },
+  { city: "Palm Beach Gardens", id: "mirasol-4br-002", title: "4BR Golf Home — Mirasol", price: "$6,400/mo", beds: "4bd • 3ba • 2,600 sqft", hood: "Mirasol • Golf", badge: "Mirasol", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=800&auto=format&fit=crop", tag: "Golf Front", hoa: "HOA: 10 days" },
+  { city: "West Palm Beach", id: "clematis-2br-003", title: "2BR Loft — Downtown Clematis", price: "$2,950/mo", beds: "2bd • 2ba • 1,100 sqft", hood: "Downtown • Walkable", badge: "Downtown", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop", tag: "New Listing", hoa: "No HOA" },
+  { city: "Jupiter", id: "intracoastal-seasonal-004", title: "Intracoastal Furnished — Seasonal", price: "$12,500/mo", beds: "3bd • 2.5ba • Furnished", hood: "Intracoastal • Seasonal Dec-Apr", badge: "Seasonal", img: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=800&auto=format&fit=crop", tag: "Seasonal", hoa: "HOA: 7 days", badgeClass: "aqua" },
+  { city: "West Palm Beach", id: "flamingo-3br-005", title: "3BR Bungalow — Flamingo Park", price: "$3,350/mo", beds: "3bd • 2ba • 1,400 sqft", hood: "Flamingo Park • Historic", badge: "Flamingo Park", img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=800&auto=format&fit=crop", tag: "Pet-Friendly", hoa: "No HOA" },
+  { city: "Palm Beach Gardens", id: "pga-3br-006", title: "3BR — PGA National", price: "$4,200/mo", beds: "3bd • 2ba • 1,950 sqft", hood: "PGA National • Resort", badge: "PGA National", img: "https://images.unsplash.com/photo-1517912181840-ec77e6f1292f?q=80&w=800&auto=format&fit=crop", tag: "Pool", hoa: "HOA: 12 days" },
 ];
 
 const hoaDB: Record<string, { name: string; city: string; hoa: string; board: string; max: string; str: string; grand: string }> = {
@@ -104,8 +106,8 @@ export default function Home() {
             <img alt="Chuk — Rentals-Only Realtor" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" />
             <div>
               <div style={{ fontWeight: 800, fontFamily: "Sora, sans-serif", fontSize: "13px" }}>Chuk • Rentals-Only</div>
-              <div style={{ fontSize: "12px", color: "var(--muted)" }}>Avg. 21 days to lease • 561-555-0142</div>
-              <div style={{ marginTop: "6px", display: "flex", gap: "6px" }}><span className="mono" style={{ background: "var(--navy)", color: "#fff", padding: "4px 8px", borderRadius: "999px" }}>Text Chuk</span><span className="mono" style={{ background: "#fff", border: "1px solid var(--line)", padding: "4px 8px", borderRadius: "999px" }}>WhatsApp</span></div>
+              <div style={{ fontSize: "12px", color: "var(--muted)" }}>Avg. 21 days to lease • {site.phoneDisplay}</div>
+              <div style={{ marginTop: "6px", display: "flex", gap: "6px" }}><a className="mono" href={site.smsHref} style={{ background: "var(--navy)", color: "#fff", padding: "4px 8px", borderRadius: "999px" }}>Text Chuk</a><a className="mono" href={site.whatsappHref} target="_blank" rel="noreferrer" style={{ background: "#fff", border: "1px solid var(--line)", padding: "4px 8px", borderRadius: "999px" }}>WhatsApp</a></div>
             </div>
           </div>
           <div style={{ position: "absolute", top: "14px", right: "14px", background: "#fff", border: "1px solid var(--line)", borderRadius: "14px", padding: "10px 12px", boxShadow: "0 6px 18px rgba(0,0,0,.08)" }}>
@@ -147,7 +149,7 @@ export default function Home() {
                 <div className="price">{l.price} <span style={{ fontWeight: 500, color: "var(--muted)", fontSize: "13px" }}>• {l.hood}</span></div>
                 <div style={{ fontWeight: 700, marginTop: "2px" }}>{l.title}</div>
                 <div className="muted">{l.beds}</div>
-                <div style={{ marginTop: "10px", display: "flex", gap: "8px", flexWrap: "wrap" as const }}><span className="pill">{l.tag}</span><span className="pill">{l.city}</span><Link className="btn btn-navy" style={{ marginLeft: "auto", padding: "8px 12px", fontSize: "13px" }} href="/rentals">Tour →</Link></div>
+                <div style={{ marginTop: "10px", display: "flex", gap: "8px", flexWrap: "wrap" as const }}><span className="pill">{l.tag}</span><span className="pill">{l.city}</span><Link className="btn btn-navy" style={{ marginLeft: "auto", padding: "8px 12px", fontSize: "13px" }} href={`/rentals/${l.id}`}>Tour →</Link></div>
               </div>
             </div>
           ))}
@@ -167,11 +169,11 @@ export default function Home() {
             <h2 style={{ fontSize: "32px", marginTop: "6px" }}>Didn&apos;t sell? <span style={{ color: "var(--coral)" }}>Rent smart.</span></h2>
             <p style={{ color: "#7C2D12", fontSize: "14px", marginTop: "8px" }}>55.9% of WPB listings sat 60+ days. If you&apos;re holding a $750k+ home that won&apos;t move, renting beats a price cut — if you price by <i>neighborhood</i>, not ZIP.</p>
             <ul className="quiz">
-              <li onClick={() => showToast("Great — we'll run rent comps by *your* street, not county avg.")}>Should I rent or sell my 2026 home? <span>→</span></li>
-              <li onClick={() => showToast("48-hr Rental Analysis — free. We pull live comps in Abacoa, Mirasol, etc.")}>Get my 48-hr Rental Analysis <span>→</span></li>
-              <li onClick={() => showToast("Calculator opened below ↓")}>Rent vs. Sell Math for my address <span>→</span></li>
+              <li onClick={() => document.getElementById("analysis")?.scrollIntoView({ behavior: "smooth" })}>Should I rent or sell my 2026 home? <span>→</span></li>
+              <li onClick={() => document.getElementById("analysis")?.scrollIntoView({ behavior: "smooth" })}>Get my 48-hr Rental Analysis <span>→</span></li>
+              <li onClick={() => document.getElementById("calculator")?.scrollIntoView({ behavior: "smooth" })}>Rent vs. Sell Math for my address <span>→</span></li>
             </ul>
-            <div style={{ marginTop: "12px", display: "flex", gap: "8px" }}><a className="btn btn-navy" href="/landlords">Get Free Estimate</a><a className="btn btn-ghost" href="/landlords">See 2-tier landlord guide</a></div>
+            <div style={{ marginTop: "12px", display: "flex", gap: "8px" }}><a className="btn btn-navy" href="#analysis">Get Free Estimate</a><a className="btn btn-ghost" href="/landlords">See 2-tier landlord guide</a></div>
           </div>
           <div className="card" style={{ padding: "16px" }}>
             <div className="k">What mispricing costs</div>
@@ -198,7 +200,7 @@ export default function Home() {
             <button className="btn btn-navy" onClick={() => setQuizOpen(!quizOpen)}>Take 60-Sec Quiz →</button>
             <span className="pill">⛳ Golf</span><span className="pill">🌊 Intracoastal</span><span className="pill">🚲 Walkable</span><span className="pill">🎓 Schools</span>
           </div>
-          {quizOpen && <div style={{ marginTop: "12px", background: "var(--sand2)", border: "1px solid #E7DDCC", borderRadius: "14px", padding: "12px", fontSize: "14px" }}><b>You&apos;re an Abacoa person.</b> Walkable, young, bikes to the green. 3BR $3,800-$5,200. <a href="/communities" style={{ color: "var(--aqua2)", fontWeight: 700 }}>See 7 live matches →</a></div>}
+          {quizOpen && <div style={{ marginTop: "12px", background: "var(--sand2)", border: "1px solid #E7DDCC", borderRadius: "14px", padding: "12px", fontSize: "14px" }}><b>You&apos;re an Abacoa person.</b> Walkable, young, bikes to the green. 3BR $3,800-$5,200. <a href="/communities" style={{ color: "var(--aqua2)", fontWeight: 700 }}>See 7 live matches →</a> <a href="#alert" style={{ color: "var(--aqua2)", fontWeight: 700 }}>Text me new Abacoa matches →</a></div>}
         </div>
         <div className="card" style={{ padding: 0, overflow: "hidden" }}>
           <div style={{ height: "220px", background: "linear-gradient(135deg,#E8DDD0,#2EC4B6)", display: "grid", placeItems: "center", color: "var(--navy)", fontFamily: "Cormorant Garamond, serif", fontSize: "28px" }}>Abacoa Green — Jupiter</div>
@@ -235,12 +237,15 @@ export default function Home() {
             <div className="hoa-row"><span>Short-term (Airbnb)</span><b style={{ color: "var(--coral)" }}>{hoaResult.str}</b></div>
             <div className="hoa-row"><span>Grandfathered if bought before</span><b>{hoaResult.grand}</b></div>
             <a className="btn btn-coral" style={{ justifyContent: "center", marginTop: "4px" }} href="/hoa-checker">Get Attorney Review $199 →</a>
+            <div style={{ borderTop: "1px solid #1E3A5F", paddingTop: "10px" }}>
+              <LeadForm dark compact intent="hoa-report" context={hoaResult.name} heading={`Email me the full ${hoaResult.name} rental-rights report`} blurb="Plus the other 300+ communities — free, no pitch." ctaLabel="Email My Free Report →" />
+            </div>
           </div>
         </div>
       </div></section>
 
       {/* CALCULATOR */}
-      <section className="section" style={{ paddingTop: 0 }}><div className="container">
+      <section id="calculator" className="section" style={{ paddingTop: 0 }}><div className="container">
         <div className="calc">
           <div>
             <div className="k">Seasonal vs. Annual Engine</div>
@@ -264,7 +269,7 @@ export default function Home() {
               <div className="kpi" style={{ background: "var(--navy)", color: "#fff", borderColor: "var(--navy)" }}><div className="k" style={{ color: "var(--aqua)" }}>Seasonal strategy</div><b>${seasonalNet.toLocaleString()} / yr</b><div style={{ color: "#CBD5E1", fontSize: "13px" }}>5 mo @ ${seasonalMonthly.toLocaleString()} + {7 - vacancy} mo @ ${annual.toLocaleString()} {vacancy ? `minus ${vacancy} mo vacant` : ""}</div></div>
               <div style={{ background: "#ECFDF5", border: "1px solid #6EE7B7", borderRadius: "14px", padding: "10px 12px", fontSize: "13px" }}><b style={{ color: "#065F46" }}>Winner: {diff > 0 ? `Seasonal by $${diff.toLocaleString()}` : `Annual by $${Math.abs(diff).toLocaleString()}`}</b> — but requires furnishing ($8k-$15k) + HOA allows it. <a href="/hoa-checker" style={{ color: "var(--aqua2)", fontWeight: 700 }}>See full playbook →</a></div>
             </div>
-            <div style={{ marginTop: "10px", display: "flex", gap: "8px" }}><a className="btn btn-navy" href="/landlords">Model My Property</a><a className="btn btn-ghost" href="/hoa-checker">Watch: Jupiter Two-Market Playbook</a></div>
+            <div style={{ marginTop: "10px", display: "flex", gap: "8px" }}><a className="btn btn-navy" href="#analysis">Model My Property</a><a className="btn btn-ghost" href="/hoa-checker">Watch: Jupiter Two-Market Playbook</a></div>
           </div>
         </div>
       </div></section>
@@ -295,6 +300,22 @@ export default function Home() {
             <div style={{ background: "#fff", border: "1px solid var(--line)", borderRadius: "14px", padding: "12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}><span><b>For Employers</b><div className="muted">Volume housing for incoming cohorts</div></span><a className="btn btn-navy" href="/landlords">Partner →</a></div>
             <div style={{ background: "#fff", border: "1px solid var(--line)", borderRadius: "14px", padding: "12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}><span><b>For Families</b><div className="muted">Schools, commute, village match</div></span><a className="btn btn-ghost" href="/communities">Start Relocation Quiz</a></div>
           </div>
+        </div>
+      </div></section>
+
+      {/* LEAD CAPTURE — analysis + seasonal alert */}
+      <section id="analysis" className="section" style={{ paddingTop: 0 }}><div className="container grid2">
+        <div className="card" style={{ padding: "22px" }}>
+          <div className="k">For Landlords • Free</div>
+          <h2 style={{ fontSize: "28px", marginTop: "6px" }}>Get your 48-hr Rental Analysis</h2>
+          <p style={{ color: "var(--stone)", fontSize: "14px", margin: "6px 0 14px" }}>Live comps by <b>your street</b>, HOA rental-rights check, and a seasonal-vs-annual projection — back to you within 48 hours. Free, no listing pitch.</p>
+          <LeadForm intent="landlord-analysis" ctaLabel="Run My Free Analysis →" />
+        </div>
+        <div id="alert" className="card" style={{ padding: "22px", background: "var(--navy)", borderColor: "var(--navy)" }}>
+          <div className="k" style={{ color: "var(--aqua)" }}>For Renters • Goldilocks Alert</div>
+          <h2 style={{ fontSize: "28px", marginTop: "6px", color: "#fff" }}>New rentals, texted first</h2>
+          <p style={{ color: "#CBD5E1", fontSize: "14px", margin: "6px 0 14px" }}>Good homes in WPB, PBG &amp; Jupiter lease in days. Join the alert list and get new matches by text before they hit the portals — seasonal conversions spike in ~6 weeks.</p>
+          <LeadForm dark intent="seasonal-alert" ctaLabel="Text Me New Rentals →" />
         </div>
       </div></section>
 

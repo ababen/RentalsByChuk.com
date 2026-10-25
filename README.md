@@ -118,3 +118,18 @@ This is a private client project. For questions, open an issue or text Chuk.
 ## License
 
 © 2026 RentalsByChuk. All rights reserved.
+
+---
+
+## Lead Capture (added Oct 2026)
+
+Every CTA on the site now feeds one lead pipeline instead of `mailto:` links and dead-end buttons:
+
+- **Forms** — `src/components/LeadForm.tsx` (tour requests, 48-hr landlord analysis, HOA report/review, seasonal-alert list). All POST to **`/api/lead`** (`src/app/api/lead/route.ts`) with validation + a honeypot spam trap.
+- **Delivery** — configure in Vercel → Settings → Environment Variables (see `.env.example`):
+  - `LEAD_WEBHOOK_URL` → sends each lead as JSON to Zapier / Make / your CRM, **or**
+  - `RESEND_API_KEY` + `LEAD_NOTIFY_EMAIL` → emails each lead to Chuk.
+  - Until one is set, leads are written to the Vercel function logs (`[lead] …`) so nothing is lost.
+- **Mobile sticky bar** — Call / Text / Free Analysis fixed to the bottom on phones (`src/components/StickyCTA.tsx`).
+- **Contact details live in one file** — `src/lib/site.ts`. Business number: (561) 220-9399 (confirmed by Alex 2026-10-24). Change `PHONE_DISPLAY` / `PHONE_E164` there and every call/text/WhatsApp link site-wide updates.
+- **SEO** — RealEstateAgent JSON-LD ships in the layout. Add `NEXT_PUBLIC_GA_ID` to enable GA4 (lead forms fire a `generate_lead` event). For Search Console, add the code where noted in `src/app/layout.tsx`.
