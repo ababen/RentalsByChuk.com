@@ -25,7 +25,6 @@ const jsonLd = {
   url: site.url,
   telephone: telPretty,
   email: site.email,
-  slogan: "Dictum Meum Pactum — my word is my bond.",
   worksFor: { "@type": "Organization", name: "LoKation Real Estate" },
   identifier: { "@type": "PropertyValue", name: "Florida Real Estate License", value: "SL3596634" },
   areaServed: site.areasServed.map((name) => ({ "@type": "City", name: `${name}, FL` })),

@@ -42,7 +42,6 @@ export default function Footer() {
       </div>
       <div className="fine">
         <span>© 2026 RentalsByChuk.com — Alexander &quot;Chuk&quot; Babenchuk, LoKation Real Estate. FL Lic. SL3596634.</span>
-        <span>Dictum Meum Pactum — my word is my bond.</span>
       </div>
     </div></footer>
   );
