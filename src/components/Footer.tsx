@@ -9,9 +9,9 @@ export default function Footer() {
         <div>
           <Link className="logo on-dark" href="/">
             <img src={CHUK_HEAD} alt="Chuk" />
-            <span><span className="nm">CHUK</span><br /><span className="sb">LOKATION REAL ESTATE</span><br /><span className="sb2">RENTALS BY CHUK</span></span>
+            <span className="logo-txt"><span className="nm">CHUK</span><span className="sb">Rentals · LoKation Real Estate</span></span>
           </Link>
-          <p style={{ fontSize: "14.5px", maxWidth: "38ch", marginTop: "12px" }}>Rentals only, handled personally. West Palm Beach, Palm Beach Gardens &amp; Jupiter. HOA checked first — my goal is keys in about 21 days.</p>
+          <p style={{ fontSize: "14.5px", maxWidth: "38ch", marginTop: "12px" }}>Rentals only, handled personally. I find the home and coordinate the move, so you can enjoy West Palm Beach, Palm Beach Gardens &amp; Jupiter.</p>
           <p style={{ fontWeight: 900, color: "#fff", fontSize: "15px", marginTop: "14px" }}>{site.brokerage}</p>
           <p style={{ marginTop: "2px", fontSize: "15px" }}>
             <a className="inline" href={site.phoneHref} style={{ color: "#fff" }}>{site.phoneDisplay}</a>
@@ -22,14 +22,13 @@ export default function Footer() {
           </p>
         </div>
         <div><b>Homes</b>
-          <Link href="/#homes">This week&apos;s list</Link>
+          <Link href="/#top">Renter types</Link>
+          <Link href="/#handled">Done for you</Link>
           <Link href="/rentals">All rentals</Link>
           <Link href="/hoa-checker">HOA checker</Link>
           <Link href="/#get-matched">Text list</Link>
         </div>
         <div><b>Owners</b>
-          <Link href="/#owners">The rent math</Link>
-          <Link href="/#analysis">Owner analysis</Link>
           <Link href="/landlords">For landlords</Link>
           <Link href="/#faq">My fees</Link>
         </div>
