@@ -11,7 +11,7 @@ export default function Footer() {
             <img src={CHUK_HEAD} alt="Chuk" />
             <span><span className="nm">CHUK</span><br /><span className="sb">LOKATION REAL ESTATE</span><br /><span className="sb2">RENTALS BY CHUK</span></span>
           </Link>
-          <p style={{ fontSize: "14.5px", maxWidth: "38ch", marginTop: "12px" }}>Rentals only, handled personally. West Palm Beach, Palm Beach Gardens &amp; Jupiter. HOA checked first — my goal is keys in about 21 days. My word is my bond.</p>
+          <p style={{ fontSize: "14.5px", maxWidth: "38ch", marginTop: "12px" }}>Rentals only, handled personally. West Palm Beach, Palm Beach Gardens &amp; Jupiter. HOA checked first — my goal is keys in about 21 days.</p>
           <p style={{ fontWeight: 900, color: "#fff", fontSize: "15px", marginTop: "14px" }}>{site.brokerage}</p>
           <p style={{ marginTop: "2px", fontSize: "15px" }}>
             <a className="inline" href={site.phoneHref} style={{ color: "#fff" }}>{site.phoneDisplay}</a>
