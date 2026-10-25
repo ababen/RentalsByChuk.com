@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { CHUK_HEAD } from "@/data/chukImages";
 
 export default function Header() {
   return (
@@ -10,7 +11,7 @@ export default function Header() {
       </div></div>
       <header className="site-header"><div className="wrap">
         <Link className="logo" href="/" aria-label="Chuk — rentals">
-          <img src="/chuk-head.jpg" alt="Chuk" />
+          <img src={CHUK_HEAD} alt="Chuk" />
           <span><span className="nm">CHUK</span><br /><span className="sb">RENTALS • WPB • PBG • JUPITER</span></span>
         </Link>
         <nav className="main">

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { CHUK_HEAD } from "@/data/chukImages";
 
 export default function Footer() {
   return (
@@ -7,7 +8,7 @@ export default function Footer() {
       <div className="cols">
         <div>
           <Link className="logo on-dark" href="/">
-            <img src="/chuk-head.jpg" alt="Chuk" />
+            <img src={CHUK_HEAD} alt="Chuk" />
             <span><span className="nm">CHUK</span><br /><span className="sb">RENTALS • RENTALS BY CHUK</span></span>
           </Link>
           <p style={{ fontSize: "14.5px", maxWidth: "38ch", marginTop: "12px" }}>Rentals only, handled personally. West Palm Beach, Palm Beach Gardens &amp; Jupiter. HOA checked first, keys in about 21 days, my word is my bond.</p>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { ListingFilter } from "./HomePage";
+import { CHUK_WAVE } from "@/data/chukImages";
 
 type Props = {
   onSearch: (f: Partial<ListingFilter>) => void;
@@ -49,7 +50,7 @@ export default function Hero({ onSearch, activeTag }: Props) {
         </div>
       </div>
       <div className="stage">
-        <div className="frame"><img src="/chuk-wave.jpg" alt="Chuk, your rental guy, waving hello" /></div>
+        <div className="frame"><img src={CHUK_WAVE} alt="Chuk, your rental guy, waving hello" /></div>
         <div className="bubble tl">👋 <b>Hi, I&apos;m Chuk.</b> Yes, the blazer is real. No, I don&apos;t own another outfit.</div>
         <div className="bubble br">📱 <b>Text me first</b> — I reply faster than the apps refresh.</div>
       </div>

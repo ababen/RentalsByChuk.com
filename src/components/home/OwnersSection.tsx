@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import LeadForm from "@/components/LeadForm";
+import { CHUK_HEAD } from "@/data/chukImages";
 
 const money = (n: number) => "$" + Math.round(n).toLocaleString();
 
@@ -58,7 +59,7 @@ export default function OwnersSection() {
             <div>🔑 <b style={{ color: "var(--ink)" }}>My fees, published:</b> $1,500 flat when leased, or $199/mo full service. Nothing else.</div>
             <div>🏢 <b style={{ color: "var(--ink)" }}>Relocating a team?</b> I invoice the employer and handle every landing. <Link href="/#get-matched" style={{ color: "var(--green)", fontWeight: 900 }}>Ask me →</Link></div>
           </div>
-          <div className="say"><img src="/chuk-head.jpg" alt="Chuk" /><div><b>Chuk says:</b> &quot;If the math doesn&apos;t beat your price cut, I&apos;ll tell you to cut the price. Seriously.&quot;</div></div>
+          <div className="say"><img src={CHUK_HEAD} alt="Chuk" /><div><b>Chuk says:</b> &quot;If the math doesn&apos;t beat your price cut, I&apos;ll tell you to cut the price. Seriously.&quot;</div></div>
         </div>
       </div>
     </div></section>

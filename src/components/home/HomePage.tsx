@@ -9,6 +9,7 @@ import Listings from "./Listings";
 import CompareHub from "./CompareHub";
 import HoaSection from "./HoaSection";
 import OwnersSection from "./OwnersSection";
+import { CHUK_HEAD, CHUK_THUMBS } from "@/data/chukImages";
 
 export type ListingFilter = { city: string; beds: number; max: number; tag: string };
 
@@ -56,7 +57,7 @@ export default function HomePage({ properties }: { properties: Property[] }) {
       {/* MEET CHUK */}
       <section style={{ paddingTop: "6px" }}><div className="wrap">
         <div className="meet" id="meet">
-          <div className="ph"><img src="/chuk-head.jpg" alt="Chuk — 3D portrait" /></div>
+          <div className="ph"><img src={CHUK_HEAD} alt="Chuk — 3D portrait" /></div>
           <div>
             <div className="kicker">Meet Chuk</div>
             <h2>The guy behind the blazer.</h2>
@@ -123,7 +124,7 @@ export default function HomePage({ properties }: { properties: Property[] }) {
       {/* FINAL */}
       <section style={{ paddingTop: 0 }}><div className="wrap">
         <div className="final" id="get-matched">
-          <div className="char"><img src="/chuk-thumbs.jpg" alt="Chuk giving a thumbs up" /></div>
+          <div className="char"><img src={CHUK_THUMBS} alt="Chuk giving a thumbs up" /></div>
           <div>
             <div className="kicker">My text list</div>
             <h2>Text me. Seriously.</h2>
