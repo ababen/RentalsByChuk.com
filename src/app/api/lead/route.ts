@@ -7,8 +7,10 @@ import { NextRequest, NextResponse } from "next/server";
 //
 //   1. LEAD_WEBHOOK_URL — POSTs the lead JSON to any webhook
 //      (Zapier, Make, GoHighLevel, Follow Up Boss, a CRM…).
-//   2. RESEND_API_KEY + LEAD_NOTIFY_EMAIL — emails the lead via
-//      Resend (set LEAD_FROM_EMAIL to a verified sender).
+//   2. LEAD_NOTIFY_EMAIL + CLOUDFLARE_ACCOUNT_ID + CLOUDFLARE_EMAIL_TOKEN
+//      — emails the lead via Cloudflare Email Sending. Falls back to
+//      Resend when RESEND_API_KEY is set instead (set LEAD_FROM_EMAIL
+//      to a verified sender).
 //
 // If neither is configured the lead is written to the server log
 // (visible in Vercel → Logs) so a submission is never silently
@@ -91,10 +93,12 @@ export async function POST(req: NextRequest) {
   const webhook = process.env.LEAD_WEBHOOK_URL;
   if (webhook && (await postJson(webhook, payload))) deliveredVia.push("webhook");
 
-  // Channel 2: email via Resend
+  // Channel 2: email via Cloudflare Email Sending, or Resend
+  const cfAccount = process.env.CLOUDFLARE_ACCOUNT_ID;
+  const cfToken = process.env.CLOUDFLARE_EMAIL_TOKEN;
   const resendKey = process.env.RESEND_API_KEY;
   const notifyEmail = process.env.LEAD_NOTIFY_EMAIL;
-  if (resendKey && notifyEmail) {
+  if (notifyEmail && ((cfAccount && cfToken) || resendKey)) {
     const lines = [
       `New lead from rentalsbychuk.com`,
       ``,
@@ -107,17 +111,31 @@ export async function POST(req: NextRequest) {
       lead.page ? `Page:    ${lead.page}` : "",
       `Received: ${payload.receivedAt}`,
     ].filter(Boolean);
-    const ok = await postJson(
-      "https://api.resend.com/emails",
-      {
-        from: process.env.LEAD_FROM_EMAIL || "RentalsByChuk Leads <leads@rentalsbychuk.com>",
-        to: [notifyEmail],
-        reply_to: lead.email || undefined,
-        subject: `🏠 New ${lead.intent} lead: ${lead.name}${lead.context ? ` — ${lead.context}` : ""}`,
-        text: lines.join("\n"),
-      },
-      { Authorization: `Bearer ${resendKey}` }
-    );
+    const subject = `🏠 New ${lead.intent} lead: ${lead.name}${lead.context ? ` — ${lead.context}` : ""}`;
+    const ok =
+      cfAccount && cfToken
+        ? await postJson(
+            `https://api.cloudflare.com/client/v4/accounts/${cfAccount}/email/sending/send`,
+            {
+              from: { address: "leads@rentalsbychuk.com", name: "RentalsByChuk Leads" },
+              to: notifyEmail,
+              reply_to: lead.email || undefined,
+              subject,
+              text: lines.join("\n"),
+            },
+            { Authorization: `Bearer ${cfToken}` }
+          )
+        : await postJson(
+            "https://api.resend.com/emails",
+            {
+              from: process.env.LEAD_FROM_EMAIL || "RentalsByChuk Leads <leads@rentalsbychuk.com>",
+              to: [notifyEmail],
+              reply_to: lead.email || undefined,
+              subject,
+              text: lines.join("\n"),
+            },
+            { Authorization: `Bearer ${resendKey}` }
+          );
     if (ok) deliveredVia.push("email");
   }
 
