@@ -33,7 +33,7 @@ export const communities: Community[] = [
   { slug: "downtown-clematis", name: "Downtown Clematis", city: "West Palm Beach", band: "$2,500–$4,000", blurb: "Walkable, river, nightlife — Brightline at your door.", compareKey: "downtown", indexed: true },
   { slug: "flamingo-park", name: "Flamingo Park", city: "West Palm Beach", band: "$2,200–$3,500", blurb: "Historic bungalows, Norton Museum, tree-lined streets.", compareKey: "flamingo", indexed: true },
   { slug: "northwood", name: "Northwood", city: "West Palm Beach", band: "$1,800–$2,800", blurb: "Revitalization corridor — creative economy, upside.", indexed: false },
-  { slug: "mirasol", name: "Mirasol", city: "Palm Beach Gardens", band: "$4,000–$7,000", blurb: "Golf-front, country club, gated.", compareKey: "mirasol", hoaKey: "mirasol", indexed: true },
+  { slug: "mirasol", name: "Mirasol", city: "Palm Beach Gardens", band: "$6,850–$24,750", blurb: "Golf-front, country club, gated.", compareKey: "mirasol", hoaKey: "mirasol", indexed: true },
   { slug: "pga-national", name: "PGA National", city: "Palm Beach Gardens", band: "$3,500–$6,000", blurb: "Resort living on the Champion course.", compareKey: "pga", hoaKey: "pganational", indexed: true },
   { slug: "ballenisles", name: "BallenIsles", city: "Palm Beach Gardens", band: "$3,800–$6,500", blurb: "Private club, family-friendly, schools.", compareKey: "ballenisles", hoaKey: "ballenisles", indexed: true },
   { slug: "old-palm", name: "Old Palm", city: "Palm Beach Gardens", band: "$6,000–$12,000", blurb: "Ultra-private golf, large lots.", indexed: false },
