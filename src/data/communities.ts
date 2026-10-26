@@ -32,7 +32,7 @@ export type Community = {
 export const communities: Community[] = [
   { slug: "downtown-clematis", name: "Downtown Clematis", city: "West Palm Beach", band: "$2,500–$4,000", blurb: "Walkable, river, nightlife — Brightline at your door.", compareKey: "downtown", indexed: true },
   { slug: "flamingo-park", name: "Flamingo Park", city: "West Palm Beach", band: "$2,200–$3,500", blurb: "Historic bungalows, Norton Museum, tree-lined streets.", compareKey: "flamingo", indexed: true },
-  { slug: "northwood", name: "Northwood", city: "West Palm Beach", band: "$1,800–$2,800", blurb: "Revitalization corridor — creative economy, upside.", indexed: false },
+  { slug: "northwood", name: "Northwood", city: "West Palm Beach", band: "$1,800–$2,800", blurb: "Revitalization corridor — creative economy, upside.", compareKey: "northwood", indexed: true },
   { slug: "mirasol", name: "Mirasol", city: "Palm Beach Gardens", band: "$6,850–$24,750", blurb: "Golf-front, country club, gated.", compareKey: "mirasol", hoaKey: "mirasol", indexed: true },
   { slug: "pga-national", name: "PGA National", city: "Palm Beach Gardens", band: "$3,500–$6,000", blurb: "Resort living on the Champion course.", compareKey: "pga", hoaKey: "pganational", indexed: true },
   { slug: "ballenisles", name: "BallenIsles", city: "Palm Beach Gardens", band: "$3,800–$6,500", blurb: "Private club, golf and tennis.", compareKey: "ballenisles", hoaKey: "ballenisles", indexed: true },
@@ -40,7 +40,7 @@ export const communities: Community[] = [
   { slug: "abacoa", name: "Abacoa", city: "Jupiter", band: "$3,800–$5,200", blurb: "Most walkable — porches, green, farmers market.", compareKey: "abacoa", hoaKey: "abacoa", indexed: true },
   { slug: "jupiter-intracoastal", name: "Intracoastal", city: "Jupiter", band: "$8,000–$25,000+", blurb: "Waterfront, docks, seasonal premium 2–3×.", indexed: false },
   { slug: "egret-landing", name: "Egret Landing", city: "Jupiter", band: "$4,500–$7,000", blurb: "Gated, Intracoastal access, tennis and trails.", indexed: false },
-  { slug: "the-bluffs", name: "The Bluffs", city: "Jupiter", band: "$4,000–$6,000", blurb: "Quiet, Jupiter schools, easy to beach.", indexed: false },
+  { slug: "the-bluffs", name: "The Bluffs", city: "Jupiter", band: "$4,000–$6,000", blurb: "Quiet, Jupiter schools, easy to beach.", compareKey: "bluffs", indexed: true },
   { slug: "admirals-cove", name: "Admirals Cove", city: "Jupiter", band: "$9,000–$20,000+", blurb: "Estate + marina. Board interview required.", hoaKey: "admiralscove", indexed: true },
 ];
 

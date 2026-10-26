@@ -4,7 +4,7 @@ import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import { pageMeta } from "@/lib/seo";
 
-export const metadata = pageMeta({ title: "HOA Checker — Rental Rights", description: "Check the rental rules for Mirasol, Abacoa, Frenchman's Creek, PGA National, BallenIsles and Admirals Cove — min lease, max/year, board timeline, STR rules, grandfather status. Any other community: ask Chuk, he pulls the association documents.", path: "/hoa-checker" });
+export const metadata = pageMeta({ title: "HOA Checker — Rental Rights", description: "Check the rental rules for Mirasol, Abacoa, Frenchman's Creek, PGA National, BallenIsles, Admirals Cove, Jupiter Harbour, Jupiter Plantation and more — min lease, max/year, board timeline, STR rules, grandfather status. Any other community: ask Chuk, he pulls the association documents.", path: "/hoa-checker" });
 export default async function HOACheckerPage({ searchParams }: { searchParams: Promise<{ q?: string }> }){
   const { q } = await searchParams;
   const query = (q ?? "").toLowerCase().trim();
@@ -14,7 +14,7 @@ export default async function HOACheckerPage({ searchParams }: { searchParams: P
   return (
     <div className="max-w-[1200px] mx-auto px-6 py-8">
       <h1 className="text-3xl">HOA Rental Rights Checker</h1>
-      <p className="text-sm text-[#40564C] mt-1">Rental rules on file for Mirasol · Abacoa · Frenchman&apos;s Creek · PGA National · BallenIsles · Admirals Cove — ask me about any other.</p>
+      <p className="text-sm text-[#40564C] mt-1">Rental rules on file for Mirasol · Abacoa · Frenchman&apos;s Creek · PGA National · BallenIsles · Admirals Cove · Frenchman&apos;s Reserve · Jupiter Harbour · Jupiter Plantation · Jupiter Key — ask me about any other.</p>
       <form className="mt-4 flex gap-2 max-w-xl">
         <input name="q" defaultValue={q} placeholder="Try Mirasol, Abacoa, BallenIsles…" className="flex-1 border border-[#EEE0C4] rounded-full px-4 py-2.5 text-sm bg-white" />
         <button className="bg-[#0E3B2A] text-white px-6 py-2.5 rounded-full text-sm font-bold">Check →</button>
