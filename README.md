@@ -103,11 +103,12 @@ Logo: **R** monogram = key + palm frond. Wordmark: `RENTALS BY CHUK` with Coral 
 - [x] v0.1 — Interactive homepage mockup
 - [x] v0.2 — Next.js 16 + Tailwind + real homepage (faithful mockup port)
 - [x] v0.2 — sitemap/robots/OG image, loading/error/not-found, metadata on all routes
-- [ ] v0.3 — 12 community [slug] pages (SEO pillars)
+- [ ] v0.3 — 12 community [slug] pages (SEO pillars) — template + routes live; rent comps, schools, video tours still to add
 - [ ] v0.3 — Expand HOA DB to 300+ (Airtable→JSON)
 - [ ] v0.3 — Lead capture (Resend) + /admin auth
 - [ ] v0.4 — Tenant Vault + showing scheduler
 - [ ] v1.0 — Launch + Goldilocks Alert campaign + analytics
+- [ ] v2 (idea) — Client portal: login, personal side-by-side comparison, schedule showings → [`docs/ideas/v2-client-portal.md`](docs/ideas/v2-client-portal.md)
 
 ---
 

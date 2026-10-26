@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { pageMeta } from "@/lib/seo";
 import { CHUK_HEAD } from "@/data/chukImages";
 
-export const metadata: Metadata = {
-  title: "About Chuk — Alexander Babenchuk, REALTOR® | RentalsByChuk",
+export const metadata = pageMeta({
+  title: "About Chuk — Alexander Babenchuk, REALTOR®",
   description:
     "Meet Alexander \"Chuk\" Babenchuk, REALTOR® with LoKation Real Estate. A West Palm Beach local who only does rentals in West Palm Beach, Palm Beach Gardens and Jupiter.",
-};
+  path: "/about",
+});
 
 const CREED = [
   { t: "Rentals only", d: "No sales pitch hiding inside your tour. Ever." },
