@@ -30,7 +30,7 @@ export default function Footer() {
         </div>
         <div><b>Owners</b>
           <Link href="/landlords">For landlords</Link>
-          <Link href="/#faq">My fees</Link>
+          <Link href="/#faq">FAQ</Link>
         </div>
         <div><b>Cities</b>
           <Link href="/communities#west-palm-beach">West Palm Beach</Link>

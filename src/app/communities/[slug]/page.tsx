@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!c) return {};
   const meta = pageMeta({
     title: `Renting in ${c.name}, ${c.city} — Rents & HOA Rules`,
-    description: `Renting in ${c.name}, ${c.city}, FL: typical rents ${c.band}/mo, lease minimums and HOA approval rules, and ${c.city} market data (Oct 2026). Rentals-only help from Chuk — $0 to renters.`,
+    description: `Renting in ${c.name}, ${c.city}, FL: typical rents ${c.band}/mo, lease minimums and HOA approval rules, and ${c.city} market data (Oct 2026). Rentals-only help from Chuk with LoKation Real Estate.`,
     path: `/communities/${c.slug}`,
   });
   return c.indexed ? meta : { ...meta, robots: { index: false, follow: true } };
@@ -40,10 +40,6 @@ function faqsFor(c: Community) {
     a: minLease
       ? `${minLease}.${hoa ? ` Approval: ${hoa.board}.` : ""} Rules can differ by village or building, so Chuk confirms them for the specific home before you apply.`
       : `It depends on the building or association. Chuk pulls the association documents and confirms the minimum before you apply.`,
-  });
-  faqs.push({
-    q: `Do I pay Chuk to help me rent in ${c.name}?`,
-    a: `No. Renters pay $0 for search, touring and lease help. Chuk is paid by the property side (owner/landlord) when a lease signs, at the rate set in that property's listing agreement.`,
   });
   return faqs;
 }
@@ -179,7 +175,7 @@ export default async function CommunityPage({ params }: { params: Promise<{ slug
 
         <aside className="space-y-4">
           <div className="bg-white border border-[#E7E5E4] rounded-2xl p-5">
-            <LeadForm compact intent="renter-match" context={`${c.name}, ${c.city}`} heading={`Find me a rental in ${c.name}`} blurb="Tell me your budget and move date — I'll text you live homes and check the HOA before you apply. $0 to renters." ctaLabel="Text me matches →" />
+            <LeadForm compact intent="renter-match" context={`${c.name}, ${c.city}`} heading={`Find me a rental in ${c.name}`} blurb="Tell me your budget and move date — I'll text you live homes and check the HOA before you apply." ctaLabel="Text me matches →" />
             <div className="mt-3 text-xs text-[#78716C] text-center">
               Prefer to talk? <a href={site.phoneHref} className="font-bold text-[#0CA89A]">Call</a> or <a href={smsHref} className="font-bold text-[#0CA89A]">text {site.phoneDisplay}</a>
             </div>

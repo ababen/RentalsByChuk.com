@@ -31,14 +31,14 @@ export default async function HOACheckerPage({ searchParams }: { searchParams: P
               <div className="flex justify-between"><span className="text-[#75816F]">Short-term</span><b className="text-[#E56F22]">{h.str}</b></div>
               <div className="flex justify-between"><span className="text-[#75816F]">Grandfather</span><b>{h.grandfather}</b></div>
             </div>
-            <div className="mt-3 text-xs text-[#75816F]">Full document review $199 • <a href="#hoa-lead" className="text-[#1E7A55] font-bold">Request check →</a></div>
+            <div className="mt-3 text-xs text-[#75816F]"><a href="#hoa-lead" className="text-[#1E7A55] font-bold">Ask Chuk about this community →</a></div>
           </div>
         ))}
       </div>
       <div id="hoa-lead" className="mt-8 bg-[#0E3B2A] text-white rounded-2xl p-6">
-        <h2 className="text-2xl text-white">Get a full HOA document review</h2>
-        <p className="text-sm text-[#CFE4D4] mt-1 mb-4 max-w-[640px]">Tell Chuk which community and where to send the result. $199 for the full review — the association documents pulled and checked line by line. Not sure yet? Ask for the free summary instead — just say so in the message.</p>
-        <div className="max-w-[640px]"><LeadForm dark intent="hoa-review" context={q || undefined} ctaLabel="Request My HOA Check →" /></div>
+        <h2 className="text-2xl text-white">Ask about an HOA</h2>
+        <p className="text-sm text-[#CFE4D4] mt-1 mb-4 max-w-[640px]">Tell Chuk which community you&apos;re looking at and how to reach you.</p>
+        <div className="max-w-[640px]"><LeadForm dark intent="hoa-review" context={q || undefined} ctaLabel="Ask Chuk →" /></div>
       </div>
     </div>
   );

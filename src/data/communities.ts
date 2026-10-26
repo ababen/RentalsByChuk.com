@@ -35,7 +35,7 @@ export const communities: Community[] = [
   { slug: "northwood", name: "Northwood", city: "West Palm Beach", band: "$1,800–$2,800", blurb: "Revitalization corridor — creative economy, upside.", indexed: false },
   { slug: "mirasol", name: "Mirasol", city: "Palm Beach Gardens", band: "$6,850–$24,750", blurb: "Golf-front, country club, gated.", compareKey: "mirasol", hoaKey: "mirasol", indexed: true },
   { slug: "pga-national", name: "PGA National", city: "Palm Beach Gardens", band: "$3,500–$6,000", blurb: "Resort living on the Champion course.", compareKey: "pga", hoaKey: "pganational", indexed: true },
-  { slug: "ballenisles", name: "BallenIsles", city: "Palm Beach Gardens", band: "$3,800–$6,500", blurb: "Private club, family-friendly, schools.", compareKey: "ballenisles", hoaKey: "ballenisles", indexed: true },
+  { slug: "ballenisles", name: "BallenIsles", city: "Palm Beach Gardens", band: "$3,800–$6,500", blurb: "Private club, golf and tennis.", compareKey: "ballenisles", hoaKey: "ballenisles", indexed: true },
   { slug: "old-palm", name: "Old Palm", city: "Palm Beach Gardens", band: "$6,000–$12,000", blurb: "Ultra-private golf, large lots.", indexed: false },
   { slug: "abacoa", name: "Abacoa", city: "Jupiter", band: "$3,800–$5,200", blurb: "Most walkable — porches, green, farmers market.", compareKey: "abacoa", hoaKey: "abacoa", indexed: true },
   { slug: "jupiter-intracoastal", name: "Intracoastal", city: "Jupiter", band: "$8,000–$25,000+", blurb: "Waterfront, docks, seasonal premium 2–3×.", indexed: false },

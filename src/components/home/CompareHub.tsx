@@ -1,12 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { segments, neighborhoods, faceOffRows } from "@/data/compare";
 
 const money = (n: number) => "$" + Math.round(n).toLocaleString();
 
-/** #compare hub — segment picker, neighborhood face-off, true-cost
- *  calculator, seasonal-vs-annual comparator (v2 mockup). */
+/** #compare hub — segment picker, neighborhood face-off,
+ *  seasonal-vs-annual comparator (v2 mockup). */
 export default function CompareHub() {
   const [segKey, setSegKey] = useState("snowbird");
   const seg = segments.find((s) => s.key === segKey) ?? segments[0];
@@ -14,43 +14,11 @@ export default function CompareHub() {
   const [foKeys, setFoKeys] = useState<[string, string, string]>(["downtown", "abacoa", "mirasol"]);
   const foCols = foKeys.map((k) => neighborhoods.find((n) => n.key === k) ?? neighborhoods[0]);
 
-  // True-cost state
-  const [util, setUtil] = useState(180);
-  const [a, setA] = useState({ rent: "2450", dep: "1", hoa: "100", admin: "75" });
-  const [b, setB] = useState({ rent: "2300", dep: "1", hoa: "300", admin: "250" });
-
-  const tc = useMemo(() => {
-    const num = (v: string) => { const n = parseFloat(v); return isNaN(n) || n < 0 ? 0 : n; };
-    const calcHome = (h: typeof a) => {
-      const rent = num(h.rent);
-      const dep = rent * (parseFloat(h.dep) || 1);
-      const move = rent + dep + num(h.hoa) + num(h.admin);
-      const month = rent + 20 + util;
-      return { move, month, year: move - rent + 12 * month };
-    };
-    const ha = calcHome(a), hb = calcHome(b);
-    const cheaper = ha.month <= hb.month ? 0 : 1;
-    return { ha, hb, cheaper, dM: Math.abs(ha.month - hb.month), dY: Math.abs(ha.year - hb.year) };
-  }, [a, b, util]);
-
   // Seasonal comparator state
   const [svRent, setSvRent] = useState(5000);
   const svAnnual = svRent * 12;
   const svSeasonMonthly = Math.round(svRent * 2.5);
   const svSeasonal = svSeasonMonthly * 4;
-
-  const homeInputs = (
-    h: typeof a, setH: (v: typeof a) => void, title: string, out: { move: number; month: number }, win: boolean
-  ) => (
-    <div className="tc-home">
-      <h4>{title}</h4>
-      <label>Monthly rent<input type="number" value={h.rent} min={0} step={25} inputMode="numeric" onChange={(e) => setH({ ...h, rent: e.target.value })} /></label>
-      <label>Deposit<select value={h.dep} onChange={(e) => setH({ ...h, dep: e.target.value })}><option value="1">1 month of rent</option><option value="1.5">1.5 months</option><option value="2">2 months</option></select></label>
-      <label>HOA application fee<input type="number" value={h.hoa} min={0} step={25} inputMode="numeric" onChange={(e) => setH({ ...h, hoa: e.target.value })} /></label>
-      <label>Admin / lease fee<input type="number" value={h.admin} min={0} step={25} inputMode="numeric" onChange={(e) => setH({ ...h, admin: e.target.value })} /></label>
-      <div className={`tc-out${win ? " win" : ""}`}>Move-in cash: <b>{money(out.move)}</b><br />True monthly: <b>{money(out.month)}/mo</b></div>
-    </div>
-  );
 
   return (
     <section id="compare" style={{ paddingTop: "6px" }}><div className="wrap">
@@ -99,20 +67,6 @@ export default function CompareHub() {
       </table></div>
 
       <div className="calc2">
-        <div className="tc-card">
-          <div className="form-title">True-cost face-off: Home A vs Home B</div>
-          <p className="form-sub">Headline rent fibs a little. This doesn&apos;t — move-in cash and true monthly cost, side by side.</p>
-          <div className="tc-cols">
-            {homeInputs(a, setA, "🏠 Home A", tc.ha, tc.cheaper === 0)}
-            {homeInputs(b, setB, "🏡 Home B", tc.hb, tc.cheaper === 1)}
-          </div>
-          <div className="tc-shared">Shared assumptions — utilities estimate: <b>{money(util)}/mo</b>
-            <input type="range" min={50} max={400} step={10} value={util} onChange={(e) => setUtil(parseInt(e.target.value, 10))} aria-label="Utilities estimate per month" />
-            Renters insurance ≈ $20/mo, added to both homes.</div>
-          <div className="tc-verdict"><b>Home {tc.cheaper === 0 ? "A" : "B"} wins</b> — {tc.dM > 0 ? `${money(tc.dM)}/mo cheaper monthly` : "same true monthly cost"}; year-one totals (fees + deposit + 12 true months): A {money(tc.ha.year)} vs B {money(tc.hb.year)} — a {money(tc.dY)} difference. Headline rent alone would never have shown you that.</div>
-          <p className="sv-note">The math, shown: move-in cash = first month + deposit + HOA fee + admin fee. True monthly = rent + $20 insurance + utilities. Deposits (usually) come back — monthly costs don&apos;t.</p>
-        </div>
-
         <div className="sv-card">
           <div className="form-title">Snowbird math: seasonal vs annual 🌴</div>
           <p className="form-sub">What does a winter here actually cost, next to renting the same home all year?</p>

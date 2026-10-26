@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 // "%s | RentalsByChuk" template, so don't append the brand here.
 // A page-level openGraph replaces the root one wholesale, so the shared
 // card from app/opengraph-image.tsx is listed explicitly.
-const SHARE_IMAGE = { url: "/opengraph-image", width: 1200, height: 630, alt: "Chuk — rentals in West Palm Beach, Palm Beach Gardens & Jupiter" };
+const SHARE_IMAGE = { url: "/opengraph-image", width: 1200, height: 630, alt: "CHUK — Rentals in West Palm Beach, Palm Beach Gardens & Jupiter. Consider it handled." };
 
 export function pageMeta({ title, description, path }: { title: string; description: string; path: string }): Metadata {
   const fullTitle = `${title} | ${site.name}`;
