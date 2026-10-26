@@ -33,9 +33,9 @@ export default function Footer() {
           <Link href="/#faq">FAQ</Link>
         </div>
         <div><b>Cities</b>
-          <Link href="/communities">West Palm Beach</Link>
-          <Link href="/communities">Palm Beach Gardens</Link>
-          <Link href="/communities">Jupiter</Link>
+          <Link href="/communities#west-palm-beach">West Palm Beach</Link>
+          <Link href="/communities#palm-beach-gardens">Palm Beach Gardens</Link>
+          <Link href="/communities#jupiter">Jupiter</Link>
           <Link href="/reports">Market reports</Link>
         </div>
       </div>

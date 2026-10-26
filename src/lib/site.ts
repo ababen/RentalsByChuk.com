@@ -24,4 +24,9 @@ export const site = {
     "Hi Chuk — I'm interested in a rental in WPB / PBG / Jupiter."
   )}`,
   areasServed: ["West Palm Beach", "Palm Beach Gardens", "Jupiter"],
+  // Official profiles of this business (Google Business Profile, Zillow,
+  // Realtor.com, LinkedIn, LoKation agent page…). Added to the
+  // RealEstateAgent JSON-LD as `sameAs` so Google and AI assistants can
+  // tie them to this site. Full https URLs only.
+  sameAs: [] as string[],
 };

@@ -1,8 +1,11 @@
-export const metadata = {
-  title: "Market Reports — Oct 2026 Snapshot | RentalsByChuk",
+import { pageMeta } from "@/lib/seo";
+
+export const metadata = pageMeta({
+  title: "Market Reports — Oct 2026 Snapshot",
   description:
     "Palm Beach County rental market snapshot, October 2026: median asking rents, apartment averages, occupancy and days on market — sourced from Realtor.com, RentCafe, BeachesMLS and RentalSource, each figure labeled with source and date.",
-};
+  path: "/reports",
+});
 
 export default function ReportsPage() {
   return (

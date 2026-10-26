@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: { absolute: "CHUK — Rentals in West Palm Beach, Palm Beach Gardens & Jupiter. Consider it handled." },
   description:
     "I'm Chuk, with LoKation Real Estate. I only do rentals in West Palm Beach, Palm Beach Gardens and Jupiter — I find the home, and I coordinate the move: movers, junk removal, furniture, utilities. You just enjoy North Palm Beach County.",
+  alternates: { canonical: "/" },
 };
 
 // FAQ structured data — kept in sync with the FAQS rendered by HomePage.

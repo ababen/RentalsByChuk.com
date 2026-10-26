@@ -1,7 +1,8 @@
 
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
-export const metadata = { title: "For Landlords — Accidental Landlord Rescue | RentalsByChuk", description: "Didn’t sell? Rent smart. Rent-vs-sell math, a 48-hr analysis, and my goal: a signed lease in about 21 days." };
+import { pageMeta } from "@/lib/seo";
+export const metadata = pageMeta({ title: "For Landlords — Accidental Landlord Rescue", description: "Didn’t sell? Rent smart. Rent-vs-sell math, a 48-hr analysis, and my goal: a signed lease in about 21 days.", path: "/landlords" });
 export default function LandlordsPage(){
   return (
     <div className="max-w-[1200px] mx-auto px-6 py-8">
