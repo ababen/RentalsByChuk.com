@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Offline asset tooling (sticker/character scripts), not site code.
     "brand/**",
+    // Separate Next.js app (HomesByChuk) with its own config.
+    "homesbychuk/**",
   ]),
 ]);
 
