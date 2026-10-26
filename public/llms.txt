@@ -60,5 +60,6 @@
 - Sample homes (illustrative only — live homes come by text): https://rentalsbychuk.com/rentals
 - HOA rental-rules checker: https://rentalsbychuk.com/hoa-checker
 - Communities (12 villages, typical rent bands): https://rentalsbychuk.com/communities
+- Community guides (rents, lease & HOA rules, Oct 2026 data): Downtown Clematis https://rentalsbychuk.com/communities/downtown-clematis · Flamingo Park https://rentalsbychuk.com/communities/flamingo-park · Mirasol https://rentalsbychuk.com/communities/mirasol · PGA National https://rentalsbychuk.com/communities/pga-national · BallenIsles https://rentalsbychuk.com/communities/ballenisles · Abacoa https://rentalsbychuk.com/communities/abacoa · Admirals Cove https://rentalsbychuk.com/communities/admirals-cove
 - Market reports (October 2026 snapshot, sourced): https://rentalsbychuk.com/reports
 - Owners / landlords — no-cost 48-hour rental analysis: https://rentalsbychuk.com/landlords
