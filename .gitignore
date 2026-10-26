@@ -12,3 +12,8 @@ coverage/
 .vercel
 *.bak
 *.tsbuildinfo
+
+# agent run scratch
+.agent-input/
+.agent-output/
+.social-tier.json

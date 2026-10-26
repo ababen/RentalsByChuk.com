@@ -1,0 +1,168 @@
+name: Site agent
+
+# Weekly: Claude adds sourced HOA rules, promotes one thin community page, refreshes market numbers
+# monthly, and opens a PR for Alexander. Playbook: .github/agent/site-agent.md
+#   agent   - read-only token; Claude edits files in its own runner and uploads them as an artifact
+#   publish - write token; takes ONLY the allowlisted data files, checks them (scripts/agent-guard.mjs),
+#             runs lint + build, opens a PR labeled site-agent + needs-alexander. Nothing auto-merges.
+
+on:
+  schedule:
+    - cron: "41 11 * * 4"        # Thursdays 11:41 UTC (~7:41 am ET)
+  workflow_dispatch:
+    inputs:
+      focus:
+        description: "Optional extra instruction (e.g. 'add 3 Jupiter HOAs')"
+        required: false
+        default: ""
+
+permissions: {}
+
+concurrency:
+  group: site-agent
+  cancel-in-progress: false
+
+jobs:
+  agent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      pull-requests: read
+      issues: read
+    outputs:
+      open: ${{ steps.gate.outputs.open }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Skip if an earlier agent PR is still open
+        id: gate
+        run: |
+          open=$(gh pr list --repo "$GITHUB_REPOSITORY" --label site-agent --state open --json number --jq 'length')
+          echo "open=$open" >> "$GITHUB_OUTPUT"
+          [ "$open" = "0" ] || echo "::notice::A site-agent PR is still open; review or close it first. Skipping."
+
+      - uses: actions/setup-node@v4
+        if: steps.gate.outputs.open == '0'
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        if: steps.gate.outputs.open == '0'
+        run: npm ci --no-audit --no-fund
+
+      - name: Gather inputs
+        if: steps.gate.outputs.open == '0'
+        env:
+          FOCUS: ${{ inputs.focus }}
+          RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          mkdir -p .agent-input .agent-output
+          jq -n --arg today "$(TZ=America/New_York date +%F)" --arg focus "$FOCUS" --arg run "$RUN_NUMBER" \
+            '{today: $today, focus: $focus, run: $run}' > .agent-input/context.json
+          # Open agent-task issues from the owner/collaborators or from the signal agent (github-actions bot).
+          gh api "repos/$GITHUB_REPOSITORY/issues?state=open&labels=agent-task&per_page=100" --paginate --slurp \
+            | jq 'add // [] | [.[] | select(.pull_request | not)
+                 | select(.author_association == "OWNER" or .author_association == "MEMBER" or .author_association == "COLLABORATOR" or .user.login == "github-actions[bot]")
+                 | {number, title, body: ((.body // "")[0:8000])}]' > .agent-input/issues.json
+          echo "open requests: $(jq length .agent-input/issues.json)"
+
+      - name: Check the agent credential
+        if: steps.gate.outputs.open == '0'
+        env:
+          TOKEN: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          [ -n "$TOKEN" ] || { echo "::error::Add ANTHROPIC_API_KEY as a repository Actions secret (Settings > Secrets and variables > Actions)."; exit 1; }
+
+      - name: Run the agent
+        if: steps.gate.outputs.open == '0'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ github.token }}
+          prompt: |
+            Follow .github/agent/site-agent.md exactly. Inputs are in .agent-input/.
+            Write your PR title and body to .agent-output/ as the playbook describes.
+          claude_args: |
+            --model claude-sonnet-5-5
+            --max-turns 120
+            --allowedTools "Read,Write,Edit,MultiEdit,Glob,Grep,WebSearch,WebFetch,Bash(npm run build),Bash(npm run lint),Bash(git diff:*),Bash(git status:*)"
+            --disallowedTools "Bash(git push:*),Bash(git commit:*),Bash(gh:*),Bash(curl:*)"
+
+      - name: Hand the agent's files to the publish job
+        if: steps.gate.outputs.open == '0'
+        uses: actions/upload-artifact@v7
+        with:
+          name: site-agent-output
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            src/data/hoa.ts
+            src/data/compare.ts
+            src/data/communities.ts
+            src/data/faqs.ts
+            src/app/reports/page.tsx
+            src/lib/site.ts
+            docs/agent-log.md
+            .agent-output/
+
+  publish:
+    needs: agent
+    if: needs.agent.outputs.open == '0'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: site-agent-output
+          path: ${{ runner.temp }}/incoming
+
+      - name: Guard (allowlist, safety checks, source links)
+        run: node scripts/agent-guard.mjs "$RUNNER_TEMP/incoming" --report "$RUNNER_TEMP/guard.md"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Lint and build
+        run: |
+          npm ci --no-audit --no-fund
+          npm run lint
+          npm run build
+
+      - name: Open the PR
+        run: |
+          if git diff --quiet; then echo "::notice::The agent made no changes."; exit 0; fi
+          branch="site-agent/run-${GITHUB_RUN_NUMBER}"
+          title=$(head -c 70 "$RUNNER_TEMP/incoming/.agent-output/pr-title.txt" 2>/dev/null || true)
+          [ -n "$title" ] || title="Site agent run ${GITHUB_RUN_NUMBER}"
+          { cat "$RUNNER_TEMP/incoming/.agent-output/pr-body.md" 2>/dev/null || echo "(no PR body written)"
+            echo; echo "---"; cat "$RUNNER_TEMP/guard.md"
+            echo; echo "_Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}_"; } > "$RUNNER_TEMP/body.md"
+          git config user.name "Site Agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -q -b "$branch"
+          git add src/data src/app/reports/page.tsx src/lib/site.ts docs/agent-log.md
+          git commit -q -m "$title"
+          git push -q origin "$branch"
+          gh label create site-agent --color 0b1d3a --description "Opened by the weekly site agent" 2>/dev/null || true
+          gh label create needs-alexander --color d93f0b --description "Waiting on Alexander's review" 2>/dev/null || true
+          gh pr create --base main --head "$branch" --title "$title" --body-file "$RUNNER_TEMP/body.md" --label site-agent --label needs-alexander

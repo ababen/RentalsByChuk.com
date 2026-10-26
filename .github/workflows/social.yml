@@ -1,0 +1,198 @@
+name: Social drafts
+
+# Mon/Wed/Fri: the signal agent picks what to post, the content agent drafts it, the guard checks every
+# number against the site's sourced data files, and a PR shows each draft. Merge = approved.
+#   signal  - read-only; web search allowed; writes social/queue/signals-<date>.json (+ "verify this" requests)
+#   content - read-only; NO web; writes social/drafts/<date>/*.json from the site's data files only
+#   publish - write; scripts/social-guard.mjs drops bad drafts, files verify-requests as agent-task issues,
+#             advances social/state.json and opens a PR labeled social-drafts
+# Playbooks: .github/agent/signal-agent.md, .github/agent/content-agent.md
+
+on:
+  schedule:
+    - cron: "23 11 * * 1,3,5"     # Mon/Wed/Fri 11:23 UTC (~7:23 am ET)
+  workflow_dispatch:
+    inputs:
+      focus:
+        description: "Optional focus for this run (e.g. 'landlords in Jupiter', 'snowbird season')"
+        required: false
+        default: ""
+
+permissions: {}
+
+concurrency:
+  group: social-drafts
+  cancel-in-progress: false
+
+jobs:
+  signal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      open: ${{ steps.gate.outputs.open }}
+      date: ${{ steps.inputs.outputs.date }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Skip if earlier drafts are still waiting
+        id: gate
+        run: |
+          open=$(gh pr list --repo "$GITHUB_REPOSITORY" --label social-drafts --state open --json number --jq 'length')
+          echo "open=$open" >> "$GITHUB_OUTPUT"
+          [ "$open" = "0" ] || echo "::notice::A social-drafts PR is still open; merge or close it first. Skipping."
+
+      - name: Gather inputs (date, focus, data diff since the last run)
+        id: inputs
+        if: steps.gate.outputs.open == '0'
+        env:
+          FOCUS: ${{ inputs.focus }}
+          RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          today=$(TZ=America/New_York date +%F)
+          echo "date=$today" >> "$GITHUB_OUTPUT"
+          mkdir -p .agent-input .agent-output social/queue
+          jq -n --arg today "$today" --arg focus "$FOCUS" --arg run "$RUN_NUMBER" \
+            '{today: $today, focus: $focus, run: $run}' > .agent-input/context.json
+          base=$(jq -r '.last_signal_sha // empty' social/state.json)
+          if [ -z "$base" ] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+            base=$(git rev-list -1 --before="30 days ago" HEAD); [ -n "$base" ] || base=$(git rev-list --max-parents=0 HEAD | tail -1)
+          fi
+          echo "diff base: $base"
+          git diff "$base" HEAD -- src/data src/app/reports/page.tsx \
+            ':(exclude)src/data/chukImages.ts' ':(exclude)src/data/properties.ts' | head -c 200000 > .agent-input/diff.txt
+          echo "diff: $(wc -l < .agent-input/diff.txt) lines"
+
+      - name: Check the agent credential
+        if: steps.gate.outputs.open == '0'
+        env:
+          TOKEN: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          [ -n "$TOKEN" ] || { echo "::error::Add ANTHROPIC_API_KEY as a repository Actions secret (Settings > Secrets and variables > Actions)."; exit 1; }
+
+      - name: Run the signal agent
+        if: steps.gate.outputs.open == '0'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ github.token }}
+          prompt: |
+            Follow .github/agent/signal-agent.md exactly. Inputs are in .agent-input/. Today is in context.json.
+          claude_args: |
+            --model claude-sonnet-5-5
+            --max-turns 60
+            --allowedTools "Read,Write,Glob,Grep,WebSearch,WebFetch"
+            --disallowedTools "Bash,Edit,MultiEdit"
+
+      - uses: actions/upload-artifact@v7
+        if: steps.gate.outputs.open == '0'
+        with:
+          name: signal-output
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            social/queue/signals-${{ steps.inputs.outputs.date }}.json
+            .agent-output/
+            .agent-input/context.json
+
+  content:
+    needs: signal
+    if: needs.signal.outputs.open == '0'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: signal-output
+          path: .
+
+      - name: Run the content agent
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ github.token }}
+          prompt: |
+            Follow .github/agent/content-agent.md exactly. Inputs are in .agent-input/ and social/queue/.
+          claude_args: |
+            --model claude-sonnet-5-5
+            --max-turns 80
+            --allowedTools "Read,Write,Glob,Grep"
+            --disallowedTools "Bash,Edit,MultiEdit,WebSearch,WebFetch"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: social-output
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            social/queue/signals-${{ needs.signal.outputs.date }}.json
+            social/drafts/${{ needs.signal.outputs.date }}/
+            .agent-output/
+
+  publish:
+    needs: [signal, content]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      DATE: ${{ needs.signal.outputs.date }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: social-output
+          path: ${{ runner.temp }}/incoming
+
+      - name: Guard (facts, disclosure, Fair Housing wording, links, limits)
+        run: node scripts/social-guard.mjs "$RUNNER_TEMP/incoming" "$DATE" --report "$RUNNER_TEMP/report.md"
+
+      - name: File "verify this" requests for the site agent
+        run: |
+          f="$RUNNER_TEMP/incoming/.agent-output/issues-to-file.json"
+          [ -s "$f" ] || exit 0
+          gh label create agent-task --color 2ec4b6 --description "Request for the site agent" 2>/dev/null || true
+          jq -c '.[0:5][] | select(.title and .url)' "$f" | while read -r item; do
+            title=$(jq -r '.title | .[0:120]' <<<"$item")
+            if gh issue list --state open --search "\"$title\" in:title" --json number --jq 'length' | grep -qv '^0$'; then continue; fi
+            body=$(jq -r '"Found by the social signal agent on \(.found // "?"). Verify before it goes on the site.\n\n**Claim:** \(.claim // "")\n\n**Source:** \(.url)"' <<<"$item")
+            gh issue create --title "$title" --body "$body" --label agent-task
+          done
+
+      - name: Open the PR
+        run: |
+          [ "$(jq -r .accepted .social-tier.json)" != "0" ] || { echo "::notice::No drafts passed the guard."; cat "$RUNNER_TEMP/report.md"; exit 0; }
+          jq --arg sha "$GITHUB_SHA" '.last_signal_sha = $sha' social/state.json > "$RUNNER_TEMP/state.json" && mv "$RUNNER_TEMP/state.json" social/state.json
+          branch="social/drafts-$DATE-${GITHUB_RUN_NUMBER}"
+          git config user.name "Social Agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -q -b "$branch"
+          git add "social/queue/signals-$DATE.json" "social/drafts/$DATE" social/state.json
+          git commit -q -m "Social drafts $DATE"
+          git push -q origin "$branch"
+          echo; echo "_Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}_" >> "$RUNNER_TEMP/report.md"
+          gh label create social-drafts --color ff6b4a --description "Social drafts waiting for approval" 2>/dev/null || true
+          gh pr create --base main --head "$branch" --title "Social drafts $DATE" --body-file "$RUNNER_TEMP/report.md" --label social-drafts
