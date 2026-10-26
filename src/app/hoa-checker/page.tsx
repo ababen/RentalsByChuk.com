@@ -2,8 +2,9 @@
 import { hoaDB } from "@/data/hoa";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata = { title: "HOA Checker — Rental Rights | RentalsByChuk", description: "Check the rental rules for Mirasol, Abacoa, Frenchman's Creek, PGA National, BallenIsles and Admirals Cove — min lease, max/year, board timeline, STR rules, grandfather status. Any other community: ask Chuk, he pulls the association documents." };
+export const metadata = pageMeta({ title: "HOA Checker — Rental Rights", description: "Check the rental rules for Mirasol, Abacoa, Frenchman's Creek, PGA National, BallenIsles and Admirals Cove — min lease, max/year, board timeline, STR rules, grandfather status. Any other community: ask Chuk, he pulls the association documents.", path: "/hoa-checker" });
 export default async function HOACheckerPage({ searchParams }: { searchParams: Promise<{ q?: string }> }){
   const { q } = await searchParams;
   const query = (q ?? "").toLowerCase().trim();

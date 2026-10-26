@@ -1,6 +1,6 @@
-# llms.txt — RentalsByChuk (Chuk)
-# Plain-language facts about this business, for AI assistants and crawlers.
-# Data dated October 2026; rental figures are market snapshots, not guarantees.
+# RentalsByChuk (Chuk)
+
+> Rentals-only real estate service in West Palm Beach, Palm Beach Gardens and Jupiter, Florida — Alexander "Chuk" Babenchuk, REALTOR® with LoKation Real Estate. Renters pay $0. Plain-language facts for AI assistants and crawlers; data dated October 2026, rental figures are market snapshots, not guarantees.
 
 ## Who
 - Business: RentalsByChuk (CHUK) — rentals-only real estate service
@@ -53,11 +53,12 @@
 - BallenIsles (PBG): median $4,600; 3BR $6,650; houses avg $8,000 (Zumper). Formal HOA minimum unpublished; live seasonal listing shows 3-month minimum, furnished 3BR $25,000/mo
 - Wellington: median $4,386 (Realtor.com); annual 1BR $2,483+ / 2BR $3,266+ (ApartmentList); WEF-season furnished $8,750–$25,000/mo
 
-## Key pages (anchors on the homepage)
-- Home search & sample homes (illustrative only — live homes come by text): #homes
-- Renter-type comparison hub (segments, neighborhood face-off, true-cost calculator, seasonal vs annual): #compare
-- Meet Chuk: #meet
-- HOA checker: #hoa
-- Owners / no-cost 48-hour analysis: #owners
-- Join the text list: #get-matched
-- FAQ: #faq
+## Key pages
+- Home — renter types, what Chuk handles, how it works: https://rentalsbychuk.com/
+- Fees & FAQ: https://rentalsbychuk.com/#faq
+- Join the text list / get matched: https://rentalsbychuk.com/#get-matched
+- Sample homes (illustrative only — live homes come by text): https://rentalsbychuk.com/rentals
+- HOA rental-rules checker: https://rentalsbychuk.com/hoa-checker
+- Communities (12 villages, typical rent bands): https://rentalsbychuk.com/communities
+- Market reports (October 2026 snapshot, sourced): https://rentalsbychuk.com/reports
+- Owners / landlords — no-cost 48-hour rental analysis: https://rentalsbychuk.com/landlords

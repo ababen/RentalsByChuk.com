@@ -1,7 +1,8 @@
 
 import Link from "next/link";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata = { title: "Communities — 12 Villages | RentalsByChuk", description: "Explore 12 villages across WPB, PBG & Jupiter — rents, schools, vibe, HOA rules." };
+export const metadata = pageMeta({ title: "Communities — 12 Villages", description: "Explore 12 villages across WPB, PBG & Jupiter — rents, schools, vibe, HOA rules.", path: "/communities" });
 
 const comms = [
   { n:"Downtown Clematis", city:"West Palm Beach", price:"$2,500-$4k", blurb:"Walkable, river, nightlife — Brightline at your door." },
