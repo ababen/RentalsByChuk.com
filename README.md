@@ -3,7 +3,7 @@
 > **Rentals Isn't Our Side Hustle. It's Our Only Hustle.**
 > Rentals-only Realtor for **West Palm Beach • Palm Beach Gardens • Jupiter**
 
-Sister brand to [HomesByChuk](https://homesbychuk.com) — same trust, sharper edge. Hyperlocal rentals, neighborhood-level pricing, HOA clearance, and video-first tours.
+Sister brand to [HomesByChuk](https://homesbychuk.com) (buy & sell — source in [`homesbychuk/`](homesbychuk/README.md)) — same trust, sharper edge. Hyperlocal rentals, neighborhood-level pricing, HOA clearance, and video-first tours.
 
 🔗 **Live:** [rentalsbychuk.com](https://rentalsbychuk.com) · [rentalsbychukcom.vercel.app](https://rentalsbychukcom.vercel.app) · [Mockup](RentalsByChuk_Mockup.html) · [Brand Guide](RentalsByChuk_BrandGuide.html) · [Strategy](docs/STRATEGY.md)
 

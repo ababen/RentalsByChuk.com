@@ -1,0 +1,14 @@
+# Next.js (for v0.2+)
+node_modules/
+.next/
+out/
+dist/
+.env
+.env.local
+.env*.local
+.DS_Store
+*.log
+coverage/
+.vercel
+*.bak
+*.tsbuildinfo
