@@ -24,7 +24,7 @@ export default function HoaSection() {
         <div>
           <div className="kicker">My superpower</div>
           <h2>I read HOA rulebooks for fun. Somebody has to.</h2>
-          <p>Minimum stays, rental caps, board approvals that take weeks — in the Gardens and Jupiter, the HOA decides if you can live somewhere, not the landlord. Type a community and I&apos;ll show you its rules from my files. Ten seconds, potentially one saved deposit.</p>
+          <p>Minimum stays, rental caps, board approvals that take weeks — in the Gardens and Jupiter, the HOA decides if you can live somewhere, not the landlord. Type a community and I&apos;ll show you its rules from my files. Ten seconds, no surprises later.</p>
           <div className="hoa-search">
             <input type="text" value={q} onChange={(e) => search(e.target.value)} placeholder="Try Mirasol, Abacoa, PGA National…" aria-label="Community name" />
             <button className="btn btn-sun" type="button" style={{ padding: "11px 19px" }} onClick={() => search(q)}>Check →</button>

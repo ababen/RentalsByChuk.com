@@ -33,7 +33,7 @@
 - Golf & country club renters: Mirasol, PGA National, BallenIsles — POA/board approval packets handled
 - Equestrian seasonal: Wellington during Winter Equestrian Festival (Jan–Apr); houses, farms, stalls
 - Waterfront & boating: North Palm Beach, Jupiter Inlet, Singer Island — dock/lift verification first
-- First-time / budget-smart renters: true-cost comparisons
+- First-time / budget-smart renters: annual leases, application-ready packets
 
 ## Market snapshot — October 2026 (sources named)
 - Palm Beach County median asking rent: $2,762 (Realtor.com, Sep 2026)
@@ -54,7 +54,7 @@
 
 ## Key pages (anchors on the homepage)
 - Home search & sample homes (illustrative only — live homes come by text): #homes
-- Renter-type comparison hub (segments, neighborhood face-off, true-cost calculator, seasonal vs annual): #compare
+- Renter-type comparison hub (segments, neighborhood face-off, seasonal vs annual): #compare
 - Meet Chuk: #meet
 - HOA checker: #hoa
 - Owners / 48-hour analysis: #owners

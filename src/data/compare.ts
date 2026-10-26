@@ -102,14 +102,14 @@ export const segments: Segment[] = [
     key: "budget",
     emoji: "🔑",
     cardTitle: "First rental / budget-smart",
-    cardBlurb: "Value, no surprises, and every fee on the table before you apply.",
+    cardBlurb: "Value, no surprises, and a clear picture before you apply.",
     title: "🔑 The First-Rental / Budget-Smart Renter",
-    blurb: "First place, tight budget, zero appetite for surprises. Your enemy isn't the rent — it's the fees nobody mentioned and the deposit math nobody showed you.",
+    blurb: "First place, tight budget, zero appetite for surprises. You need a clear picture of what you're signing before you apply, not after.",
     budget: "West Palm Beach apartments: 1BR median $1,600/mo, 2BR median $2,200 (BeachesMLS snapshot, Oct 2026) — with 987 active lease listings to hunt in WPB alone.",
     fits: "West Palm Beach · North Palm Beach · Abacoa villages (Jupiter)",
     lease: "12-month annual — where a renter's leverage actually lives",
-    gotcha: "Fee stacking: HOA application fees ($100 in Abacoa's Village condos), admin fees, and deposits of 1–2 months can add thousands before you get a key. Compare true cost below, never the headline rent.",
-    tip: "About 14 renters chase every unit in this county (RentCafe). Being application-ready — documents, deposit, renters insurance — beats being first. I'll get your packet ready before we tour.",
+    gotcha: "Approval steps, not just rent: HOA screening and application review can take days to weeks. Know the approval steps before you fall for a home.",
+    tip: "About 14 renters chase every unit in this county (RentCafe). Being application-ready — documents and renters insurance lined up — beats being first. I'll get your packet ready before we tour.",
   },
 ];
 
