@@ -15,7 +15,7 @@
     "Flyer.dc.html": {"x": 0, "y": 0, "w": 816, "h": 1056, "title": "Flyer — Letter", "page": "flyer"},
     "BrochureOutside.dc.html": {"x": 0, "y": 0, "w": 1056, "h": 816, "title": "Brochure — outside (flap · back · cover)", "page": "brochure"},
     "BrochureInside.dc.html": {"x": 1136, "y": 0, "w": 1056, "h": 816, "title": "Brochure — inside spread", "page": "brochure"},
-    "StyleGuide.dc.html": {"x": 0, "y": 0, "w": 816, "h": 3600, "title": "Brand style guide", "page": "guide", "print": "flow", "paper": "letter"}
+    "StyleGuide.dc.html": {"x": 0, "y": 0, "w": 816, "h": 4600, "title": "Brand style guide", "page": "guide", "print": "flow", "paper": "letter"}
   },
   "order": ["Main.dc.html", "CardBack.dc.html", "Flyer.dc.html", "BrochureOutside.dc.html", "BrochureInside.dc.html", "StyleGuide.dc.html"],
   "notes": {},
