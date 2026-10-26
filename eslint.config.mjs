@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Offline asset tooling (sticker/character scripts), not site code.
+    "brand/**",
   ]),
 ]);
 
