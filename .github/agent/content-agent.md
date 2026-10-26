@@ -38,6 +38,9 @@ Hook shapes (don't copy wording):
 - Copy every number, fee, minimum, cap, date and percentage **exactly** as it appears in the file
   (same format: "$4,768", not "$4.8k"). Record each in `facts_used` as `{file, quote}`, where
   `quote` is copied verbatim from the file and contains the number.
+- The guard checks **every** number in the post, small ones and number words too ("4 months",
+  "four months", "twice a year"). Only years and slide counters like "1/6" are exempt. So don't use
+  numbers that aren't facts: no "3 things to know" or "5 tips"; write "What to know" instead.
 - Say where it's from in plain words: "per RentCafe, Sep 2026" or "per the association's rules".
 - 🔶 values only as "about" / "estimate". Never use ⚠️ values.
 - Live-listing figures: "one furnished 3BR is asking $25,000/mo right now", never as a typical price.

@@ -43,8 +43,13 @@ const BANNED = [
 const MONEY_LEGAL = /\$|\bfee|deposit|statute|§|\b718\b|\b720\b|\b83\b|approv|application|minimum|maximum|\bcap(s|ped)?\b|screening|board/i;
 
 const problems = [], accepted = [], rejected = [];
-const readJSON = (p) => { try { return JSON.parse(fs.readFileSync(p, "utf8")); } catch (e) { return { __error: e.message }; } };
-const quoteOk = (f) => f && FACT_FILES.includes(f.file) && typeof f.quote === "string" && f.quote.length >= 3 && corpus[f.file].includes(f.quote);
+const asArray = (v) => (Array.isArray(v) ? v : []);
+const isObj = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+const readJSON = (p) => {
+  try { const v = JSON.parse(fs.readFileSync(p, "utf8")); return isObj(v) ? v : { __error: "top level must be a JSON object" }; }
+  catch (e) { return { __error: e.message }; }
+};
+const quoteOk = (f) => isObj(f) && FACT_FILES.includes(f.file) && typeof f.quote === "string" && f.quote.length >= 3 && corpus[f.file].includes(f.quote);
 
 // ---- signals ----
 const sigPath = path.join(incoming, "social/queue", `signals-${DATE}.json`);
@@ -53,35 +58,57 @@ const signals = new Map();
 if (sig.__error) problems.push(`signals-${DATE}.json: ${sig.__error}`);
 else {
   if (!Array.isArray(sig.signals)) problems.push("signals: missing array");
-  for (const s of sig.signals || []) {
+  for (const s of asArray(sig.signals)) {
+    if (!isObj(s)) { problems.push("signals: every entry must be an object"); continue; }
     const where = `signal ${s.id}`;
     if (!/^\d{4}-\d{2}-\d{2}-[a-z0-9-]+$/.test(s.id || "")) problems.push(`${where}: bad id`);
     if (s.community != null && !slugs.includes(s.community)) problems.push(`${where}: unknown community ${s.community}`);
     if (!["renter", "landlord", "both"].includes(s.audience)) problems.push(`${where}: bad audience`);
     if (!Array.isArray(s.facts)) problems.push(`${where}: facts must be an array`);
-    for (const f of s.facts || []) if (!quoteOk(f)) problems.push(`${where}: quote not found verbatim in ${f.file}: ${String(f.quote).slice(0, 80)}`);
+    for (const f of asArray(s.facts)) if (!quoteOk(f)) problems.push(`${where}: quote not found verbatim in ${f.file}: ${String(f.quote).slice(0, 80)}`);
     signals.set(s.id, s);
   }
-  if ((sig.signals || []).length > 5) problems.push("signals: more than 5");
+  if (asArray(sig.signals).length > 5) problems.push("signals: more than 5");
 }
 
 // ---- drafts ----
-function numbersIn(text) {
-  const clean = text
+// Number words become digits so "four months" is checked like "4 months".
+const WORDS = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, once: 1, twice: 2 };
+// Every number is checked (small ones too: lease minimums and caps are small). Only years, the business phone
+// and slide counters like "1/6" are exempt.
+function numberTokens(text, { exempt = true } = {}) {
+  let clean = String(text)
     .replace(/https?:\/\/\S+/g, " ")
     .replace(/#[\w]+/g, " ")
     .replace(/\(561\)\s?220-9399/g, " ")
-    .split(DISCLOSURE).join(" ");
+    .split(DISCLOSURE).join(" ")
+    .replace(/\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|once|twice)\b/gi, (w) => ` ${WORDS[w.toLowerCase()]} `);
+  if (exempt) clean = clean.replace(/\b\d{1,2}\s?\/\s?\d{1,2}\b/g, " ");
   const out = [];
-  for (const m of clean.matchAll(/\$\s?\d[\d,]*(?:\.\d+)?\s?(?:k|K|M)?\+?|\d[\d,]*(?:\.\d+)?\s?%|\d[\d,]*(?:\.\d+)?/g)) {
+  for (const m of clean.matchAll(/\$\s?\d[\d,]*(?:\.\d+)?\s?(?:k|K|M)?|\d[\d,]*(?:\.\d+)?\s?%|\d[\d,]*(?:\.\d+)?/g)) {
     const t = m[0].replace(/\s/g, "").replace(/[,.]+$/, "");
-    const bare = /^\d+$/.test(t) ? Number(t) : null;
-    if (bare !== null && (bare <= 12 || (bare >= 2020 && bare <= 2030))) continue; // small counts and years
+    if (exempt && /^20[2-3]\d$/.test(t)) continue; // years
     out.push(t);
   }
   return out;
 }
+function shapeProblems(d) {
+  const p = [];
+  for (const k of ["id", "signal_id", "channel", "format", "hook", "text", "link"]) if (typeof d[k] !== "string" || !d[k]) p.push(`"${k}" must be a non-empty string`);
+  const arrOf = (k, check, what) => {
+    if (d[k] == null) return;
+    if (!Array.isArray(d[k]) || !d[k].every(check)) p.push(`"${k}" must be an array of ${what}`);
+  };
+  const strOrNull = (v) => v == null || typeof v === "string";
+  arrOf("hashtags", (x) => typeof x === "string", "strings");
+  arrOf("slides", (x) => isObj(x) && strOrNull(x.headline) && strOrNull(x.body), "{headline, body} objects");
+  arrOf("shots", (x) => isObj(x) && strOrNull(x.shot) && strOrNull(x.on_screen) && strOrNull(x.voiceover), "{shot, on_screen, voiceover} objects");
+  if (!Array.isArray(d.facts_used) || !d.facts_used.every((x) => isObj(x) && typeof x.file === "string" && typeof x.quote === "string")) p.push('"facts_used" must be an array of {file, quote} strings');
+  return p;
+}
 function draftProblems(d, file) {
+  const shape = shapeProblems(d);
+  if (shape.length) return shape;
   const p = [];
   const ch = CHANNELS[d.channel];
   if (!ch) return [`unknown channel ${d.channel}`];
@@ -122,10 +149,11 @@ function draftProblems(d, file) {
   if ((all.match(/\p{Extended_Pictographic}/gu) || []).length > 1) p.push("more than one emoji");
   if (/\p{Extended_Pictographic}/u.test(String(d.hook || ""))) p.push("emoji in hook");
   // facts
-  const facts = Array.isArray(d.facts_used) ? d.facts_used : [];
+  const facts = d.facts_used;
   for (const f of facts) if (!quoteOk(f)) p.push(`facts_used quote not found verbatim in ${f.file}: ${String(f.quote).slice(0, 80)}`);
-  const quotes = facts.map((f) => String(f.quote).replace(/\s/g, ""));
-  for (const n of numbersIn(all)) if (!quotes.some((q) => q.includes(n))) p.push(`number "${n}" isn't in any cited quote`);
+  // Token match (not substring): "4" must be a number in a cited quote, not just a digit inside "24".
+  const cited = new Set(facts.filter(quoteOk).flatMap((f) => numberTokens(f.quote, { exempt: false })));
+  for (const n of new Set(numberTokens(all))) if (!cited.has(n)) p.push(`number "${n}" isn't in any cited quote`);
   // tier
   const reasons = [];
   if (s && Array.isArray(s.risk) && s.risk.length) reasons.push(`signal risk: ${s.risk.join(", ")}`);
@@ -140,7 +168,9 @@ const draftDir = path.join(incoming, "social/drafts", DATE);
 const files = fs.existsSync(draftDir) ? fs.readdirSync(draftDir).filter((f) => f.endsWith(".json")) : [];
 for (const f of files) {
   const d = readJSON(path.join(draftDir, f));
-  const p = d.__error ? [`invalid JSON: ${d.__error}`] : draftProblems(d, f);
+  let p;
+  try { p = d.__error ? [`invalid JSON: ${d.__error}`] : draftProblems(d, f); }
+  catch (e) { p = [`could not be checked: ${e.message}`]; } // one malformed draft never blocks the others
   (p.length ? rejected : accepted).push({ f, d, p });
 }
 if (!problems.length && !accepted.length && files.length) problems.push("every draft failed the guard");

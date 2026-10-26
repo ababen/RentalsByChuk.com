@@ -20,7 +20,10 @@ opens the PR. Edits to anything else are thrown away.
 
 ## Files you may edit
 - `src/data/hoa.ts`, `src/data/compare.ts`, `src/data/communities.ts`, `src/data/faqs.ts`
-- `src/app/reports/page.tsx`: **only** the data arrays and the `SOURCES` / `metadata` text
+- `src/app/reports/page.tsx`: **only** the data arrays, `SOURCES`, `metadata`, and the snapshot's date
+  labels (the visible heading, intro and table caption, plus `jsonLd.name` and `jsonLd.temporalCoverage`).
+  When you refresh figures, move **every** date label to the new snapshot month so the page and its
+  structured data never call new numbers an older snapshot.
 - `src/lib/site.ts`: **only** the `contentUpdated` date (set it to today if you changed any content)
 - `docs/agent-log.md`: append one entry per run
 
@@ -58,7 +61,8 @@ data for it (Zumper / RentCafe / Realtor.com neighborhood pages, with the month)
 
 ### C. Monthly market refresh (first run of each month only)
 Re-check every figure in `reports/page.tsx` and `communities.ts → cities` against the same
-publishers. Update values, data months, and `CITY_SOURCES`. Note old → new in the PR body.
+publishers. Update values, data months, `CITY_SOURCES`, and all the report's date labels (heading,
+intro, caption, `jsonLd.name`, `jsonLd.temporalCoverage`). Note old → new in the PR body.
 
 ### D. One FAQ (only if budget remains)
 Add one `FAQS` entry answering a question renters or landlords in these cities actually search,

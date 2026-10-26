@@ -34,6 +34,7 @@ jobs:
     outputs:
       open: ${{ steps.gate.outputs.open }}
       date: ${{ steps.inputs.outputs.date }}
+      base: ${{ steps.inputs.outputs.base }}
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -59,6 +60,7 @@ jobs:
         run: |
           today=$(TZ=America/New_York date +%F)
           echo "date=$today" >> "$GITHUB_OUTPUT"
+          echo "base=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           mkdir -p .agent-input .agent-output social/queue
           jq -n --arg today "$today" --arg focus "$FOCUS" --arg run "$RUN_NUMBER" \
             '{today: $today, focus: $focus, run: $run}' > .agent-input/context.json
@@ -114,7 +116,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: main
+          ref: ${{ needs.signal.outputs.base }}
           persist-credentials: false
 
       - uses: actions/download-artifact@v8
@@ -157,10 +159,11 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       DATE: ${{ needs.signal.outputs.date }}
+      BASE: ${{ needs.signal.outputs.base }}
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: main
+          ref: ${{ needs.signal.outputs.base }}
 
       - uses: actions/download-artifact@v8
         with:
@@ -185,7 +188,7 @@ jobs:
       - name: Open the PR
         run: |
           [ "$(jq -r .accepted .social-tier.json)" != "0" ] || { echo "::notice::No drafts passed the guard."; cat "$RUNNER_TEMP/report.md"; exit 0; }
-          jq --arg sha "$GITHUB_SHA" '.last_signal_sha = $sha' social/state.json > "$RUNNER_TEMP/state.json" && mv "$RUNNER_TEMP/state.json" social/state.json
+          jq --arg sha "$BASE" '.last_signal_sha = $sha' social/state.json > "$RUNNER_TEMP/state.json" && mv "$RUNNER_TEMP/state.json" social/state.json
           branch="social/drafts-$DATE-${GITHUB_RUN_NUMBER}"
           git config user.name "Social Agent"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

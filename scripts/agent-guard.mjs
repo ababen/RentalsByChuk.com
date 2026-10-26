@@ -6,8 +6,10 @@
 // INCOMING_DIR is the artifact uploaded by the read-only agent job. Only ALLOWED files are taken from it;
 // everything else in the artifact is ignored. Exits 1 (and copies nothing) if any check fails.
 // Checks: file allowlist, site.ts may only change `contentUpdated`, agent log is append-only, no new
-// imports / scripts / env access / network calls / raw HTML, size limits. New URLs are fetched and any
-// that don't load are listed as warnings in the report (the PR reviewer decides).
+// imports / dynamic imports / process or env access / network calls / raw HTML, size limits. New URLs are
+// fetched and any that don't load are listed as warnings in the report (the PR reviewer decides).
+// This pattern check is a second line of defense: the workflow also builds the agent's output in a job with a
+// read-only token and no persisted credentials, and only the write job (which never builds) opens the PR.
 import fs from "node:fs";
 import path from "node:path";
 
@@ -28,8 +30,14 @@ const ALLOWED = [
 ];
 const FORBIDDEN_ADDED = [
   [/^\s*import\s/, "new import"],
+  [/\bimport\s*\(/, "dynamic import()"],
+  [/\bimport\.meta\b/, "import.meta"],
   [/\brequire\s*\(/, "require()"],
-  [/\beval\s*\(|new Function\s*\(/, "dynamic code"],
+  [/\beval\s*\(|\bFunction\s*\(/, "dynamic code"],
+  [/child_process|execSync|spawnSync|\bexec\s*\(|\bspawn\s*\(/, "process execution"],
+  [/\bglobalThis\b|\bprocess\s*[.[]/, "global/process access"],
+  [/\bnode:/, "node: module"],
+  [/["']use server["']/, "server action"],
   [/dangerouslySetInnerHTML/, "dangerouslySetInnerHTML"],
   [/<\s*script/i, "<script>"],
   [/process\.env/, "environment access"],

@@ -3,8 +3,10 @@ name: Site agent
 # Weekly: Claude adds sourced HOA rules, promotes one thin community page, refreshes market numbers
 # monthly, and opens a PR for Alexander. Playbook: .github/agent/site-agent.md
 #   agent   - read-only token; Claude edits files in its own runner and uploads them as an artifact
-#   publish - write token; takes ONLY the allowlisted data files, checks them (scripts/agent-guard.mjs),
-#             runs lint + build, opens a PR labeled site-agent + needs-alexander. Nothing auto-merges.
+#   verify  - read-only token, no git credentials, no secrets; takes ONLY the allowlisted data files, checks
+#             them (scripts/agent-guard.mjs), runs lint + build (agent-written code may run here, harmlessly)
+#   publish - write token, never builds; re-guards the vetted files on the agent's base commit and opens a PR
+#             labeled site-agent + needs-alexander. Nothing auto-merges.
 
 on:
   schedule:
@@ -32,6 +34,7 @@ jobs:
       issues: read
     outputs:
       open: ${{ steps.gate.outputs.open }}
+      base: ${{ steps.base.outputs.sha }}
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -39,6 +42,10 @@ jobs:
         with:
           ref: main
           persist-credentials: false
+
+      - name: Record the commit the agent starts from
+        id: base
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Skip if an earlier agent PR is still open
         id: gate
@@ -113,21 +120,20 @@ jobs:
             docs/agent-log.md
             .agent-output/
 
-  publish:
+  verify:
+    # Builds the agent's output. Agent-written code may run during the build, so this job gets a read-only
+    # token, no persisted git credentials and no secrets. It never pushes; it hands vetted files to publish.
     needs: agent
     if: needs.agent.outputs.open == '0'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
-      contents: write
-      pull-requests: write
-      issues: write
-    env:
-      GH_TOKEN: ${{ github.token }}
+      contents: read
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: main
+          ref: ${{ needs.agent.outputs.base }}
+          persist-credentials: false
 
       - uses: actions/download-artifact@v8
         with:
@@ -148,15 +154,58 @@ jobs:
           npm run lint
           npm run build
 
+      - name: Collect the vetted files
+        run: |
+          out="$RUNNER_TEMP/vetted"; mkdir -p "$out"
+          for f in src/data/hoa.ts src/data/compare.ts src/data/communities.ts src/data/faqs.ts \
+                   src/app/reports/page.tsx src/lib/site.ts docs/agent-log.md; do
+            mkdir -p "$out/$(dirname "$f")"; cp "$f" "$out/$f"
+          done
+          cp "$RUNNER_TEMP/guard.md" "$out/guard.md"
+          cp -r "$RUNNER_TEMP/incoming/.agent-output" "$out/agent-output" 2>/dev/null || mkdir -p "$out/agent-output"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: site-agent-vetted
+          retention-days: 14
+          path: ${{ runner.temp }}/vetted/
+
+  publish:
+    # Write token, but never installs or builds anything: it re-checks the vetted files with the guard
+    # (trusted code from the base commit), commits them on a branch cut from that same commit, and opens the PR.
+    needs: [agent, verify]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      BASE: ${{ needs.agent.outputs.base }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.agent.outputs.base }}
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: site-agent-vetted
+          path: ${{ runner.temp }}/vetted
+
+      - name: Apply the vetted files (guard again)
+        run: node scripts/agent-guard.mjs "$RUNNER_TEMP/vetted" --report "$RUNNER_TEMP/guard-publish.md"
+
       - name: Open the PR
         run: |
           if git diff --quiet; then echo "::notice::The agent made no changes."; exit 0; fi
+          v="$RUNNER_TEMP/vetted"
           branch="site-agent/run-${GITHUB_RUN_NUMBER}"
-          title=$(head -c 70 "$RUNNER_TEMP/incoming/.agent-output/pr-title.txt" 2>/dev/null || true)
+          title=$(head -c 70 "$v/agent-output/pr-title.txt" 2>/dev/null || true)
           [ -n "$title" ] || title="Site agent run ${GITHUB_RUN_NUMBER}"
-          { cat "$RUNNER_TEMP/incoming/.agent-output/pr-body.md" 2>/dev/null || echo "(no PR body written)"
-            echo; echo "---"; cat "$RUNNER_TEMP/guard.md"
-            echo; echo "_Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}_"; } > "$RUNNER_TEMP/body.md"
+          { cat "$v/agent-output/pr-body.md" 2>/dev/null || echo "(no PR body written)"
+            echo; echo "---"; cat "$v/guard.md"
+            echo; echo "_Base: \`${BASE}\` · Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}_"; } > "$RUNNER_TEMP/body.md"
           git config user.name "Site Agent"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -q -b "$branch"
