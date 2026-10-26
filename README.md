@@ -108,6 +108,7 @@ Logo: **R** monogram = key + palm frond. Wordmark: `RENTALS BY CHUK` with Coral 
 - [ ] v0.3 — Lead capture (Resend) + /admin auth
 - [ ] v0.4 — Tenant Vault + showing scheduler
 - [ ] v1.0 — Launch + Goldilocks Alert campaign + analytics
+- [ ] v2 (idea) — Client portal: login, personal side-by-side comparison, schedule showings → [`docs/ideas/v2-client-portal.md`](docs/ideas/v2-client-portal.md)
 
 ---
 
