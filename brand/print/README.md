@@ -28,5 +28,6 @@ Every piece carries the agent name, LoKation Real Estate, FL Lic. SL3596634 and 
 | `flyer.pdf` | 8.5 × 11 in |
 | `brochure.pdf` | Outside + inside, 11 × 8.5 in |
 | `style-guide.pdf` | Brand style guide, Letter |
+| `car-magnet.pdf` | Car door magnet, 24 × 12 in |
 
 PDFs are trim size with no bleed; ask the printer to add 0.125 in bleed, or export from the canvas.

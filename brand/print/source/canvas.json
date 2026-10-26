@@ -1,26 +1,130 @@
 {
   "v": 3,
-  "createdOnFiles": {"v": 1, "at": "2026-10-26T12:00:00Z"},
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-26T12:00:00Z"
+  },
   "title": "RentalsByChuk Print Kit",
-  "launch": {"view": "canvas", "page": "cards"},
+  "launch": {
+    "view": "canvas",
+    "page": "cards"
+  },
   "pages": [
-    {"id": "cards", "name": "Business card"},
-    {"id": "flyer", "name": "Flyer"},
-    {"id": "brochure", "name": "Tri-fold brochure"},
-    {"id": "guide", "name": "Brand style guide"},
-    {"id": "brochure2", "name": "Brochure v2 — time saved"}
+    {
+      "id": "cards",
+      "name": "Business card"
+    },
+    {
+      "id": "flyer",
+      "name": "Flyer"
+    },
+    {
+      "id": "brochure",
+      "name": "Tri-fold brochure"
+    },
+    {
+      "id": "guide",
+      "name": "Brand style guide"
+    },
+    {
+      "id": "brochure2",
+      "name": "Brochure v2 — time saved"
+    },
+    {
+      "id": "magnet",
+      "name": "Car magnet"
+    }
   ],
   "boards": {
-    "Main.dc.html": {"x": 0, "y": 0, "w": 336, "h": 192, "title": "Business card — front (3.5×2 in)", "page": "cards", "radius": 6},
-    "CardBack.dc.html": {"x": 416, "y": 0, "w": 336, "h": 192, "title": "Business card — back", "page": "cards", "radius": 6},
-    "Flyer.dc.html": {"x": 0, "y": 0, "w": 816, "h": 1056, "title": "Flyer — Letter", "page": "flyer"},
-    "BrochureOutside.dc.html": {"x": 0, "y": 0, "w": 1056, "h": 816, "title": "Brochure — outside (flap · back · cover)", "page": "brochure"},
-    "BrochureInside.dc.html": {"x": 1136, "y": 0, "w": 1056, "h": 816, "title": "Brochure — inside spread", "page": "brochure"},
-    "StyleGuide.dc.html": {"x": 0, "y": 0, "w": 816, "h": 4600, "title": "Brand style guide", "page": "guide", "print": "flow", "paper": "letter"},
-    "TimeBrochureOutside.dc.html": {"x": 0, "y": 0, "w": 1056, "h": 816, "title": "Brochure v2 — outside (flap · back · cover)", "page": "brochure2"},
-    "TimeBrochureInside.dc.html": {"x": 1136, "y": 0, "w": 1056, "h": 816, "title": "Brochure v2 — inside spread", "page": "brochure2"}
+    "Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 336,
+      "h": 192,
+      "title": "Business card — front (3.5×2 in)",
+      "page": "cards",
+      "radius": 6
+    },
+    "CardBack.dc.html": {
+      "x": 416,
+      "y": 0,
+      "w": 336,
+      "h": 192,
+      "title": "Business card — back",
+      "page": "cards",
+      "radius": 6
+    },
+    "Flyer.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 816,
+      "h": 1056,
+      "title": "Flyer — Letter",
+      "page": "flyer"
+    },
+    "BrochureOutside.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1056,
+      "h": 816,
+      "title": "Brochure — outside (flap · back · cover)",
+      "page": "brochure"
+    },
+    "BrochureInside.dc.html": {
+      "x": 1136,
+      "y": 0,
+      "w": 1056,
+      "h": 816,
+      "title": "Brochure — inside spread",
+      "page": "brochure"
+    },
+    "StyleGuide.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 816,
+      "h": 4600,
+      "title": "Brand style guide",
+      "page": "guide",
+      "print": "flow",
+      "paper": "letter"
+    },
+    "TimeBrochureOutside.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1056,
+      "h": 816,
+      "title": "Brochure v2 — outside (flap · back · cover)",
+      "page": "brochure2"
+    },
+    "TimeBrochureInside.dc.html": {
+      "x": 1136,
+      "y": 0,
+      "w": 1056,
+      "h": 816,
+      "title": "Brochure v2 — inside spread",
+      "page": "brochure2"
+    },
+    "CarMagnet.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 2304,
+      "h": 1152,
+      "title": "Car door magnet — 24×12 in",
+      "page": "magnet",
+      "radius": 48
+    }
   },
-  "order": ["Main.dc.html", "CardBack.dc.html", "Flyer.dc.html", "BrochureOutside.dc.html", "BrochureInside.dc.html", "StyleGuide.dc.html", "TimeBrochureOutside.dc.html", "TimeBrochureInside.dc.html"],
+  "order": [
+    "Main.dc.html",
+    "CardBack.dc.html",
+    "Flyer.dc.html",
+    "BrochureOutside.dc.html",
+    "BrochureInside.dc.html",
+    "StyleGuide.dc.html",
+    "TimeBrochureOutside.dc.html",
+    "TimeBrochureInside.dc.html",
+    "CarMagnet.dc.html"
+  ],
   "notes": {},
   "designSystems": []
 }
