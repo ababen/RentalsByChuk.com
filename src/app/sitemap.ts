@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { communities } from "@/data/communities";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://rentalsbychuk.com";
@@ -19,5 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...rentalRoutes];
+  const communityRoutes = communities.map((c) => ({
+    url: `${base}/communities/${c.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...communityRoutes, ...rentalRoutes];
 }
