@@ -19,6 +19,7 @@ const S = [
   ['13-hi', 'wave', 'HI!', 'green'],
   ['14-thank-you', 'thumbs', 'THANK YOU!', 'sun'],
   ['15-god-bless-you', 'smile', 'GOD BLESS YOU!', 'green'],
+  ['16-youre-welcome', 'laughing', "YOU'RE WELCOME!", 'sun'],
 ];
 const C = { green: '#1E7A55', sun: '#FF8A3D', ink: '#122E25' };
 const font = 'data:font/woff2;base64,' + fs.readFileSync(path.join(dir, 'archivo.woff2')).toString('base64');
