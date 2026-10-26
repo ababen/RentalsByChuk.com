@@ -155,7 +155,7 @@ export const faceOffRows: Array<{ label: string; field: keyof Neighborhood }> = 
 export type Vibe = { key: string; label: string; html: string };
 
 export const vibes: Vibe[] = [
-  { key: "golf", label: "⛳ Golf & quiet", html: "<b>You're PGA National or Mirasol.</b> Fairways out the window, quiet streets, resort pools. $3,500–$7,000/mo — I'll line up the golf homes first." },
+  { key: "golf", label: "⛳ Golf & quiet", html: "<b>You're PGA National or Mirasol.</b> Fairways out the window, quiet streets, resort pools. $3,500–$25,000/mo — I'll line up the golf homes first." },
   { key: "walk", label: "🚲 Walkable", html: "<b>You're Abacoa.</b> Porches, bikes, a Saturday farmers market. $3,800–$5,200/mo — walkable village living at its best." },
   { key: "night", label: "🌃 Nightlife", html: "<b>You're Downtown Clematis.</b> Dinner, live music, the waterfront — plus the Brightline when Miami calls. $2,500–$4,000/mo." },
   { key: "family", label: "🎓 Schools", html: "<b>You're Abacoa or Egret Landing.</b> Jupiter schools, front porches, kids on bikes till dinner. $3,800–$7,000/mo." },
