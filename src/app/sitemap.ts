@@ -1,32 +1,21 @@
 import type { MetadataRoute } from "next";
 import { communities } from "@/data/communities";
+import { getAllProperties, SAMPLE_LISTINGS } from "@/lib/properties";
+import { site } from "@/lib/site";
 
+// lastModified is the real date content last changed (site.contentUpdated),
+// not "now" — a sitemap that claims every page changed today gets ignored.
+// changeFrequency/priority are left out: Google ignores both.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://rentalsbychuk.com";
-  const now = new Date();
-  const staticRoutes = ["", "/rentals", "/communities", "/hoa-checker", "/landlords", "/reports"].map((p) => ({
-    url: `${base}${p || "/"}`,
-    lastModified: now,
-    changeFrequency: "daily" as const,
-    priority: p === "" ? 1 : 0.8,
-  }));
-
-  // Dynamic rental pages
-  const rentals = ["abacoa-3br-001", "mirasol-4br-002", "clematis-2br-003", "intracoastal-seasonal-004", "flamingo-3br-005", "pga-3br-006"];
-  const rentalRoutes = rentals.map((id) => ({
-    url: `${base}/rentals/${id}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
+  const lastModified = new Date(site.contentUpdated);
+  const paths = ["/", "/rentals", "/communities", "/hoa-checker", "/landlords", "/reports"];
 
   // Community pages without sourced data are noindex — keep them out.
-  const communityRoutes = communities.filter((c) => c.indexed).map((c) => ({
-    url: `${base}/communities/${c.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
+  paths.push(...communities.filter((c) => c.indexed).map((c) => `/communities/${c.slug}`));
 
-  return [...staticRoutes, ...communityRoutes, ...rentalRoutes];
+  // Sample homes are illustrative and noindex; real listings get listed
+  // automatically once SAMPLE_LISTINGS is turned off.
+  if (!SAMPLE_LISTINGS) paths.push(...getAllProperties().map((p) => `/rentals/${p.id}`));
+
+  return paths.map((p) => ({ url: `${site.url}${p === "/" ? "/" : p}`, lastModified }));
 }

@@ -24,6 +24,9 @@ export const site = {
     "Hi Chuk — I'm interested in a rental in WPB / PBG / Jupiter."
   )}`,
   areasServed: ["West Palm Beach", "Palm Beach Gardens", "Jupiter"],
+  // Date the site's content/market data last changed (YYYY-MM-DD). Used as
+  // lastModified in the sitemap — bump it when pages or data are updated.
+  contentUpdated: "2026-10-26",
   // Official profiles of this business (Google Business Profile, Zillow,
   // Realtor.com, LinkedIn, LoKation agent page…). Added to the
   // RealEstateAgent JSON-LD as `sameAs` so Google and AI assistants can
