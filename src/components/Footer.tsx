@@ -30,6 +30,7 @@ export default function Footer() {
         </div>
         <div><b>Owners</b>
           <Link href="/landlords">For landlords</Link>
+          <Link href="/about">About Chuk</Link>
           <Link href="/#faq">FAQ</Link>
         </div>
         <div><b>Cities</b>

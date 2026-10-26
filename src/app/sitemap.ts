@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 // changeFrequency/priority are left out: Google ignores both.
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date(site.contentUpdated);
-  const paths = ["/", "/rentals", "/communities", "/hoa-checker", "/landlords", "/reports"];
+  const paths = ["/", "/rentals", "/communities", "/hoa-checker", "/landlords", "/about", "/reports"];
 
   // Community pages without sourced data are noindex — keep them out.
   paths.push(...communities.filter((c) => c.indexed).map((c) => `/communities/${c.slug}`));
