@@ -1,0 +1,5 @@
+# build inputs/outputs, regenerated locally
+__pycache__/
+base/
+out/
+archivo.woff2

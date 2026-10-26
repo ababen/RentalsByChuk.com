@@ -1,4 +1,5 @@
 // Render sticker PNGs (1024x1024, transparent) from base cutouts + captions.
+// Usage: node make-stickers.js [prefix ...]  (e.g. `13 14` renders only those)
 const { chromium } = require('playwright');
 const fs = require('fs'), path = require('path');
 const dir = __dirname;
@@ -15,6 +16,10 @@ const S = [
   ['10-welcome-home', 'wave', 'WELCOME HOME!', 'sun'],
   ['11-movers-too', 'surprised', 'THE MOVERS TOO?!', 'ink'],
   ['12-got-you', 'wink', 'I GOT YOU.', 'sun'],
+  ['13-hi', 'wave', 'HI!', 'green'],
+  ['14-thank-you', 'thumbs', 'THANK YOU!', 'sun'],
+  ['15-god-bless-you', 'smile', 'GOD BLESS YOU!', 'green'],
+  ['16-youre-welcome', 'laughing', "YOU'RE WELCOME!", 'sun'],
 ];
 const C = { green: '#1E7A55', sun: '#FF8A3D', ink: '#122E25' };
 const font = 'data:font/woff2;base64,' + fs.readFileSync(path.join(dir, 'archivo.woff2')).toString('base64');
@@ -36,7 +41,9 @@ html,body{margin:0;background:transparent}
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1024, height: 1024 } });
   fs.mkdirSync(path.join(dir, 'out'), { recursive: true });
+  const only = process.argv.slice(2);
   for (const [name, base, text, col] of S) {
+    if (only.length && !only.some(o => name.startsWith(o))) continue;
     const img = fs.readFileSync(path.join(dir, 'base', base + '.png')).toString('base64');
     await p.setContent(html(img, text, col)); await p.evaluate(() => document.fonts.ready);
     await p.locator('.s').screenshot({ path: path.join(dir, 'out', name + '.png'), omitBackground: true });
