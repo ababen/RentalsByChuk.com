@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "CHUK — Rentals in West Palm Beach, Palm Beach Gardens & Jupiter. Consider it handled.",
     description: "Rentals only for West Palm Beach, Palm Beach Gardens & Jupiter — with LoKation Real Estate. $0 to renters (paid by the property side when a lease signs); my goal is keys in about 21 days.",
   },
