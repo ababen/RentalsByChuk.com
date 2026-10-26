@@ -14,7 +14,7 @@ The site ships these as inlined JPEG data URIs in `src/data/chukImages.ts`.
 
 ## Stickers (`stickers/`)
 
-16 stickers, each with a caption and RentalsByChuk.com. See `stickers/preview.png` (shows 01–12; 13–16 are the greeting set: Hi!, Thank you!, God bless you!, You're welcome!).
+16 stickers, each with a caption and RentalsByChuk.com. See `stickers/preview.png`. 13–16 are the greeting set: Hi!, Thank you!, God bless you!, You're welcome!
 
 - `whatsapp/` – 512×512 WebP (under 100 KB each) plus `tray.png` (96×96), the format WhatsApp sticker packs use.
 - `imessage/` – 618×618 transparent PNGs.
