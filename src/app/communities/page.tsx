@@ -9,7 +9,7 @@ const comms = [
   { n:"Northwood", city:"West Palm Beach", price:"$1,800-$2,800", blurb:"Revitalization corridor — creative economy, upside." },
   { n:"Mirasol", city:"Palm Beach Gardens", price:"$4k-$7k", blurb:"Golf-front, country club, gated. 4-month min (sourced rule)." },
   { n:"PGA National", city:"Palm Beach Gardens", price:"$3,500-$6k", blurb:"Resort living on the Champion course." },
-  { n:"BallenIsles", city:"Palm Beach Gardens", price:"$3,800-$6,500", blurb:"Private club, family-friendly, schools." },
+  { n:"BallenIsles", city:"Palm Beach Gardens", price:"$3,800-$6,500", blurb:"Private club, golf and tennis." },
   { n:"Abacoa", city:"Jupiter", price:"$3,800-$5,200", blurb:"Most walkable — porches, green, farmers market." },
   { n:"Intracoastal", city:"Jupiter", price:"$8k-$25k+", blurb:"Waterfront, docks, seasonal premium 2-3×." },
   { n:"Egret Landing", city:"Jupiter", price:"$4,500-$7k", blurb:"Gated, Intracoastal access, tennis and trails." },

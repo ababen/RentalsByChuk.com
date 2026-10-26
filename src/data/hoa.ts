@@ -30,7 +30,7 @@ export const hoaDB: Record<string, HOAEntry> = {
     city: "Jupiter",
     minLease: "60-day min in Village condos (varies by village)",
     maxPerYear: "Up to 2 leases per year (Village condos)",
-    board: "Association application — $100 fee (Village condos)",
+    board: "Association application required (Village condos)",
     str: "Under 60 days: not allowed in Village condos",
     grandfather: "Magnolia Bay: 4-month min + own 2 yrs before leasing",
   },
