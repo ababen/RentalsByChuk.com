@@ -510,3 +510,19 @@ nav.main a:hover{background:#fff}
   .s-result dl>div{grid-template-columns:1fr;gap:2px}
   .s-bubble{padding:20px 16px}
 }
+
+/* about page */
+.s-about-sec{background:radial-gradient(120% 90% at 15% 30%,#F6E9D7 0%,var(--stage) 60%,var(--stage-deep) 100%)}
+.s-about{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:56px;align-items:center}
+.s-about-ph{position:relative}
+.s-about-ph>img{width:100%;height:auto;display:block;border-radius:28px;box-shadow:0 30px 60px rgba(18,46,37,.18)}
+.s-about-badge{position:absolute;left:18px;bottom:18px;display:flex;align-items:center;gap:10px;background:#fff;border-radius:999px;padding:6px 16px 6px 6px;box-shadow:0 10px 24px rgba(18,46,37,.18);font-weight:800;font-size:14px;color:var(--ink)}
+.s-about-badge img{width:40px;height:40px;border-radius:999px;display:block}
+.s-about .s-kicker{margin-bottom:10px}
+.s-about-creed{margin-top:26px;padding:24px}
+.s-about-creed ul{margin-top:0}
+@media(max-width:900px){
+  .s-about{grid-template-columns:1fr;gap:32px}
+  .s-about-ph{max-width:460px;margin:0 auto}
+  .s-about-sec{padding-top:40px}
+}

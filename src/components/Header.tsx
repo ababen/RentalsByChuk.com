@@ -19,6 +19,7 @@ export default function Header() {
           <Link href="/#handled">Done for you</Link>
           <Link href="/rentals">Rentals</Link>
           <Link href="/landlords">Landlords</Link>
+          <Link href="/about">About</Link>
           <Link href="/#faq">FAQ</Link>
         </nav>
         <Link className="btn btn-coral" href={site.smsHref} style={{ padding: "11px 19px" }}>Text Chuk →</Link>

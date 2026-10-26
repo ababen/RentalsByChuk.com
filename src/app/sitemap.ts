@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://rentalsbychuk.com";
   const now = new Date();
-  const staticRoutes = ["", "/rentals", "/communities", "/hoa-checker", "/landlords", "/reports"].map((p) => ({
+  const staticRoutes = ["", "/rentals", "/communities", "/hoa-checker", "/landlords", "/about", "/reports"].map((p) => ({
     url: `${base}${p || "/"}`,
     lastModified: now,
     changeFrequency: "daily" as const,
