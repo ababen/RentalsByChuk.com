@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import LeadForm from "@/components/LeadForm";
 import { communities, cities, CITY_SOURCES, getCommunity, compareRow, hoaRules, plainFigure, type Community } from "@/data/communities";
-import { getAllProperties, formatPrice } from "@/lib/properties";
 import { pageMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -52,7 +51,6 @@ export default async function CommunityPage({ params }: { params: Promise<{ slug
   const hoa = hoaRules(c);
   const city = cities[c.city];
   const faqs = faqsFor(c);
-  const homes = getAllProperties().filter((p) => p.neighborhood === c.name && p.city === c.city);
   const nearby = communities.filter((o) => o.city === c.city && o.slug !== c.slug);
   const smsHref = `sms:${site.phoneHref.replace("tel:", "")}?&body=${encodeURIComponent(`Hi Chuk — I'm looking to rent in ${c.name}, ${c.city}.`)}`;
 
@@ -147,18 +145,6 @@ export default async function CommunityPage({ params }: { params: Promise<{ slug
             </div>
             <p className="mt-2 text-xs text-[#78716C]">{CITY_SOURCES} <Link href="/reports" className="font-bold text-[#0CA89A]">Full market report →</Link></p>
           </section>
-
-          {homes.length > 0 && (
-            <section>
-              <h2 className="text-xl">Sample homes in {c.name}</h2>
-              <p className="text-xs text-[#7A5B00] font-bold mt-1">Illustrative only — not current listings. Live homes come by text.</p>
-              <ul className="mt-2 grid gap-2">
-                {homes.map((p) => (
-                  <li key={p.id}><Link href={`/rentals/${p.id}`} className="font-bold text-[#0CA89A]">{p.title}</Link> <span className="text-sm text-[#57534E]">— typical {formatPrice(p.price)}</span></li>
-                ))}
-              </ul>
-            </section>
-          )}
 
           <section>
             <h2 className="text-xl">Renting in {c.name}: common questions</h2>
