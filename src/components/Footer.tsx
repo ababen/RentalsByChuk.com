@@ -31,7 +31,7 @@ export default function Footer() {
         <div><b>Owners</b>
           <Link href="/landlords">For landlords</Link>
           <Link href="/about">About Chuk</Link>
-          <Link href="/#faq">My fees</Link>
+          <Link href="/#faq">FAQ</Link>
         </div>
         <div><b>Cities</b>
           <Link href="/communities">West Palm Beach</Link>

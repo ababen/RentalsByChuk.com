@@ -36,14 +36,14 @@ export const segments: Segment[] = [
   {
     key: "family",
     emoji: "🧳",
-    cardTitle: "Relocating family",
-    cardBlurb: "Schools first, annual lease, landing for a job or a fresh start.",
-    title: "🧳 The Relocating Family",
-    blurb: "New job, new schools, one landing to stick. You need the right school zone, a real yard, and a home that's ready the week you arrive.",
+    cardTitle: "Relocating for work",
+    cardBlurb: "Annual lease, school-year timing, landing for a new job.",
+    title: "🧳 Relocating for Work",
+    blurb: "New job, one landing to stick. You need the right school zone, a real yard, and a home that's ready the week you arrive.",
     budget: "3BR+ houses $3,500–$5,600+/mo. Wellington median asking rent is $4,386 (Realtor.com); Jupiter all-types average $3,446 (RentalSource).",
     fits: "Wellington · Abacoa (Jupiter) · Palm Beach Gardens",
     lease: "12-month annual, unfurnished — stability through the school year",
-    gotcha: "Approval timelines, not rent, are your risk: HOA screening takes days to weeks (Mirasol starts ~4 weeks out; Abacoa villages charge a $100 application). Start 6–8 weeks before the first day of school.",
+    gotcha: "Approval timelines, not rent, are your risk: HOA screening takes days to weeks (Mirasol starts ~4 weeks out; Abacoa villages require an application). Start 6–8 weeks before the first day of school.",
     tip: "Tell me the school, not just the city. I'll work backwards from the first day of class — video tours, remote signing, keys waiting when you land.",
   },
   {
@@ -55,8 +55,8 @@ export const segments: Segment[] = [
     blurb: "Your firm moved you to the Rosemary Square orbit — Goldman, Point72, Citadel country. Smart move is renting a year downtown while you learn the city.",
     budget: "Downtown WPB luxury apartments average $4,100/mo (RentCafe, +9.9% YoY): 1BR $3,406 · 2BR $4,768. Or a house while you house-hunt.",
     fits: "Downtown WPB / Clematis · Flamingo Park · Palm Beach Gardens",
-    lease: "12–14 month tower lease — longer terms unlock free months",
-    gotcha: "Downtown's new towers are a concession zone: one month free is common, and two months free shows up on 2BRs with 14-month leases. If you're not asking, you're overpaying.",
+    lease: "12–14 month tower lease — longer terms unlock concessions",
+    gotcha: "Downtown's new towers are a concession zone: a one-month concession is common, and two months shows up on 2BRs with 14-month leases. If you're not asking, you're overpaying.",
     tip: "Rent first, buy later — that's what half my Rosemary Square clients do. One year downtown teaches you which neighborhood is actually yours.",
   },
   {
@@ -102,14 +102,14 @@ export const segments: Segment[] = [
     key: "budget",
     emoji: "🔑",
     cardTitle: "First rental / budget-smart",
-    cardBlurb: "Value, no surprises, and every fee on the table before you apply.",
+    cardBlurb: "Value, no surprises, and a clear picture before you apply.",
     title: "🔑 The First-Rental / Budget-Smart Renter",
-    blurb: "First place, tight budget, zero appetite for surprises. Your enemy isn't the rent — it's the fees nobody mentioned and the deposit math nobody showed you.",
+    blurb: "First place, tight budget, zero appetite for surprises. You need a clear picture of what you're signing before you apply, not after.",
     budget: "West Palm Beach apartments: 1BR median $1,600/mo, 2BR median $2,200 (BeachesMLS snapshot, Oct 2026) — with 987 active lease listings to hunt in WPB alone.",
     fits: "West Palm Beach · North Palm Beach · Abacoa villages (Jupiter)",
     lease: "12-month annual — where a renter's leverage actually lives",
-    gotcha: "Fee stacking: HOA application fees ($100 in Abacoa's Village condos), admin fees, and deposits of 1–2 months can add thousands before you get a key. Compare true cost below, never the headline rent.",
-    tip: "About 14 renters chase every unit in this county (RentCafe). Being application-ready — documents, deposit, renters insurance — beats being first. I'll get your packet ready before we tour.",
+    gotcha: "Approval steps, not just rent: HOA screening and application review can take days to weeks. Know the approval steps before you fall for a home.",
+    tip: "About 14 renters chase every unit in this county (RentCafe). Being application-ready — documents and renters insurance lined up — beats being first. I'll get your packet ready before we tour.",
   },
 ];
 
@@ -129,7 +129,7 @@ export type Neighborhood = {
 };
 
 export const neighborhoods: Neighborhood[] = [
-  { key: "downtown", name: "Downtown WPB / Clematis", head: "Avg apartment $4,100 ✅", r1: "$3,406 (apartment) ✅", r2: "$4,768 (apartment) ✅", r3: "Apartments — luxury towers", min: "12–14 mo tower leases; free months common on new buildings", strict: "Easy — building rules, no HOA gauntlet", furn: "Some — corporate units in new towers", dom: "WPB overall: 40 days (RentalSource)", vibe: "Walkable, Brightline, rooftops, nightlife", take: "The concession zone. If a new tower isn't offering you a free month, I ask for you." },
+  { key: "downtown", name: "Downtown WPB / Clematis", head: "Avg apartment $4,100 ✅", r1: "$3,406 (apartment) ✅", r2: "$4,768 (apartment) ✅", r3: "Apartments — luxury towers", min: "12–14 mo tower leases; concessions common on new buildings", strict: "Easy — building rules, no HOA gauntlet", furn: "Some — corporate units in new towers", dom: "WPB overall: 40 days (RentalSource)", vibe: "Walkable, Brightline, rooftops, nightlife", take: "The concession zone. If a new tower isn't offering you a concession, I ask for you." },
   { key: "flamingo", name: "Flamingo Park (WPB)", head: "3BR houses ~$3,150–$3,400 🔶", r1: "Mostly houses — no 1BR series ⚠️", r2: "Mostly houses — no 2BR series ⚠️", r3: "~$3,150–$3,400 🔶 estimate", min: "Typically 12 months; no HOA on most streets 🔶", strict: "Easy — generally no HOA 🔶", furn: "Rare — annual homes", dom: "WPB overall: 40 days (RentalSource)", vibe: "Historic 1920s bungalows, quiet streets, minutes to downtown", take: "No published rent series exists here — I price it off the WPB 3BR median ($3,150, BeachesMLS) and the street itself." },
   { key: "npb", name: "North Palm Beach", head: "All-types avg $3,763 ✅", r1: "Apartments avg $2,959 (RentCafe) ✅", r2: "— (thin series)", r3: "— (thin series)", min: "Varies by community — I verify per home", strict: "Moderate — varies by village", furn: "Yes — marina/inlet seasonal stock", dom: "36 days (RentalSource)", vibe: "Village feel, marinas, MacArthur Beach next door", take: "The quiet overachiever of the coast: village calm, inlet minutes away." },
   { key: "abacoa", name: "Abacoa (Jupiter)", head: "Jupiter all-types avg $3,446 ✅", r1: "$2,450 (Jupiter) ✅", r2: "$3,205 (Jupiter) ✅", r3: "$4,399 (Jupiter) ✅ · townhouses ~$3,400", min: "Village condos: 60-day min lease · Magnolia Bay: 4-month min", strict: "Strict-ish — $100 application, max 2 leases/yr (Village condos)", furn: "Limited", dom: "Jupiter: 34 days (RentalSource)", vibe: "New-urbanist porches, Town Center, Roger Dean Stadium, FAU Jupiter", take: "Every village writes its own lease rules here — I check the village, not just the town." },
@@ -158,7 +158,7 @@ export const vibes: Vibe[] = [
   { key: "golf", label: "⛳ Golf & quiet", html: "<b>You're PGA National or Mirasol.</b> Fairways out the window, quiet streets, resort pools. $3,500–$7,000/mo — I'll line up the golf homes first." },
   { key: "walk", label: "🚲 Walkable", html: "<b>You're Abacoa.</b> Porches, bikes, a Saturday farmers market. $3,800–$5,200/mo — walkable village living at its best." },
   { key: "night", label: "🌃 Nightlife", html: "<b>You're Downtown Clematis.</b> Dinner, live music, the waterfront — plus the Brightline when Miami calls. $2,500–$4,000/mo." },
-  { key: "family", label: "🎓 Schools", html: "<b>You're Abacoa or Egret Landing.</b> Jupiter schools, front porches, kids on bikes till dinner. $3,800–$7,000/mo." },
+  { key: "family", label: "🎓 Schools", html: "<b>You're Abacoa or Egret Landing.</b> Jupiter schools, front porches, bike paths. $3,800–$7,000/mo." },
 ];
 
 /** Community-rules framing shown on homepage sample-home cards, keyed by

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import CompDisclosure from "@/components/CompDisclosure";
 import { site } from "@/lib/site";
 import { CHUK_HEAD } from "@/data/chukImages";
 
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
 
 const CREED = [
   { t: "Rentals only", d: "No sales pitch hiding inside your tour. Ever." },
-  { t: "HOA checked before you apply", d: "Every home's rental rules pulled from the association documents first, at no cost to you." },
+  { t: "HOA checked before you apply", d: "Every home's rental rules pulled from the association documents first." },
   { t: "The move, handled", d: "Movers, junk removal, furniture, utilities: I line up the local pros so you just show up." },
   { t: "Off the clock", d: "El Yunque trails, Havana classics, beach cookouts. Home in time for the Daddy/Daughter Dance." },
 ];
@@ -40,7 +39,7 @@ export default function AboutPage() {
             <h1>The guy behind the blazer.</h1>
             <p className="s-lede">
               I&apos;m Alexander &quot;Chuk&quot; Babenchuk, REALTOR®: a West Palm Beach local, licensed with{" "}
-              {site.brokerage}, and a dad of two girls who got tired of watching good people lose deposits to
+              {site.brokerage}, and a dad of two girls who got tired of watching good people get burned by
               surprise HOA rules and lose weekends to rental sites. So I built the practice I couldn&apos;t find: one
               guy, one specialty, total focus on getting you home.
             </p>
@@ -60,7 +59,6 @@ export default function AboutPage() {
             <p className="s-fine">
               {site.brokerage} · Serving {site.areasServed.join(", ")}. <Link className="s-link" href="/#top">What kind of renter are you?</Link>
             </p>
-            <CompDisclosure style={{ marginTop: "10px" }} />
           </div>
         </div>
       </section>

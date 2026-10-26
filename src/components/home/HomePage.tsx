@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import LeadForm from "@/components/LeadForm";
-import CompDisclosure from "@/components/CompDisclosure";
 import { site } from "@/lib/site";
 import { segments } from "@/data/compare";
 import { FAQS } from "@/data/faqs";
@@ -13,7 +12,7 @@ const smsFor = (body: string) =>
 
 const RENTAL_JOBS = [
   { t: "The search", d: "I send homes that fit your list, with video tours on request." },
-  { t: "HOA rules, checked first", d: "Before you apply, not after you've paid the fee." },
+  { t: "HOA rules, checked first", d: "Before you apply, not after." },
   { t: "Lease negotiated & read", d: "Rent, move-in date, the dog, every line of the addenda." },
   { t: "Approval, chased", d: "Application packet built and followed up until it's a yes." },
 ];
@@ -96,7 +95,6 @@ export default function HomePage() {
                 </div>
               )}
             </div>
-            <CompDisclosure style={{ marginTop: "14px" }} />
           </div>
 
           <div className="s-chuk" aria-hidden="false">
@@ -128,7 +126,7 @@ export default function HomePage() {
           </div>
           <p className="s-fine">
             Moving and home services are performed by independent local companies. You see every quote,
-            approve every booking, and pay providers directly. My coordinating is included at no cost to renters.
+            and approve every booking.
           </p>
 
           <div className="s-payoff">
