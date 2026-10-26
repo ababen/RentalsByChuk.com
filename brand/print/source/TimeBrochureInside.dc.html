@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Brochure v2 inside</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&amp;family=Sora:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1056px; height: 816px; overflow: hidden; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); font-family: 'Inter', sans-serif; color: #0B1D3A">
+
+  <div style="box-sizing: border-box; background: #FCFBF8; padding: 48px 38px 40px 44px; display: flex; flex-direction: column; gap: 16px">
+    <div style="font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; color: #0B7A70">THE TIME MATH</div>
+    <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 36px; line-height: 1; letter-spacing: -0.02em">19 hours alone. <i style="font-weight: 600; color: #E2502E">3 with Chuk.</i></h2>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700"><span>Doing it yourself</span><span>≈ 19 h</span></div>
+      <div style="display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px" role="img" aria-label="19 hour blocks">
+        <sc-for list="{{diy}}" as="b" hint-placeholder-count="19"><div style="height: 18px; border-radius: 4px; background: #0B1D3A"></div></sc-for>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; margin-top: 6px"><span>With Chuk</span><span style="color: #E2502E">≈ 3 h</span></div>
+      <div style="display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px" role="img" aria-label="3 hour blocks">
+        <sc-for list="{{chuk}}" as="b" hint-placeholder-count="3"><div style="height: 18px; border-radius: 4px; background: #E2502E"></div></sc-for>
+      </div>
+      <div style="font-size: 12px; color: #57534E">Each block is one hour.</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <div style="font-size: 14px; font-weight: 700">Where the 19 hours go</div>
+      <div style="font-size: 13px; line-height: 1.55; color: #44403C">Scrolling listings · chasing replies · decoding HOA rules · driving to showings · application paperwork · lease back-and-forth · booking movers and utilities</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <div style="font-size: 14px; font-weight: 700">Your 3 hours</div>
+      <div style="font-size: 13px; line-height: 1.55; color: #44403C">Tell Chuk what you need · tour the shortlist · sign</div>
+    </div>
+    <div style="margin-top: auto; border-top: 1px solid #D6CFC0; padding-top: 10px; font-size: 12px; line-height: 1.45; color: #57534E">Time comparison is an illustrative estimate, not a measurement. Your hours will vary.</div>
+  </div>
+
+  <div style="box-sizing: border-box; background: #F4EDE2; padding: 48px 36px 40px; display: flex; flex-direction: column; gap: 14px">
+    <div style="font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; color: #0B7A70">WHO DOES WHAT</div>
+    <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 32px; line-height: 1; letter-spacing: -0.02em">Chuk runs all 8 jobs. You show up for 2.</h2>
+    <div style="display: flex; flex-direction: column; border-top: 2px solid #0B1D3A">
+      <div style="display: flex; padding: 6px 0; font-family: 'Sora', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 0.1em; color: #44403C; border-bottom: 1px solid #D6CFC0"><span style="flex-grow: 1">TASK</span><span style="width: 40px; text-align: center">YOU</span><span style="width: 44px; text-align: center">CHUK</span></div>
+      <sc-for list="{{tasks}}" as="t" hint-placeholder-count="8">
+        <div style="display: flex; align-items: center; padding: 7px 0; border-bottom: 1px solid #D6CFC0; font-size: 13px">
+          <span style="flex-grow: 1">{{t.name}}</span>
+          <span style="width: 40px; display: flex; justify-content: center">
+            <sc-if value="{{t.you}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" aria-label="You" role="img" fill="none" stroke="#0B1D3A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 L10 17 L19 7"></path></svg></sc-if>
+          </span>
+          <span style="width: 44px; display: flex; justify-content: center">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-label="Chuk" role="img"><circle cx="12" cy="12" r="11" fill="#E2502E"></circle><path d="M7 12.5 L10.5 16 L17 8.5" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top: auto; border-radius: 16px; background: #FFFFFF; border: 1px solid #D6CFC0; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+      <div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 52px; line-height: 0.9; color: #0B1D3A">8</span><span style="font-size: 22px; color: #57534E">→</span><span style="font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 52px; line-height: 0.9; color: #E2502E">2</span></div>
+      <div style="font-size: 13px; line-height: 1.45; color: #44403C; max-width: 150px">jobs on your plate when Chuk handles the move</div>
+    </div>
+  </div>
+
+  <div style="box-sizing: border-box; background: #0B1D3A; color: #FFFFFF; padding: 48px 44px 40px 40px; display: flex; flex-direction: column; gap: 16px">
+    <div style="font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; color: #2EC4B6">THE 21-DAY PLAN</div>
+    <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 36px; line-height: 1; letter-spacing: -0.02em">From first text to <i style="font-weight: 600; color: {{accent}}">keys</i>.</h2>
+    <div style="display: flex; flex-direction: column">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
+        <div style="display: flex; gap: 14px">
+          <div style="width: 22px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center">
+            <div style="width: 18px; height: 18px; flex-shrink: 0; border-radius: 999px; border: 3px solid {{s.ring}}; background: {{s.dot}}; box-sizing: border-box"></div>
+            <sc-if value="{{s.line}}" hint-placeholder-val="{{true}}"><div style="width: 2px; flex-grow: 1; background: #1E3A5F"></div></sc-if>
+          </div>
+          <div style="padding-bottom: 18px">
+            <div style="font-family: 'Sora', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: #2EC4B6">{{s.when}}</div>
+            <div style="font-size: 16px; font-weight: 700; margin-top: 2px">{{s.title}}</div>
+            <div style="font-size: 13px; line-height: 1.45; color: #CBD5E1; margin-top: 2px">{{s.text}}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top: auto; border-radius: 14px; background: #13294B; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px">
+      <div>
+        <div style="font-size: 13px; color: #CBD5E1">Start the clock</div>
+        <div style="font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 28px; line-height: 1">Text (561) 220-9399</div>
+      </div>
+    </div>
+    <div style="font-size: 12px; color: #94A3B8">21 days is Chuk’s goal, not a guarantee. Timing depends on the home, the association and approvals.</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#FF6B4A","options":["#FF6B4A","#2EC4B6","#E8DDD0"]},"$preview":{"width":1056,"height":816}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const diy = Array.from({ length: 19 }, (_, i) => ({ i }));
+    const chuk = Array.from({ length: 3 }, (_, i) => ({ i }));
+    const tasks = [
+      { name: 'Search and screen listings', you: false },
+      { name: 'Check HOA rental rules', you: false },
+      { name: 'Book showings and video tours', you: false },
+      { name: 'Tour the shortlist', you: true },
+      { name: 'Application-ready packet', you: false },
+      { name: 'Negotiate the lease', you: false },
+      { name: 'Read the lease line by line', you: true },
+      { name: 'Movers, insurance, utilities', you: false },
+    ];
+    const accent = this.props.accent ?? '#FF6B4A';
+    const raw = [
+      { when: 'DAY 1', title: 'Text Chuk', text: 'Budget, dates, must-haves. Replies usually within the hour.' },
+      { when: 'WEEK 1', title: 'Matches and video tours', text: 'New homes by text first. Tour the best from anywhere.' },
+      { when: 'WEEK 2', title: 'HOA cleared, application in', text: 'Rules checked before you apply; packet ready to go.' },
+      { when: 'WEEK 3', title: 'Lease signed, move booked', text: 'Terms negotiated, lease reviewed, movers lined up.' },
+      { when: 'DAY ~21', title: 'Keys in hand', text: 'Move in. Chuk handled the rest.' },
+    ];
+    const steps = raw.map((s, i) => ({ ...s, line: i < raw.length - 1, ring: i === raw.length - 1 ? accent : '#2EC4B6', dot: i === raw.length - 1 ? accent : '#0B1D3A' }));
+    return { accent, diy, chuk, tasks, steps };
+  }
+}
+</script>
+</body>
+</html>

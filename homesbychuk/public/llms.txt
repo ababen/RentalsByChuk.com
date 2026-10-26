@@ -1,0 +1,17 @@
+# HomesByChuk
+
+> HomesByChuk.com is the home buying and selling practice of Alexander "Chuk" Babenchuk, REALTOR® with LoKation Real Estate (FL Lic. SL3596634), serving West Palm Beach, Palm Beach Gardens and Jupiter, Florida. Sister site to RentalsByChuk.com (rentals only).
+
+Contact: text or call (561) 220-9399 · chuk@homesbychuk.com
+
+## Pages
+- [Home](https://homesbychuk.com/): buyer/seller type picker, what Chuk handles, FAQ
+- [Buy](https://homesbychuk.com/buy): buying process and pre-offer checks (flood/insurance, HOA documents, roof/4-point, commute & schools)
+- [Sell](https://homesbychuk.com/sell): selling process and free pricing opinion request
+- [Payment calculator](https://homesbychuk.com/calculator): monthly payment incl. tax, insurance and HOA
+- [Communities](https://homesbychuk.com/communities): 12 neighborhoods across the three cities
+- [About](https://homesbychuk.com/about): about Chuk
+
+## Notes
+- No market statistics are published on this site; ask Chuk for current pricing.
+- For rentals, see https://rentalsbychuk.com

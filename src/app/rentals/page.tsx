@@ -2,9 +2,8 @@
 import { filterProperties } from "@/lib/properties";
 import PropertyCard from "@/components/PropertyCard";
 import Link from "next/link";
-import { pageMeta } from "@/lib/seo";
 
-export const metadata = pageMeta({ title: "Sample Homes — West Palm Beach, Palm Beach Gardens & Jupiter", description: "Sample homes showing the kinds of rentals Chuk hunts in West Palm Beach, Palm Beach Gardens & Jupiter — illustrative only, not current listings. Live homes and real availability come by text.", path: "/rentals" });
+export const metadata = { title: "Sample Homes — West Palm Beach, Palm Beach Gardens & Jupiter | RentalsByChuk", description: "Sample homes showing the kinds of rentals Chuk hunts in West Palm Beach, Palm Beach Gardens & Jupiter — illustrative only, not current listings. Live homes and real availability come by text." };
 export default async function RentalsPage({ searchParams }: { searchParams: Promise<{ q?: string; city?: string; pet?: string; seasonal?: string }> }) {
   const sp = await searchParams;
   const filtered = filterProperties({
