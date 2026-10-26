@@ -7,7 +7,7 @@ import { lookupHoa } from "@/data/hoa";
 const EXAMPLES = ["Mirasol", "Abacoa", "Frenchman's Creek", "PGA National", "BallenIsles"];
 
 /** HOA checker band — live lookup against the sourced rules in
- *  src/data/hoa.ts + rule-sheet lead form (v2 mockup). */
+ *  src/data/hoa.ts + free report lead form (v2 mockup). */
 export default function HoaSection() {
   const [q, setQ] = useState("");
   const [result, setResult] = useState(() => lookupHoa("mirasol")!);
@@ -24,7 +24,7 @@ export default function HoaSection() {
         <div>
           <div className="kicker">My superpower</div>
           <h2>I read HOA rulebooks for fun. Somebody has to.</h2>
-          <p>Minimum stays, rental caps, board approvals that take weeks — in the Gardens and Jupiter, the HOA decides if you can live somewhere, not the landlord. Type a community and I&apos;ll show you its rules from my files. Ten seconds, no surprises later.</p>
+          <p>Minimum stays, rental caps, board approvals that take weeks — in the Gardens and Jupiter, the HOA decides if you can live somewhere, not the landlord. Type a community and I&apos;ll show you its rules from my files. Ten seconds, zero dollars, potentially one saved deposit.</p>
           <div className="hoa-search">
             <input type="text" value={q} onChange={(e) => search(e.target.value)} placeholder="Try Mirasol, Abacoa, PGA National…" aria-label="Community name" />
             <button className="btn btn-sun" type="button" style={{ padding: "11px 19px" }} onClick={() => search(q)}>Check →</button>
@@ -43,7 +43,7 @@ export default function HoaSection() {
             <div className="hrow"><span>Grandfathering</span><b>{result.grandfather}</b></div>
           </div>
           <div className="mini-form">
-            <LeadForm dark compact intent="hoa-report" context={result.name} heading="Email me the full rule sheet" ctaLabel="Send it →" />
+            <LeadForm dark compact intent="hoa-report" context={result.name} heading="Email me the full rule sheet — free" ctaLabel="Send it →" />
           </div>
         </div>
       </div>

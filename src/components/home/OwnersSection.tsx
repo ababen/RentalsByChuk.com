@@ -7,7 +7,7 @@ import { CHUK_HEAD } from "@/data/chukImages";
 
 const money = (n: number) => "$" + Math.round(n).toLocaleString();
 
-/** Owners band — seasonal-vs-annual owner calculator +
+/** Owners band — seasonal-vs-annual owner calculator + free
  *  48-hour analysis lead form (v2 mockup). */
 export default function OwnersSection() {
   const [annual, setAnnual] = useState(5200);
@@ -42,21 +42,22 @@ export default function OwnersSection() {
           {diff > 0 ? (
             <div className="verdict seasonal"><b>Seasonal wins by ≈ {money(diff)} a year</b> — if your HOA allows it and you furnish it (≈ $8k–$15k once). <Link href="/#hoa" style={{ color: "var(--green)", fontWeight: 900 }}>Let me check your HOA →</Link></div>
           ) : (
-            <div className="verdict annual"><b>All-year wins by ≈ {money(Math.abs(diff))} a year</b> at these settings. My 48-hour analysis swaps estimates for your street&apos;s real numbers.</div>
+            <div className="verdict annual"><b>All-year wins by ≈ {money(Math.abs(diff))} a year</b> at these settings. My no-cost analysis swaps estimates for your street&apos;s real numbers.</div>
           )}
-          <p style={{ fontSize: "12.5px", color: "var(--muted)", marginTop: "10px", fontWeight: 700 }}>Ballpark math, labeled as such. My 48-hour analysis uses current rents on your street — and first confirms your HOA allows seasonal renting.</p>
+          <p style={{ fontSize: "12.5px", color: "var(--muted)", marginTop: "10px", fontWeight: 700 }}>Ballpark math, labeled as such. My no-cost analysis uses current rents on your street — and first confirms your HOA allows seasonal renting.</p>
         </div>
         <div className="formcard" id="analysis">
           <LeadForm
             intent="landlord-analysis"
-            heading="My 48-hour rental analysis"
+            heading="My 48-hour rental analysis — no cost to you"
             blurb="Real rents from your street, your HOA's rental rules, the season-vs-year math. I turn these around within two business days in the normal course. No listing pitch attached."
             ctaLabel="Run my numbers →"
           />
           <p style={{ fontSize: "12px", color: "var(--muted)", textAlign: "center", fontWeight: 700, marginTop: "10px" }}>One analysis, one follow-up. Then I stop emailing you.</p>
           <div style={{ marginTop: "16px", borderTop: "1px solid var(--line)", paddingTop: "13px", display: "grid", gap: "7px", fontSize: "14.5px", color: "var(--ink-soft)" }}>
             <div>🛡️ <b style={{ color: "var(--ink)" }}>My 21-day goal:</b> a signed lease in about 21 days on priced-right, show-ready homes — the target I work to, not a promise I can make for every home.</div>
-            <div>🏢 <b style={{ color: "var(--ink)" }}>Relocating a team?</b> I handle every landing. <Link href="/#get-matched" style={{ color: "var(--green)", fontWeight: 900 }}>Ask me →</Link></div>
+            <div>🔑 <b style={{ color: "var(--ink)" }}>My fees, published:</b> $1,500 flat when leased, or $199/mo full service. Nothing else.</div>
+            <div>🏢 <b style={{ color: "var(--ink)" }}>Relocating a team?</b> I invoice the employer and handle every landing. <Link href="/#get-matched" style={{ color: "var(--green)", fontWeight: 900 }}>Ask me →</Link></div>
           </div>
           <div className="say"><img src={CHUK_HEAD} alt="Chuk" /><div><b>Chuk says:</b> &quot;If the math doesn&apos;t beat your price cut, I&apos;ll tell you to cut the price. Seriously.&quot;</div></div>
         </div>

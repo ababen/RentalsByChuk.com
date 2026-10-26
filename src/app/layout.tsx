@@ -8,7 +8,6 @@ import StickyCTA from "@/components/StickyCTA";
 import { site } from "@/lib/site";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 // LocalBusiness structured data — helps Google show the business
 // (phone, areas served, license) in local + map results.
@@ -22,10 +21,8 @@ const jsonLd = {
   name: 'Alexander "Chuk" Babenchuk — RentalsByChuk',
   alternateName: "Chuk",
   description:
-    "Rentals-only service in West Palm Beach, Palm Beach Gardens and Jupiter, Florida, with LoKation Real Estate. Finds the home, checks the HOA, books tours, negotiates the lease. Goal: keys in about 21 days.",
+    "Rentals-only service in West Palm Beach, Palm Beach Gardens and Jupiter, Florida, with LoKation Real Estate. Finds the home, checks the HOA, books tours, negotiates the lease. Renters pay $0 for search, touring and lease help — Chuk is paid by the property side (owner/landlord) when a lease signs, at the rate set in that property's listing agreement. Goal: keys in about 21 days.",
   url: site.url,
-  image: `${site.url}/opengraph-image`,
-  ...(site.sameAs.length > 0 && { sameAs: site.sameAs }),
   telephone: telPretty,
   email: site.email,
   worksFor: { "@type": "Organization", name: "LoKation Real Estate" },
@@ -50,21 +47,22 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CHUK — Rentals in West Palm Beach, Palm Beach Gardens & Jupiter. Consider it handled.",
     description:
-      "Rentals only, with LoKation Real Estate: I find the home, check the HOA, book the tour, negotiate the lease — my goal is keys in about 21 days. Plus renter comparison tools with Oct 2026 Palm Beach County market data.",
+      "Rentals-only local expert with LoKation Real Estate: I find the home, check the HOA, book the tour, negotiate the lease — my goal is keys in about 21 days, and renters pay $0 (I'm paid by the property side when a lease signs). Plus renter comparison tools with Oct 2026 Palm Beach County market data.",
     url: "https://rentalsbychuk.com",
     siteName: "RentalsByChuk",
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "CHUK — Rentals in West Palm Beach, Palm Beach Gardens & Jupiter. Consider it handled.",
-    description: "Rentals only for West Palm Beach, Palm Beach Gardens & Jupiter — with LoKation Real Estate. My goal is keys in about 21 days.",
+    description: "Rentals only for West Palm Beach, Palm Beach Gardens & Jupiter — with LoKation Real Estate. $0 to renters (paid by the property side when a lease signs); my goal is keys in about 21 days.",
   },
-  // Google Search Console: set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION to the
-  // code from the "HTML tag" method. No canonical here — each page sets its
-  // own (a root canonical would point every page at the homepage).
-  ...(GSC_VERIFICATION && { verification: { google: GSC_VERIFICATION } }),
+  // To verify Google Search Console: add your code here, e.g.
+  // verification: { google: "your-code" },
+  alternates: {
+    canonical: "https://rentalsbychuk.com",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
