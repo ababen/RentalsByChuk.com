@@ -31,5 +31,7 @@ export const site = {
   // Realtor.com, LinkedIn, LoKation agent page…). Added to the
   // RealEstateAgent JSON-LD as `sameAs` so Google and AI assistants can
   // tie them to this site. Full https URLs only.
-  sameAs: [] as string[],
+  sameAs: [
+    "https://lokationagent.com/agent/alexander-babenchuk",
+  ] as string[],
 };
