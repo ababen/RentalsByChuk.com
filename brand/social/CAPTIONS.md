@@ -170,3 +170,26 @@ Pair any of these with a sticker from `brand/chuk/stickers/` ("I KNOW A GUY", "T
 | Mon | 03 Only hustle |
 | Wed | 05 Relocating (also on LinkedIn) |
 | Fri | 06 Landlords (also on LinkedIn) |
+
+---
+
+## Video · Reaching Chuk takes one tap  (`video/contact-chuk.mp4`)
+
+This is a 28-second vertical video (1080×1920) for Reels, TikTok, Shorts and Facebook. It shows the mobile site:
+- the Call / Text bar that stays on screen;
+- Text opening a message that's already written;
+- one tap to call;
+- WhatsApp.
+
+The Messages and call screens are mock-ups of what a phone shows. The video has no sound, so add a trending track in the app.
+
+**Caption**
+> Looking for a rental in West Palm Beach, Palm Beach Gardens or Jupiter? Reaching Chuk takes one tap 📱
+>
+> Call, text or WhatsApp straight from RentalsByChuk.com. Your text is even pre-written. $0 for renters.
+>
+> (561) 220-9399 · Chuk · LoKation Real Estate
+>
+> #PalmBeachRentals #WestPalmBeach #PalmBeachGardens #JupiterFL #MovingToFlorida #ApartmentHunting
+
+**On-screen cover text:** "Reaching Chuk takes one tap."

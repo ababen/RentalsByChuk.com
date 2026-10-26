@@ -45,6 +45,7 @@ h1,h2{font-family:var(--font-archivo),'Archivo',sans-serif;font-weight:900;lette
 .topstrip a{color:#fff;font-weight:900}
 .site-header{position:sticky;top:0;z-index:40;background:rgba(255,251,241,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .site-header .wrap{max-width:1120px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:70px;flex-wrap:wrap}
+@media(max-width:520px){.site-header .wrap,.chuk .site-header .wrap{padding:10px 22px;gap:10px}}
 .logo{display:flex;align-items:center;gap:10px}
 .logo img{width:42px;height:42px;border-radius:999px;object-fit:cover;border:2px solid var(--sun)}
 .logo .nm{font-family:var(--font-archivo),'Archivo',sans-serif;font-weight:900;font-size:23px;letter-spacing:.01em;line-height:1;color:var(--ink)}
@@ -167,6 +168,7 @@ nav.main a:hover{background:#fff}
 @media(max-width:920px){.chuk .hero-grid{grid-template-columns:1fr}}
 .chuk .hero h1{font-size:clamp(42px,5.8vw,63px)}
 .chuk .hero h1 .hl{color:var(--green);position:relative;white-space:nowrap}
+@media(max-width:520px){.chuk .hero h1 .hl{white-space:normal}}
 .chuk .hero h1 .hl:after{content:"";position:absolute;left:0;right:0;bottom:3px;height:11px;background:var(--sun-soft);z-index:-1;border-radius:99px}
 .chuk .hero .lede{margin-top:16px}
 .chuk .promise{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
