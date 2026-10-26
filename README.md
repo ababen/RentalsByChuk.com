@@ -105,7 +105,7 @@ Logo: **R** monogram = key + palm frond. Wordmark: `RENTALS BY CHUK` with Coral 
 - [x] v0.2 — sitemap/robots/OG image, loading/error/not-found, metadata on all routes
 - [ ] v0.3 — 12 community [slug] pages (SEO pillars) — template + routes live; rent comps, schools, video tours still to add
 - [ ] v0.3 — Expand HOA DB to 300+ (Airtable→JSON)
-- [ ] v0.3 — Lead capture (Resend) + /admin auth
+- [ ] v0.3 — Lead capture (Cloudflare Email) + /admin auth
 - [ ] v0.4 — Tenant Vault + showing scheduler
 - [ ] v1.0 — Launch + Goldilocks Alert campaign + analytics
 - [ ] v2 (idea) — Client portal: login, personal side-by-side comparison, schedule showings → [`docs/ideas/v2-client-portal.md`](docs/ideas/v2-client-portal.md)
@@ -129,7 +129,7 @@ Every CTA on the site now feeds one lead pipeline instead of `mailto:` links and
 - **Forms** — `src/components/LeadForm.tsx` (tour requests, 48-hr landlord analysis, HOA report/review, seasonal-alert list). All POST to **`/api/lead`** (`src/app/api/lead/route.ts`) with validation + a honeypot spam trap.
 - **Delivery** — configure in Vercel → Settings → Environment Variables (see `.env.example`):
   - `LEAD_WEBHOOK_URL` → sends each lead as JSON to Zapier / Make / your CRM, **or**
-  - `RESEND_API_KEY` + `LEAD_NOTIFY_EMAIL` → emails each lead to Chuk.
+  - `CLOUDFLARE_ACCOUNT_ID` + `CLOUDFLARE_EMAIL_TOKEN` + `LEAD_NOTIFY_EMAIL` → emails each lead to Chuk via Cloudflare Email Sending.
   - Until one is set, leads are written to the Vercel function logs (`[lead] …`) so nothing is lost.
 - **Mobile sticky bar** — Call / Text / Free Analysis fixed to the bottom on phones (`src/components/StickyCTA.tsx`).
 - **Contact details live in one file** — `src/lib/site.ts`. Business number: (561) 220-9399 (confirmed by Alex 2026-10-24). Change `PHONE_DISPLAY` / `PHONE_E164` there and every call/text/WhatsApp link site-wide updates.
