@@ -54,10 +54,6 @@ h1,h2{font-family:var(--font-archivo),'Archivo',sans-serif;font-weight:900;lette
 .logo.on-dark .nm{color:#fff}
 .logo.on-dark .sb{color:#FFC79A}
 .logo.on-dark .sb2{color:#9DBEA9}
-/* Compensation disclosure line (SOP 12-1) used next to $0/free claims */
-.comp-disc{font-size:12px;line-height:1.55;font-weight:600;max-width:64ch}
-.comp-disc.light{color:var(--muted)}
-.comp-disc.on-dark{color:#BCD2C0}
 nav.main{display:flex;gap:2px;font-size:14.5px;font-weight:800;color:var(--ink-soft);flex-wrap:wrap}
 nav.main a{padding:8px 10px;border-radius:999px}
 nav.main a:hover{background:#fff}
@@ -428,7 +424,6 @@ nav.main a:hover{background:#fff}
 .s-form{margin-top:14px}
 .s-chuk{align-self:end;display:flex;justify-content:center;position:relative;z-index:1}
 .s-chuk img{height:min(700px,88vh);width:auto;display:block;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 8%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 8%);mask-composite:intersect}
-.simple .comp-disc{font-weight:700}
 
 /* sections */
 .s-sec{padding:88px 0}

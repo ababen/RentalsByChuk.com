@@ -27,9 +27,9 @@ export default async function Image() {
           <div style={{ fontSize: 32, fontWeight: 700, letterSpacing: 4 }}>RENTALSBYCHUK.COM</div>
           <div style={{ fontSize: 88, fontWeight: 900, lineHeight: 1.05, marginTop: 24 }}>Consider it handled.</div>
           <div style={{ fontSize: 32, marginTop: 28 }}>
-            Rentals in West Palm Beach, Palm Beach Gardens &amp; Jupiter — $0 to renters.
+            Rentals in West Palm Beach, Palm Beach Gardens &amp; Jupiter.
           </div>
-          <div style={{ fontSize: 28, marginTop: 20, opacity: 0.7 }}>Chuk · LoKation Real Estate</div>
+          <div style={{ fontSize: 28, marginTop: 20, opacity: 0.7 }}>Alexander &quot;Chuk&quot; Babenchuk · LoKation Real Estate</div>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={headSrc} width={440} height={440} alt="" style={{ borderRadius: 220 }} />
