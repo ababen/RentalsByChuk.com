@@ -1,16 +1,11 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { communities, getCommunity } from "@/data/communities";
-import { hoaDB } from "@/data/hoa";
-import { neighborhoods, faceOffRows } from "@/data/compare";
-import { getAllProperties, SAMPLE_NOTE } from "@/lib/properties";
-import PropertyCard from "@/components/PropertyCard";
 import LeadForm from "@/components/LeadForm";
+import { communities, cities, CITY_SOURCES, getCommunity, compareRow, hoaRules, plainFigure, type Community } from "@/data/communities";
+import { getAllProperties, formatPrice } from "@/lib/properties";
+import { pageMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
-
-// Only the 12 known communities exist; anything else 404s.
-export const dynamicParams = false;
 
 export function generateStaticParams() {
   return communities.map((c) => ({ slug: c.slug }));
@@ -20,111 +15,176 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const c = getCommunity(slug);
   if (!c) return {};
-  const title = `${c.name} Rentals, ${c.city} FL — Rents & HOA Rules`;
-  const description = `Renting in ${c.name}, ${c.city}? Typical rents ${c.price}/mo, HOA lease rules, and a rentals-only local guide. ${c.blurb}`;
-  return {
-    title,
-    description,
-    alternates: { canonical: `${site.url}/communities/${c.slug}` },
-    openGraph: { title, description, url: `${site.url}/communities/${c.slug}` },
-  };
+  const meta = pageMeta({
+    title: `Renting in ${c.name}, ${c.city} — Rents & HOA Rules`,
+    description: `Renting in ${c.name}, ${c.city}, FL: typical rents ${c.band}/mo, lease minimums and HOA approval rules, and ${c.city} market data (Oct 2026). Rentals-only help from Chuk with LoKation Real Estate.`,
+    path: `/communities/${c.slug}`,
+  });
+  return c.indexed ? meta : { ...meta, robots: { index: false, follow: true } };
+}
+
+/** Q&A built only from the figures on the page, so the FAQ JSON-LD never says more than the page does. */
+function faqsFor(c: Community) {
+  const row = compareRow(c);
+  const hoa = hoaRules(c);
+  const city = cities[c.city];
+  const faqs = [
+    {
+      q: `How much does it cost to rent in ${c.name}?`,
+      a: `Chuk's working range for ${c.name} is ${c.band} a month.${row ? ` Published data: ${plainFigure(row.head)}.` : ""} For context, the ${c.city} median asking rent is ${city.median} (Realtor.com, through Sep 2026).`,
+    },
+  ];
+  const minLease = hoa?.minLease ?? (row ? plainFigure(row.min) : undefined);
+  faqs.push({
+    q: `What is the minimum lease in ${c.name}?`,
+    a: minLease
+      ? `${minLease}.${hoa ? ` Approval: ${hoa.board}.` : ""} Rules can differ by village or building, so Chuk confirms them for the specific home before you apply.`
+      : `It depends on the building or association. Chuk pulls the association documents and confirms the minimum before you apply.`,
+  });
+  return faqs;
 }
 
 export default async function CommunityPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const c = getCommunity(slug);
   if (!c) return notFound();
+  const row = compareRow(c);
+  const hoa = hoaRules(c);
+  const city = cities[c.city];
+  const faqs = faqsFor(c);
+  const homes = getAllProperties().filter((p) => p.neighborhood === c.name && p.city === c.city);
+  const nearby = communities.filter((o) => o.city === c.city && o.slug !== c.slug);
+  const smsHref = `sms:${site.phoneHref.replace("tel:", "")}?&body=${encodeURIComponent(`Hi Chuk — I'm looking to rent in ${c.name}, ${c.city}.`)}`;
 
-  const hoa = c.hoaKey ? hoaDB[c.hoaKey] : undefined;
-  const market = c.compareKey ? neighborhoods.find((n) => n.key === c.compareKey) : undefined;
-  const homes = c.neighborhood ? getAllProperties().filter((p) => p.neighborhood === c.neighborhood) : [];
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+        { "@type": "ListItem", position: 2, name: "Communities", item: `${site.url}/communities` },
+        { "@type": "ListItem", position: 3, name: c.name, item: `${site.url}/communities/${c.slug}` },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+    },
+  ];
 
-  const breadcrumbs = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Communities", item: `${site.url}/communities` },
-      { "@type": "ListItem", position: 2, name: c.name, item: `${site.url}/communities/${c.slug}` },
-    ],
-  };
+  const rentRows: [string, string][] = [["Chuk's typical range", `${c.band}/mo`]];
+  if (row) {
+    rentRows.push(["Market figure", plainFigure(row.head)]);
+    rentRows.push(["1 bedroom", plainFigure(row.r1)], ["2 bedroom", plainFigure(row.r2)], ["3 bedroom", plainFigure(row.r3)]);
+    rentRows.push(["Furnished / seasonal", plainFigure(row.furn)], ["Days on market", plainFigure(row.dom)]);
+  }
 
   return (
     <div className="max-w-[1200px] mx-auto px-6 py-8">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
-      <Link href="/communities" className="text-sm font-bold text-[#1E7A55]">← All communities</Link>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <nav className="text-sm font-bold text-[#0CA89A]" aria-label="Breadcrumb">
+        <Link href="/communities">Communities</Link> <span className="text-[#78716C]">/</span>{" "}
+        <Link href={`/communities#${city.slug}`}>{c.city}</Link>
+      </nav>
+      <h1 className="text-3xl mt-3">Renting in {c.name}, {c.city}</h1>
+      <p className="mt-2 text-[#44403C] max-w-[760px] leading-relaxed">
+        {row ? `${plainFigure(row.vibe)}.` : c.blurb} Typical rents run <b>{c.band}/mo</b>.
+      </p>
+      {row && <p className="mt-2 text-[#44403C] max-w-[760px] leading-relaxed"><b>Chuk&apos;s take:</b> {row.take}</p>}
 
-      <div className="mt-4">
-        <div className="text-xs tracking-widest font-extrabold text-[#1E7A55] uppercase">{c.city}</div>
-        <h1 className="text-3xl mt-1">Renting in {c.name}</h1>
-        <p className="text-[#40564C] mt-2 max-w-[720px]">{c.blurb}</p>
-        {/* The estimate range is only shown when there's no sourced snapshot — it can conflict with sourced rents. */}
-        <div className="mt-3 inline-block bg-white border border-[#EEE0C4] px-4 py-2 rounded-full text-sm">
-          {market ? <>Typical asking <b>{market.head}</b></> : <>Typical rent <b>{c.price}/mo</b> <span className="text-[#75816F]">(working estimate)</span></>}
-        </div>
-      </div>
-
-      <div className="mt-8 grid lg:grid-cols-[1.3fr_.7fr] gap-6">
+      <div className="mt-6 grid lg:grid-cols-[1.3fr_.7fr] gap-6">
         <div className="space-y-6">
-          {market && (
-            <section className="bg-white border border-[#EEE0C4] rounded-2xl p-5">
-              <h2 className="text-xl">Market snapshot</h2>
-              <p className="text-xs text-[#75816F] mt-1">Oct 2026 market brief · ✅ sourced · 🔶 estimate</p>
-              <div className="mt-3 grid gap-2 text-sm">
-                {faceOffRows.map((r) => (
-                  <div key={r.field} className="flex justify-between gap-4">
-                    <span className="text-[#75816F] shrink-0">{r.label}</span>
-                    <b className="text-right">{market[r.field]}</b>
-                  </div>
+          <section className="bg-white border border-[#E7E5E4] rounded-2xl p-5">
+            <h2 className="text-xl">Rent in {c.name}</h2>
+            <table className="mt-3 w-full text-sm">
+              <tbody>
+                {rentRows.map(([k, v]) => (
+                  <tr key={k} className="border-t border-[#F0EDE8] first:border-0">
+                    <th scope="row" className="text-left font-normal text-[#78716C] py-2 pr-4 align-top">{k}</th>
+                    <td className="py-2 font-bold">{v}</td>
+                  </tr>
                 ))}
-              </div>
-            </section>
-          )}
+              </tbody>
+            </table>
+            <p className="mt-2 text-xs text-[#78716C]">
+              {row
+                ? "Published figures: October 2026 snapshot — Realtor.com, RentCafe, BeachesMLS, RentalSource, Zumper, Homes.com and ApartmentList, as labeled on the Market Reports page. Estimates are marked."
+                : `No published rent series for ${c.name} yet — the range above is Chuk's working range. Ask for current comps.`}
+            </p>
+          </section>
 
-          <section className="bg-white border border-[#EEE0C4] rounded-2xl p-5">
-            <h2 className="text-xl">HOA rental rules</h2>
+          <section className="bg-white border border-[#E7E5E4] rounded-2xl p-5">
+            <h2 className="text-xl">Lease &amp; HOA rules in {c.name}</h2>
             {hoa ? (
-              <div className="mt-3 grid gap-2 text-sm">
-                <div className="flex justify-between gap-4"><span className="text-[#75816F]">Min lease</span><b className="text-right">{hoa.minLease}</b></div>
-                <div className="flex justify-between gap-4"><span className="text-[#75816F]">Max / year</span><b className="text-right">{hoa.maxPerYear}</b></div>
-                <div className="flex justify-between gap-4"><span className="text-[#75816F]">Board approval</span><b className="text-right">{hoa.board}</b></div>
-                <div className="flex justify-between gap-4"><span className="text-[#75816F]">Short-term</span><b className="text-right text-[#E56F22]">{hoa.str}</b></div>
-                <div className="flex justify-between gap-4"><span className="text-[#75816F]">Grandfather</span><b className="text-right">{hoa.grandfather}</b></div>
-              </div>
+              <table className="mt-3 w-full text-sm">
+                <tbody>
+                  {[["Minimum lease", hoa.minLease], ["Leases per year", hoa.maxPerYear], ["Approval", hoa.board], ["Short-term stays", hoa.str], ["Also note", hoa.grandfather]].map(([k, v]) => (
+                    <tr key={k} className="border-t border-[#F0EDE8] first:border-0">
+                      <th scope="row" className="text-left font-normal text-[#78716C] py-2 pr-4 align-top">{k}</th>
+                      <td className="py-2 font-bold">{v}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : row ? (
+              <ul className="mt-3 text-sm grid gap-1.5 list-disc ml-5">
+                <li><b>Lease terms:</b> {plainFigure(row.min)}</li>
+                <li><b>Approval:</b> {plainFigure(row.strict)}</li>
+              </ul>
             ) : (
-              <p className="mt-2 text-sm text-[#40564C]">
-                {c.name} isn&apos;t in my checked HOA file yet. Rules vary home to home here — I pull the association documents and confirm the minimum lease, approval timeline and short-term rules before you apply.
-              </p>
+              <p className="mt-2 text-sm text-[#44403C]">Rules vary by association and building. Chuk pulls the association documents and confirms the minimum lease, approval steps and timelines before you apply.</p>
             )}
-            <Link href="/hoa-checker" className="mt-3 inline-block text-xs font-bold text-[#1E7A55]">Open the HOA checker →</Link>
+            <p className="mt-3 text-sm"><Link href={`/hoa-checker?q=${encodeURIComponent(c.name)}`} className="font-bold text-[#0CA89A]">Check {c.name} in the HOA checker →</Link></p>
+          </section>
+
+          <section className="bg-white border border-[#E7E5E4] rounded-2xl p-5">
+            <h2 className="text-xl">{c.city} rental market, October 2026</h2>
+            <div className="mt-3 grid sm:grid-cols-3 gap-3 text-sm">
+              <div><div className="text-[#78716C]">Median asking rent</div><div className="text-lg font-extrabold">{city.median}</div></div>
+              <div><div className="text-[#78716C]">Average apartment</div><div className="text-lg font-extrabold">{city.aptAvg}</div></div>
+              <div><div className="text-[#78716C]">Days on market</div><div className="text-lg font-extrabold">{city.dom}</div></div>
+            </div>
+            <p className="mt-2 text-xs text-[#78716C]">{CITY_SOURCES} <Link href="/reports" className="font-bold text-[#0CA89A]">Full market report →</Link></p>
           </section>
 
           {homes.length > 0 && (
             <section>
               <h2 className="text-xl">Sample homes in {c.name}</h2>
-              <p className="text-xs text-[#75816F] mt-1">{SAMPLE_NOTE}</p>
-              <div className="mt-3 grid sm:grid-cols-2 gap-4">
-                {homes.map((p) => <PropertyCard key={p.id} p={p} />)}
-              </div>
+              <p className="text-xs text-[#7A5B00] font-bold mt-1">Illustrative only — not current listings. Live homes come by text.</p>
+              <ul className="mt-2 grid gap-2">
+                {homes.map((p) => (
+                  <li key={p.id}><Link href={`/rentals/${p.id}`} className="font-bold text-[#0CA89A]">{p.title}</Link> <span className="text-sm text-[#57534E]">— typical {formatPrice(p.price)}</span></li>
+                ))}
+              </ul>
             </section>
           )}
 
-          <section className="bg-[#FFF4DE] border border-[#EEE0C4] rounded-2xl p-5 text-sm text-[#40564C]">
-            <b>Coming to this page:</b> neighborhood rent comps, schools, and a 60-second video tour of {c.name}.
+          <section>
+            <h2 className="text-xl">Renting in {c.name}: common questions</h2>
+            <div className="mt-3 grid gap-3">
+              {faqs.map((f) => (
+                <div key={f.q} className="bg-white border border-[#E7E5E4] rounded-2xl p-4">
+                  <h3 className="font-extrabold">{f.q}</h3>
+                  <p className="mt-1 text-sm text-[#44403C]">{f.a}</p>
+                </div>
+              ))}
+            </div>
           </section>
         </div>
 
         <aside className="space-y-4">
-          <div className="bg-white border border-[#EEE0C4] rounded-2xl p-5">
-            <LeadForm compact intent="renter-match" context={`${c.name}, ${c.city}`} heading={`Looking in ${c.name}?`} blurb="Tell me your budget and move date — I'll text you live homes and check the HOA first." ctaLabel="Get matched →" />
-            <div className="mt-3 text-xs text-[#75816F] text-center">
-              Prefer to talk? <a href={site.phoneHref} className="font-bold text-[#1E7A55]">Call</a> or <a href={site.smsHref} className="font-bold text-[#1E7A55]">text {site.phoneDisplay}</a>
+          <div className="bg-white border border-[#E7E5E4] rounded-2xl p-5">
+            <LeadForm compact intent="renter-match" context={`${c.name}, ${c.city}`} heading={`Find me a rental in ${c.name}`} blurb="Tell me your budget and move date — I'll text you live homes and check the HOA before you apply." ctaLabel="Text me matches →" />
+            <div className="mt-3 text-xs text-[#78716C] text-center">
+              Prefer to talk? <a href={site.phoneHref} className="font-bold text-[#0CA89A]">Call</a> or <a href={smsHref} className="font-bold text-[#0CA89A]">text {site.phoneDisplay}</a>
             </div>
           </div>
-          <div className="bg-[#0E3B2A] text-white rounded-2xl p-5">
+          <div className="bg-[#0B1D3A] text-white rounded-2xl p-5">
             <div className="font-extrabold">More in {c.city}</div>
-            <ul className="mt-2 text-sm grid gap-1">
-              {communities.filter((o) => o.city === c.city && o.slug !== c.slug).map((o) => (
-                <li key={o.slug}><Link href={`/communities/${o.slug}`} className="text-[#CFE4D4] hover:text-white">{o.name} →</Link></li>
+            <ul className="mt-2 text-sm grid gap-1.5">
+              {nearby.map((o) => (
+                <li key={o.slug}><Link href={`/communities/${o.slug}`} className="text-[#7FE3D8] font-bold">{o.name}</Link> <span className="text-[#CBD5E1]">· {o.band}</span></li>
               ))}
             </ul>
           </div>

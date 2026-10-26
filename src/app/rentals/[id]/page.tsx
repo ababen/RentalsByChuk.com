@@ -5,6 +5,19 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import LeadForm from "@/components/LeadForm";
 import { site } from "@/lib/site";
+import { pageMeta } from "@/lib/seo";
+import type { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const p = getPropertyById(id);
+  if (!p) return {};
+  return pageMeta({
+    title: `${p.title}, ${p.city} — Sample Home`,
+    description: `Sample ${p.beds}-bed ${p.type.toLowerCase()} in ${p.neighborhood}, ${p.city}, FL — typical neighborhood rent ${formatPrice(p.price)}. Illustrative only, not a current listing; text Chuk for live homes like this.`,
+    path: `/rentals/${p.id}`,
+  });
+}
 
 export default async function PropertyPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

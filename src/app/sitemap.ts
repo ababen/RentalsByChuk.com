@@ -20,10 +20,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const communityRoutes = communities.map((c) => ({
+  // Community pages without sourced data are noindex — keep them out.
+  const communityRoutes = communities.filter((c) => c.indexed).map((c) => ({
     url: `${base}/communities/${c.slug}`,
     lastModified: now,
-    changeFrequency: "weekly" as const,
+    changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 

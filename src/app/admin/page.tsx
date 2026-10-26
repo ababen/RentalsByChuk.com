@@ -1,7 +1,7 @@
 import { properties } from "@/data/properties";
 import Link from "next/link";
 
-export const metadata = { title: "Agent Portal | RentalsByChuk", description: "Agent portal — manage listings, HOA data, market reports." };
+export const metadata = { title: "Agent Portal", description: "Agent portal — manage listings, HOA data, market reports." };
 // Simple password gate via env — MVP: PIN in .env.local
 // For now, no auth; just a form. Wire to NextAuth / Supabase later.
 
