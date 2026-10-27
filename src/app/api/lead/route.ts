@@ -38,8 +38,15 @@ async function postJson(url: string, body: unknown, headers: Record<string, stri
       body: JSON.stringify(body),
       signal: controller.signal,
     });
+    if (!res.ok) {
+      // Log why delivery failed (status + provider error body) so a broken
+      // channel shows up in Vercel → Logs instead of failing silently.
+      const detail = (await res.text().catch(() => "")).slice(0, 300);
+      console.error("[lead] delivery failed", new URL(url).host, res.status, detail);
+    }
     return res.ok;
-  } catch {
+  } catch (err) {
+    console.error("[lead] delivery error", new URL(url).host, err instanceof Error ? err.message : String(err));
     return false;
   } finally {
     clearTimeout(t);
@@ -95,7 +102,14 @@ export async function POST(req: NextRequest) {
   const cfAccount = process.env.CLOUDFLARE_ACCOUNT_ID;
   const cfToken = process.env.CLOUDFLARE_EMAIL_TOKEN;
   const notifyEmail = process.env.LEAD_NOTIFY_EMAIL;
-  if (notifyEmail && cfAccount && cfToken) {
+  if (!(notifyEmail && cfAccount && cfToken)) {
+    const missing = [
+      !notifyEmail && "LEAD_NOTIFY_EMAIL",
+      !cfAccount && "CLOUDFLARE_ACCOUNT_ID",
+      !cfToken && "CLOUDFLARE_EMAIL_TOKEN",
+    ].filter(Boolean);
+    console.warn("[lead] email skipped, missing env:", missing.join(", "));
+  } else {
     const lines = [
       `New lead from rentalsbychuk.com`,
       ``,
