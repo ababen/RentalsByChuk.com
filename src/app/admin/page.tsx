@@ -1,7 +1,9 @@
 import { properties } from "@/data/properties";
 import Link from "next/link";
 
-export const metadata = { title: "Agent Portal | RentalsByChuk", description: "Agent portal — manage listings, HOA data, market reports." };
+// Internal page — kept out of search with noindex (not a robots.txt block,
+// which would hide the tag from Google and still allow URL-only indexing).
+export const metadata = { title: "Agent Portal", description: "Agent portal — manage listings, HOA data, market reports.", robots: { index: false, follow: false } };
 // Simple password gate via env — MVP: PIN in .env.local
 // For now, no auth; just a form. Wire to NextAuth / Supabase later.
 
