@@ -7,8 +7,8 @@ import { NextRequest, NextResponse } from "next/server";
 //
 //   1. LEAD_WEBHOOK_URL — POSTs the lead JSON to any webhook
 //      (Zapier, Make, GoHighLevel, Follow Up Boss, a CRM…).
-//   2. RESEND_API_KEY + LEAD_NOTIFY_EMAIL — emails the lead via
-//      Resend (set LEAD_FROM_EMAIL to a verified sender).
+//   2. LEAD_NOTIFY_EMAIL + CLOUDFLARE_ACCOUNT_ID + CLOUDFLARE_EMAIL_TOKEN
+//      — emails the lead via Cloudflare Email Sending.
 //
 // If neither is configured the lead is written to the server log
 // (visible in Vercel → Logs) so a submission is never silently
@@ -91,10 +91,11 @@ export async function POST(req: NextRequest) {
   const webhook = process.env.LEAD_WEBHOOK_URL;
   if (webhook && (await postJson(webhook, payload))) deliveredVia.push("webhook");
 
-  // Channel 2: email via Resend
-  const resendKey = process.env.RESEND_API_KEY;
+  // Channel 2: email via Cloudflare Email Sending
+  const cfAccount = process.env.CLOUDFLARE_ACCOUNT_ID;
+  const cfToken = process.env.CLOUDFLARE_EMAIL_TOKEN;
   const notifyEmail = process.env.LEAD_NOTIFY_EMAIL;
-  if (resendKey && notifyEmail) {
+  if (notifyEmail && cfAccount && cfToken) {
     const lines = [
       `New lead from rentalsbychuk.com`,
       ``,
@@ -107,16 +108,17 @@ export async function POST(req: NextRequest) {
       lead.page ? `Page:    ${lead.page}` : "",
       `Received: ${payload.receivedAt}`,
     ].filter(Boolean);
+    const subject = `🏠 New ${lead.intent} lead: ${lead.name}${lead.context ? ` — ${lead.context}` : ""}`;
     const ok = await postJson(
-      "https://api.resend.com/emails",
+      `https://api.cloudflare.com/client/v4/accounts/${cfAccount}/email/sending/send`,
       {
-        from: process.env.LEAD_FROM_EMAIL || "RentalsByChuk Leads <leads@rentalsbychuk.com>",
-        to: [notifyEmail],
+        from: { address: "leads@rentalsbychuk.com", name: "RentalsByChuk Leads" },
+        to: notifyEmail,
         reply_to: lead.email || undefined,
-        subject: `🏠 New ${lead.intent} lead: ${lead.name}${lead.context ? ` — ${lead.context}` : ""}`,
+        subject,
         text: lines.join("\n"),
       },
-      { Authorization: `Bearer ${resendKey}` }
+      { Authorization: `Bearer ${cfToken}` }
     );
     if (ok) deliveredVia.push("email");
   }

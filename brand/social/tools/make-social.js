@@ -23,26 +23,26 @@ const P = [
   ['01-know-someone', 'feed', 'wave', 'Moving to Palm Beach?',
    'Know someone<br>looking for<br>a <em>rental?</em>', 'Send them to Chuk. Rentals only — West Palm Beach, Palm Beach Gardens &amp; Jupiter.',
    ['West Palm Beach', 'Palm Beach Gardens', 'Jupiter'], 'RentalsByChuk.com', 'cream'],
-  ['02-zero-for-renters', 'feed', 'surprised', 'Seriously.',
-   '<em>$0</em> for<br>renters.', 'The landlord side pays when a lease signs. The search, showings, negotiating and lease read cost you nothing.',
-   ['Search', 'Showings', 'Negotiating', 'Lease read'], 'RentalsByChuk.com', 'green'],
+  ['02-done-for-you', 'feed', 'laughing', 'Done for you',
+   'You pick the home.<br><em>He handles the rest.</em>', 'The search, the HOA rules, the lease, the approval — then movers and move-in, lined up around your keys.',
+   ['Search', 'HOA checked first', 'Lease negotiated', 'Approval chased'], 'RentalsByChuk.com', 'green'],
   ['03-only-hustle', 'feed', 'thumbs', 'Why I recommend Chuk',
    'Rentals isn’t his<br>side hustle.<br><em>It’s his only one.</em>', 'He finds the home, checks the HOA, books the tours and negotiates the lease. Goal: keys in about 21 days.',
    ['Find', 'Check HOA', 'Tour', 'Negotiate'], 'RentalsByChuk.com', 'cream'],
-  ['04-check-the-hoa', 'feed', 'thoughtful', 'Before you sign',
-   'Can you even<br>rent there?<br><em>Check the HOA.</em>', 'Chuk publishes HOA rental rules for free — minimum lease, approval time, caps.',
+  ['04-check-the-hoa', 'feed', 'thoughtful', 'Before you apply',
+   'Can you even<br>rent there?<br><em>Check the HOA.</em>', 'Minimum lease, approval time, rental caps — Chuk checks a community’s rules before you apply, not after.',
    ['Min. lease', 'Board approval', 'Rental caps'], 'RentalsByChuk.com/hoa-checker', 'sun'],
   ['05-relocating', 'feed', 'talking', 'Relocating for work?',
-   'Land to a<br><em>ready home.</em>', 'Video tours, remote paperwork, start-date planning. Half of Chuk’s practice is relocations.',
-   ['Video tours', 'Remote signing', 'Start-date plan'], 'RentalsByChuk.com', 'cream'],
+   'Land to a<br><em>ready home.</em>', 'Video tours, remote paperwork, movers booked on your timeline. Relocations are half of Chuk’s practice.',
+   ['Video tours', 'Remote paperwork', 'Start-date plan'], 'RentalsByChuk.com', 'cream'],
   ['06-landlords', 'feed', 'smile', 'Homeowners &amp; landlords',
-   'House won’t sell?<br><em>Rent it right.</em>', 'Free 48-hour rental analysis: real rents from your street, your HOA’s rental rules, season-vs-year math. No listing pitch.',
-   ['Street-level rents', 'HOA rules', 'Seasonal vs. annual'], 'RentalsByChuk.com/landlords', 'green'],
+   'House won’t sell?<br><em>Rent it right.</em>', '48-hour rental analysis: current comps by your street, your HOA’s rental rules, and season-vs-year math.',
+   ['Street-level comps', 'HOA rules', 'Seasonal vs. annual'], 'RentalsByChuk.com/landlords', 'green'],
   ['07-story-i-know-a-guy', 'story', 'laughing', 'Need a rental in Palm Beach?',
-   'I know<br><em>a guy.</em>', 'Chuk only does rentals — WPB, Palm Beach Gardens &amp; Jupiter. $0 for renters.',
+   'I know<br><em>a guy.</em>', 'Chuk only does rentals — WPB, Palm Beach Gardens &amp; Jupiter. You pick the home; he handles the rest.',
    [], 'RentalsByChuk.com', 'green'],
-  ['08-story-hoa', 'story', 'thoughtful', 'Free tool',
-   'Is that<br>community<br><em>rental&#8209;<br>friendly?</em>', 'Look up any HOA’s rental rules before you fall in love with the house.',
+  ['08-story-hoa', 'story', 'thoughtful', 'Before you fall for the house',
+   'Is that<br>community<br><em>rental&#8209;<br>friendly?</em>', 'Ask Chuk to check its HOA rental rules first — minimum lease, approval time, caps.',
    [], 'RentalsByChuk.com/hoa-checker', 'cream'],
 ];
 const T = {
@@ -76,7 +76,7 @@ h1 em{font-style:normal;color:${t.em}}
 <div class="blob"></div><img class="chuk" src="${img(pose)}">
 <div class="txt"><div class="k">${kicker}</div><h1>${head}</h1><div class="b">${body}</div>
 ${chips.length ? `<div class="chips">${chips.map(c => `<span>${c}</span>`).join('')}</div>` : ''}</div>
-<div class="bar"><div class="cta">${cta}</div><div class="who"><b>Chuk</b> · Rentals specialist<br>LoKation Real Estate · (561) 220-9399</div></div>
+<div class="bar"><div class="cta">${cta}</div><div class="who"><b>Alexander “Chuk” Babenchuk</b><br>LoKation Real Estate · (561) 220-9399</div></div>
 </div></body></html>`;
 };
 (async () => {

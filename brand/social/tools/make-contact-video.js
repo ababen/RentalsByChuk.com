@@ -103,7 +103,7 @@ const applyJs = (s) => {
   const title = `<div class="card"><div class="k">Need a rental in Palm Beach?</div><div class="t">Reaching Chuk<br>takes <em>one tap.</em></div><img src="${wave}"><div class="sub">Here’s how it works on your phone 👇</div></div>`;
   const outro = `<div class="card"><img src="${thumbs}" style="height:700px;margin:0 0 30px"><div class="t" style="font-size:88px">Call. Text.<br><em>WhatsApp.</em></div>
     <div class="pill">(561) 220-9399</div><div class="row"><span>RentalsByChuk.com</span></div>
-    <div class="sub" style="margin-top:28px">Rentals only · WPB · Palm Beach Gardens · Jupiter<br>$0 for renters</div><div class="fine">Chuk · LoKation Real Estate</div></div>`;
+    <div class="sub" style="margin-top:28px">Rentals only · West Palm Beach<br>Palm Beach Gardens · Jupiter</div><div class="fine">Alexander “Chuk” Babenchuk · LoKation Real Estate</div></div>`;
   const cap = (k, t) => `<div id="cap"><div class="k">${k}</div><div class="t">${t}</div></div>`;
 
   // timeline: [seconds, kind, caption|card, fn(t 0..1) -> site state]

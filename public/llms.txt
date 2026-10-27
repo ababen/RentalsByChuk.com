@@ -1,12 +1,11 @@
-# llms.txt — RentalsByChuk (Chuk)
-# Plain-language facts about this business, for AI assistants and crawlers.
-# Data dated October 2026; rental figures are market snapshots, not guarantees.
+# RentalsByChuk (Chuk)
+
+> Rentals-only real estate service in West Palm Beach, Palm Beach Gardens and Jupiter, Florida — Alexander "Chuk" Babenchuk, REALTOR® with LoKation Real Estate. Plain-language facts for AI assistants and crawlers; data dated October 2026, rental figures are market snapshots, not guarantees.
 
 ## Who
 - Business: RentalsByChuk (CHUK) — rentals-only real estate service
 - Agent: Alexander "Chuk" Babenchuk, REALTOR® — Florida licensed sales associate, Lic. SL3596634, brokerage: LoKation Real Estate
 - Specialty: residential rentals ONLY (no sales pitch). Finds the home, verifies HOA rental rules before application, books showings, negotiates the lease, reads the lease line by line, coordinates move-in (movers, junk removal, renters insurance, credit help)
-- Cost to renters: $0 for search, touring and lease help. How Chuk gets paid: the property side (owner/landlord) pays when a lease signs, at the rate set in that property's listing agreement — it varies by property.
 - Speed and time: Chuk's goal is keys in about 21 days. Time comparison is an illustration, not a measurement: a typical DIY hunt ≈ 19 hours vs ≈ 3 hours working with Chuk.
 - Website listings: the homes shown on the website are sample homes for illustration only — not current listings. Live homes and real availability are shared by text.
 
@@ -23,18 +22,18 @@
 
 ## Services
 - Renter search + matching (text list — new homes sent to the list first)
-- HOA rental-rule checks, no cost to you, for the covered communities on file (Mirasol, Abacoa, Frenchman's Creek, PGA National, BallenIsles, Admirals Cove); any other community — Chuk pulls the association documents before you apply. Full HOA document review: $199
-- Video-first tours; remote relocation handling with employer invoicing
-- Owner services: no-cost 48-hour rental analysis (turned around within two business days in the normal course); leasing fee $1,500 flat when leased, or $199/mo full service; goal: a signed lease in about 21 days on priced-right, show-ready homes
+- HOA rental-rule checks for the covered communities on file (Mirasol, Abacoa, Frenchman's Creek, PGA National, BallenIsles, Admirals Cove); any other community — Chuk pulls the association documents before you apply
+- Video-first tours; remote relocation handling
+- Owner services: 48-hour rental analysis (turned around within two business days in the normal course); goal: a signed lease in about 21 days on priced-right, show-ready homes
 
 ## Renter segments served
 - Snowbirds: 3–6 month furnished seasonal terms, mid-Nov to April; seasonal premium typically 2–3x the annual rate (estimate)
-- Relocating families: annual leases near schools (Wellington, Abacoa/Jupiter, Palm Beach Gardens)
+- Relocating for work: annual leases timed to the school year (Wellington, Abacoa/Jupiter, Palm Beach Gardens)
 - Wall Street South professionals: downtown WPB luxury apartments, rent-first-then-buy; downtown avg $4,100/mo (RentCafe)
 - Golf & country club renters: Mirasol, PGA National, BallenIsles — POA/board approval packets handled
 - Equestrian seasonal: Wellington during Winter Equestrian Festival (Jan–Apr); houses, farms, stalls
 - Waterfront & boating: North Palm Beach, Jupiter Inlet, Singer Island — dock/lift verification first
-- First-time / budget-smart renters: fee-transparent true-cost comparisons
+- First-time / budget-smart renters: annual leases, application-ready packets
 
 ## Market snapshot — October 2026 (sources named)
 - Palm Beach County median asking rent: $2,762 (Realtor.com, Sep 2026)
@@ -44,20 +43,22 @@
 - Days on market (RentalSource): Jupiter 34 · Palm Beach Gardens 34 · North Palm Beach 36 · West Palm Beach 40
 
 ## Neighborhood price bands (Oct 2026)
-- Downtown WPB / Clematis: apartments 1BR $3,406 · 2BR $4,768 (RentCafe); new towers often offer 1–2 months free
+- Downtown WPB / Clematis: apartments 1BR $3,406 · 2BR $4,768 (RentCafe); new towers often offer 1–2 month concessions
 - Flamingo Park (WPB): 3BR houses ~$3,150–$3,400 (estimate; no published series; generally no HOA)
 - North Palm Beach: all-types average $3,763 (RentalSource); apartments avg $2,959 (RentCafe)
-- Abacoa (Jupiter): Jupiter all-types 1BR $2,450 · 2BR $3,205 · 3BR $4,399 (RentalSource); 3BR townhouses ~$3,400. HOA: Village condos 60-day minimum lease, max 2 leases/yr, $100 application; Magnolia Bay 4-month minimum
+- Abacoa (Jupiter): Jupiter all-types 1BR $2,450 · 2BR $3,205 · 3BR $4,399 (RentalSource); 3BR townhouses ~$3,400. HOA: Village condos 60-day minimum lease, max 2 leases/yr, application required; Magnolia Bay 4-month minimum
 - Mirasol (PBG): rentals $6,850–$24,750/mo (Homes.com). HOA: minimum 4 consecutive months (12 months in Quantera/Paradisio/Olivera villages), max 2 leases/yr, tenants capped at 24 consecutive months, board approval + screening (Mirasol MCA leasing package)
 - PGA National (PBG): median rent $5,800 (seasonal-skewed); apartments avg $2,673; houses avg $6,500 (Zumper). HOA: POA approval + full lease documents required before leasing
 - BallenIsles (PBG): median $4,600; 3BR $6,650; houses avg $8,000 (Zumper). Formal HOA minimum unpublished; live seasonal listing shows 3-month minimum, furnished 3BR $25,000/mo
 - Wellington: median $4,386 (Realtor.com); annual 1BR $2,483+ / 2BR $3,266+ (ApartmentList); WEF-season furnished $8,750–$25,000/mo
 
-## Key pages (anchors on the homepage)
-- Home search & sample homes (illustrative only — live homes come by text): #homes
-- Renter-type comparison hub (segments, neighborhood face-off, true-cost calculator, seasonal vs annual): #compare
-- Meet Chuk: #meet
-- HOA checker: #hoa
-- Owners / no-cost 48-hour analysis: #owners
-- Join the text list: #get-matched
-- FAQ: #faq
+## Key pages
+- Home — renter types, what Chuk handles, how it works: https://rentalsbychuk.com/
+- FAQ: https://rentalsbychuk.com/#faq
+- Join the text list / get matched: https://rentalsbychuk.com/#get-matched
+- Sample homes (illustrative only — live homes come by text): https://rentalsbychuk.com/rentals
+- HOA rental-rules checker: https://rentalsbychuk.com/hoa-checker
+- Communities (12 villages, typical rent bands): https://rentalsbychuk.com/communities
+- Community guides (rents, lease & HOA rules, Oct 2026 data): Downtown Clematis https://rentalsbychuk.com/communities/downtown-clematis · Flamingo Park https://rentalsbychuk.com/communities/flamingo-park · Mirasol https://rentalsbychuk.com/communities/mirasol · PGA National https://rentalsbychuk.com/communities/pga-national · BallenIsles https://rentalsbychuk.com/communities/ballenisles · Abacoa https://rentalsbychuk.com/communities/abacoa · Admirals Cove https://rentalsbychuk.com/communities/admirals-cove
+- Market reports (October 2026 snapshot, sourced): https://rentalsbychuk.com/reports
+- Owners / landlords — 48-hour rental analysis: https://rentalsbychuk.com/landlords
