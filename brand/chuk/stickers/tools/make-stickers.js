@@ -10,7 +10,7 @@ const S = [
   ['04-text-me', 'talking', 'TEXT ME!', 'sun'],
   ['05-moving-easy', 'laughing', 'MOVING? EASY.', 'green'],
   ['06-checking-hoa', 'thoughtful', 'CHECKING THE HOA…', 'ink'],
-  ['07-zero-fee', 'surprised', '$0 FOR RENTERS?!', 'sun'],
+  ['07-all-handled', 'surprised', "IT'S ALL HANDLED?!", 'sun'],
   ['08-know-a-guy', 'wink', 'I KNOW A GUY', 'green'],
   ['09-lease-signed', 'thumbs', 'LEASE SIGNED!', 'green'],
   ['10-welcome-home', 'wave', 'WELCOME HOME!', 'sun'],
