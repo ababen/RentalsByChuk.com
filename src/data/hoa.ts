@@ -113,6 +113,21 @@ export const hoaDB: Record<string, HOAEntry> = {
     str: "Under 30 days: not allowed",
     grandfather: "Not published — I check the association documents",
   },
+  egretlanding: {
+    name: "Egret Landing",
+    city: "Jupiter",
+    // Sourced Nov 1, 2026: Egret Landing POA, Declaration of Covenants and
+    // Restrictions, Art. IX §2 (original declaration; amendments not posted):
+    // https://www.egretlandingpoa.com/_files/ugd/8631f2_00152e0a32f44e74a0e65c29911cb9b0.pdf
+    // and Lease Application packet (30-day review, Certification item 5):
+    // https://www.egretlandingpoa.com/_files/ugd/8631f2_65834fb2349e48fb92eba534d9f8e6d7.pdf
+    // No per-year lease cap or fee found in the public documents.
+    minLease: "7-day minimum (Declaration Art. IX §2)",
+    maxPerYear: "Not published — I confirm before you apply",
+    board: "Written POA approval required — the association has 30 days from a completed application; executed lease copy required",
+    str: "Under 7 days: not allowed",
+    grandfather: "Not published — I check the association documents",
+  },
   jupiterkey: {
     name: "Jupiter Key",
     city: "Jupiter",
