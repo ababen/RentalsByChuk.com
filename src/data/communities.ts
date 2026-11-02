@@ -43,7 +43,7 @@ export const communities: Community[] = [
   { slug: "jupiter-intracoastal", name: "Intracoastal", city: "Jupiter", band: "$8,000–$25,000+", blurb: "Waterfront, docks, seasonal premium 2–3×.", indexed: false },
   { slug: "egret-landing", name: "Egret Landing", city: "Jupiter", band: "$4,500–$7,000", blurb: "Gated, Intracoastal access, tennis and trails.", hoaKey: "egretlanding", indexed: true },
   { slug: "the-bluffs", name: "The Bluffs", city: "Jupiter", band: "$2,300–$6,000", blurb: "Quiet, Jupiter schools, easy to beach.", compareKey: "bluffs", indexed: true },
-  { slug: "admirals-cove", name: "Admirals Cove", city: "Jupiter", band: "$9,000–$20,000+", blurb: "Estate + marina. Board interview required.", hoaKey: "admiralscove", indexed: true },
+  { slug: "admirals-cove", name: "Admirals Cove", city: "Jupiter", band: "$9,000–$20,000+", blurb: "Estate + marina. Board interview required.", compareKey: "admiralscove", hoaKey: "admiralscove", indexed: true },
 ];
 
 // City-level snapshot, October 2026 — same figures and sources as /reports.
