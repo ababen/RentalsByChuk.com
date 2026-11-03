@@ -99,6 +99,7 @@ export async function POST(req: NextRequest) {
     const lines = [
       `New lead from rentalsbychuk.com`,
       ``,
+      `Website: rentalsbychuk.com`,
       `Name:    ${lead.name}`,
       `Phone:   ${lead.phone || "—"}`,
       `Email:   ${lead.email || "—"}`,
@@ -108,7 +109,7 @@ export async function POST(req: NextRequest) {
       lead.page ? `Page:    ${lead.page}` : "",
       `Received: ${payload.receivedAt}`,
     ].filter(Boolean);
-    const subject = `🏠 New ${lead.intent} lead: ${lead.name}${lead.context ? ` — ${lead.context}` : ""}`;
+    const subject = `[RentalsByChuk] 🏠 New ${lead.intent} lead: ${lead.name}${lead.context ? ` — ${lead.context}` : ""}`;
     const ok = await postJson(
       `https://api.cloudflare.com/client/v4/accounts/${cfAccount}/email/sending/send`,
       {

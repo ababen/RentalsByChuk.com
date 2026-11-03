@@ -102,6 +102,7 @@ export async function POST(req: NextRequest) {
     const lines = [
       `New lead from homesbychuk.com`,
       ``,
+      `Website: homesbychuk.com`,
       `Name:    ${lead.name}`,
       `Phone:   ${lead.phone || "—"}`,
       `Email:   ${lead.email || "—"}`,
@@ -111,7 +112,7 @@ export async function POST(req: NextRequest) {
       lead.page ? `Page:    ${lead.page}` : "",
       `Received: ${payload.receivedAt}`,
     ].filter(Boolean);
-    const subject = `🏠 New ${lead.intent} lead: ${lead.name}${lead.context ? ` — ${lead.context}` : ""}`;
+    const subject = `[HomesByChuk] 🏠 New ${lead.intent} lead: ${lead.name}${lead.context ? ` — ${lead.context}` : ""}`;
     const ok =
       cfAccount && cfToken
         ? await postJson(
