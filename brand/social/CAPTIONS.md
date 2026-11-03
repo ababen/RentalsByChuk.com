@@ -19,7 +19,6 @@ The video is `video/contact-chuk.mp4`. Rebuild everything with `node tools/make-
   - the 48-hour rental analysis for landlords;
   - the goal of keys in about 21 days.
 - **No made-up testimonials.** If you want them, ask real clients and post their exact words with their permission.
-- **The sticker `07-zero-fee` ("$0 FOR RENTERS?!") predates the compliance pass.** Don't use it until it's re-captioned.
 
 ---
 
@@ -167,7 +166,7 @@ The video is `video/contact-chuk.mp4`. Rebuild everything with `node tools/make-
 
 > If your house isn't selling, Chuk does a 48-hour rental analysis: RentalsByChuk.com/landlords
 
-Pair any of these with a sticker from `brand/chuk/stickers/`, such as "I KNOW A GUY", "TEXT ME!", "HI!" or "THANK YOU!".
+Pair any of these with a sticker from `brand/chuk/stickers/`, such as "I KNOW A GUY", "TEXT ME!", "IT'S ALL HANDLED?!", "HI!" or "THANK YOU!".
 
 ---
 
