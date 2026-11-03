@@ -144,6 +144,14 @@ export const neighborhoods: Neighborhood[] = [
   // (updated Oct 25, 2026): https://www.zumper.com/apartments-for-rent/jupiter-fl/the-bluffs
   // Association lease rules not found online — stated honestly.
   { key: "bluffs", name: "The Bluffs (Jupiter)", head: "Avg rent $4,900 ✅ (Zumper, −2% YoY)", r1: "$2,257 ✅ (Zumper)", r2: "$4,000 ✅ (Zumper)", r3: "No published 3BR series ⚠️", min: "Varies by association — I verify per home", strict: "Not published — I confirm before you apply", furn: "Not tracked — I check live listings", dom: "Jupiter: 34 days (RentalSource)", vibe: "Quiet, Jupiter schools, easy to the beach", take: "Average rent is down 2% year over year here (Zumper) while it's still well above Jupiter's $3,700 median. Each association writes its own lease rules — I pull them before you apply." },
+  // Added Nov 2, 2026 — Zillow rental search, "Admirals Cove, Jupiter, FL"
+  // (3 active rentals: two 2BR condo listings at $10,000–$20,000 and one 3BR
+  // townhome at $22,000; checked Nov 2, 2026). Small sample, seasonal vs annual
+  // terms not stated in the feed. Zumper's rent-research page (Nov 1, 2026) shows
+  // a much lower community figure ($3,400/mo, −75.7% YoY; an earlier crawl showed
+  // $4,200 across 16 rentals) that conflicts with the live listings — not used.
+  // No 1BR series, lease rules from hoa.ts (MPOA rule 54).
+  { key: "admiralscove", name: "Admirals Cove (Jupiter)", head: "Live rentals $10,000–$22,000/mo ✅ (Zillow, 3 listings)", r1: "No published 1BR series ⚠️", r2: "$10,000–$20,000 (condos) ✅", r3: "$22,000 (townhome, 1 listing) ✅", min: "3 consecutive months (MPOA master rule); sub-associations can be stricter", strict: "Strict — board + club approval required", furn: "Not tracked — I check live listings", dom: "Jupiter: 34 days (RentalSource)", vibe: "Estate homes and a marina", take: "Estate-level pricing: the live rentals I can see start around $10,000 a month. Board and club approval both apply, so I start the packet early." },
   { key: "wellington", name: "Wellington", head: "Median $4,386 ✅ (Realtor.com)", r1: "$2,483+ (ApartmentList) ✅", r2: "$3,266+ (ApartmentList) ✅", r3: "Seasonal furnished $8,750–$20,000+/mo ✅", min: "Seasonal terms for WEF (Jan–Apr); annual leases available", strict: "Moderate — HOA/farm rules vary by enclave", furn: "Yes — the WEF furnished market", dom: "— (not in RentalSource series)", vibe: "Equestrian capital + A-rated schools; suburban calm off-season", take: "A two-speed town: sane annual rents, championship prices Jan–Apr. First question I ask: which speed are you?" },
 ];
 
