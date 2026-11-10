@@ -27,8 +27,10 @@ web ─► signal agent ─► "Verify:" issue ─► site agent (Thu) ─► sr
   tier 2 (money, fees, HOA rules, comparisons) is flagged in the PR.
 
 ## Setup (once)
-1. **Secret:** repo Settings → Secrets and variables → Actions → New repository secret `ANTHROPIC_API_KEY`.
-   The Anthropic org behind it needs credits.
+1. **Claude credential:** none to store. The workflows sign in with workload identity federation: GitHub's
+   OIDC token is exchanged for a short-lived Claude API token (rule `gha-rentalsbychuk` in the Claude Console
+   under Workload identity, Agents-Websites workspace). Only runs on `main` of this repo can authenticate.
+   The Anthropic org needs credits.
 2. **Actions permissions:** Settings → Actions → General → Workflow permissions → allow GitHub Actions to
    **create pull requests**.
 3. **First runs by hand:** Actions → *Site agent* → Run workflow; then Actions → *Social drafts* → Run workflow.
