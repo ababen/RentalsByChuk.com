@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import { Archivo, Nunito } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -70,6 +71,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="flex-1">{children}</main>
         <Footer />
         <StickyCTA />
+        <Analytics />
       </body>
     </html>
   );
