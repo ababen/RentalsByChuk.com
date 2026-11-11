@@ -31,6 +31,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
+      id-token: write               # GitHub OIDC token -> short-lived Anthropic token (no API key)
     outputs:
       open: ${{ steps.gate.outputs.open }}
       date: ${{ steps.inputs.outputs.date }}
@@ -76,15 +77,21 @@ jobs:
       - name: Check the agent credential
         if: steps.gate.outputs.open == '0'
         env:
-          TOKEN: ${{ secrets.ANTHROPIC_API_KEY }}
+          RULE_ID: ${{ vars.ANTHROPIC_FEDERATION_RULE_ID }}
+          ORG_ID: ${{ vars.ANTHROPIC_ORGANIZATION_ID }}
+          SVAC_ID: ${{ vars.ANTHROPIC_SERVICE_ACCOUNT_ID }}
         run: |
-          [ -n "$TOKEN" ] || { echo "::error::Add ANTHROPIC_API_KEY as a repository Actions secret (Settings > Secrets and variables > Actions)."; exit 1; }
+          [ -n "$RULE_ID" ] && [ -n "$ORG_ID" ] && [ -n "$SVAC_ID" ] || { echo "::error::Claude signs in with workload identity federation. Set the repository variables ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID and ANTHROPIC_WORKSPACE_ID (Settings > Secrets and variables > Actions > Variables)."; exit 1; }
 
       - name: Run the signal agent
         if: steps.gate.outputs.open == '0'
         uses: anthropics/claude-code-action@v1
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Workload identity federation: GitHub OIDC token -> short-lived Anthropic token (no API key)
+          anthropic_federation_rule_id: ${{ vars.ANTHROPIC_FEDERATION_RULE_ID }}
+          anthropic_organization_id: ${{ vars.ANTHROPIC_ORGANIZATION_ID }}
+          anthropic_service_account_id: ${{ vars.ANTHROPIC_SERVICE_ACCOUNT_ID }}
+          anthropic_workspace_id: ${{ vars.ANTHROPIC_WORKSPACE_ID }}
           github_token: ${{ github.token }}
           prompt: |
             Follow .github/agent/signal-agent.md exactly. Inputs are in .agent-input/. Today is in context.json.
@@ -113,6 +120,7 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: read
+      id-token: write               # GitHub OIDC token -> short-lived Anthropic token (no API key)
     steps:
       - uses: actions/checkout@v7
         with:
@@ -127,7 +135,11 @@ jobs:
       - name: Run the content agent
         uses: anthropics/claude-code-action@v1
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Workload identity federation: GitHub OIDC token -> short-lived Anthropic token (no API key)
+          anthropic_federation_rule_id: ${{ vars.ANTHROPIC_FEDERATION_RULE_ID }}
+          anthropic_organization_id: ${{ vars.ANTHROPIC_ORGANIZATION_ID }}
+          anthropic_service_account_id: ${{ vars.ANTHROPIC_SERVICE_ACCOUNT_ID }}
+          anthropic_workspace_id: ${{ vars.ANTHROPIC_WORKSPACE_ID }}
           github_token: ${{ github.token }}
           prompt: |
             Follow .github/agent/content-agent.md exactly. Inputs are in .agent-input/ and social/queue/.
