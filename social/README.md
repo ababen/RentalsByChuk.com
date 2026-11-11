@@ -27,7 +27,7 @@ web ─► signal agent ─► "Verify:" issue ─► site agent (Thu) ─► sr
   tier 2 (money, fees, HOA rules, comparisons) is flagged in the PR.
 
 ## Setup (once)
-1. **Secret:** repo Settings → Secrets and variables → Actions → New repository secret `ANTHROPIC_API_KEY`.
+1. **Claude sign-in (no API key):** workload identity federation. Set the repository variables `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID` and `ANTHROPIC_WORKSPACE_ID` (Settings → Secrets and variables → Actions → Variables). The federation rule in the Claude Console must trust this repository.
    The Anthropic org behind it needs credits.
 2. **Actions permissions:** Settings → Actions → General → Workflow permissions → allow GitHub Actions to
    **create pull requests**.
